@@ -509,11 +509,21 @@ def build_page() -> str:
   <meta name="theme-color" content="#111111">
   <title>{PAGE_TITLE}</title>
   <meta name="description" content="{DESCRIPTION}">
-  <meta property="og:type" content="website">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://5h4d0wn1k.github.io/bget/manifesto.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="BGET">
   <meta property="og:title" content="{PAGE_TITLE}">
   <meta property="og:description" content="{OG_DESCRIPTION}">
-  <meta property="og:image" content="https://5h4d0wn1k.github.io/bget/assets/bgetlogo.png">
+  <meta property="og:url" content="https://5h4d0wn1k.github.io/bget/manifesto.html">
+  <meta property="og:image" content="https://5h4d0wn1k.github.io/bget/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Become more capable without becoming less human.">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{PAGE_TITLE}">
+  <meta name="twitter:description" content="{OG_DESCRIPTION}">
+  <meta name="twitter:image" content="https://5h4d0wn1k.github.io/bget/assets/og-card.png">
   <link rel="icon" type="image/png" href="assets/favicon.png">
 
   <!-- Type -->
@@ -535,14 +545,25 @@ def build_page() -> str:
   <link rel="stylesheet" href="css/manifesto.css">
 
   <script type="application/ld+json">
-  {{
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "BGET",
-    "alternateName": "Build. Grow. Evolve. Together.",
-    "description": "A global multidisciplinary community where human capability compounds.",
-    "url": "https://5h4d0wn1k.github.io/bget/"
-  }}
+  [
+    {{
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "BGET",
+      "alternateName": "Build. Grow. Evolve. Together.",
+      "description": "A global multidisciplinary community where human capability compounds.",
+      "url": "https://5h4d0wn1k.github.io/bget/"
+    }},
+    {{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{PAGE_TITLE}",
+      "description": "{DESCRIPTION}",
+      "author": {{ "@type": "Organization", "name": "BGET", "url": "https://5h4d0wn1k.github.io/bget/" }},
+      "publisher": {{ "@type": "Organization", "name": "BGET", "url": "https://5h4d0wn1k.github.io/bget/" }},
+      "mainEntityOfPage": "https://5h4d0wn1k.github.io/bget/manifesto.html"
+    }}
+  ]
   </script>
 </head>"""
 
