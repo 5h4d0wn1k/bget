@@ -203,3 +203,43 @@ p.text-red-600 {
 @media (prefers-reduced-motion: reduce) {
   .apply-spinner { animation: none; }
 }
+
+/* FAQ — before you apply */
+.faq-item {
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px 20px;
+  background: var(--bg-white);
+  transition: border-color var(--transition-fast) ease;
+}
+.faq-item:hover { border-color: var(--text-secondary); }
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item[open] { border-color: var(--border-default); }
+.faq-q {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+.faq-chevron {
+  color: var(--text-secondary);
+  transition: transform var(--transition-fast) ease;
+  flex-shrink: 0;
+}
+.faq-item[open] .faq-chevron { transform: rotate(180deg); }
+.faq-a {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
