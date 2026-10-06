@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <title>The Manifesto — BGET</title>
+  <meta name="description" content="The complete BGET manifesto — 26 chapters on character before capability, collective intelligence and real-world action, closing with the North Star.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Manifesto — BGET">
+  <meta property="og:description" content="Twenty-six chapters on what BGET stands for, who it is for and how human capability compounds — ending at the North Star.">
+  <meta property="og:image" content="https://5h4d0wn1k.github.io/bget/assets/bgetlogo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Type -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Utility classes (design tokens mapped to `brand.*`) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#111111',
+              charcoal: '#1a1918',
+              paper: '#ffffff',
+              warm: '#f6f5f0',
+              border: '#e7e5de',
+              borderDark: '#d5d2c8',
+              muted: '#575653',
+              subtle: '#767470'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+          },
+          boxShadow: {
+            xs: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+            '2xs': '0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Design system + page styles -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/bget.css">
+  <link rel="stylesheet" href="css/manifesto.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "BGET",
+    "alternateName": "Build. Grow. Evolve. Together.",
+    "description": "A global multidisciplinary community where human capability compounds.",
+    "url": "https://5h4d0wn1k.github.io/bget/"
+  }
+  </script>
+</head>
+
+<body class="bg-white text-brand-black antialiased selection:bg-brand-black selection:text-white">
+
+  <!-- Skip link -->
+  <a href="#top" class="skip-link">Skip to content</a>
+
+<!-- SHARED:HEADER:START -->
+  <!-- Top Announcement Bar -->
+  <div id="top-announcement-bar" role="region" aria-label="Announcement" class="w-full bg-[#000000] text-white text-[13px] py-2.5 px-10 sm:px-12 flex items-center justify-center relative z-50">
+    <div class="text-center font-normal text-stone-200">
+      ✦ Applications for the first members of BGET are open — every application is read and reviewed personally.
+      <a href="apply.html" class="underline hover:text-white font-medium ml-1">Apply to join &rarr;</a>
+    </div>
+    <button id="close-announcement" class="absolute right-3 sm:right-4 p-1 text-stone-400 hover:text-white transition-colors rounded-sm" aria-label="Close announcement">
+      <i data-lucide="x" class="w-4 h-4" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-brand-border transition-all duration-200">
+    <div class="max-w-[1360px] mx-auto px-6 lg:px-12 h-[76px] flex items-center justify-between">
+
+      <!-- Brand -->
+      <div class="flex items-center gap-8">
+        <a href="#top" class="flex items-center gap-2.5 text-brand-black group">
+          <img src="assets/bgetlogo.png" alt="BGET" width="32" height="32" class="w-8 h-8 rounded-lg object-cover transition-transform duration-200 group-hover:scale-95">
+          <span class="text-[20px] font-semibold tracking-tight text-brand-black">BGET</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav aria-label="Primary" class="hidden lg:flex items-center gap-1 text-[14.5px] font-medium text-brand-muted">
+          <a href="manifesto.html" aria-current="page" class="px-3 py-2 rounded-md hover:text-brand-black transition-colors">Manifesto</a>
+          <a href="index.html#vision" class="px-3 py-2 rounded-md hover:text-brand-black transition-colors">Vision</a>
+          <a href="index.html#people" class="px-3 py-2 rounded-md hover:text-brand-black transition-colors">People</a>
+          <a href="index.html#labs" class="px-3 py-2 rounded-md hover:text-brand-black transition-colors">Labs</a>
+          <a href="index.html#north-star" class="px-3 py-2 rounded-md hover:text-brand-black transition-colors">North Star</a>
+        </nav>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="hidden md:flex items-center gap-2.5">
+        <a href="apply.html#process" class="text-[14px] font-medium text-stone-700 hover:text-brand-black px-2.5 py-2 transition-colors">How selection works</a>
+        <a href="apply.html" class="btn-primary btn-sm text-[13.5px] px-4 py-2">Apply to join</a>
+      </div>
+
+      <!-- Mobile -->
+      <div class="lg:hidden flex items-center gap-2">
+        <a href="apply.html" class="btn-primary btn-sm text-xs px-3 py-1.5 md:hidden">Apply</a>
+        <button id="mobile-menu-btn" type="button" aria-label="Open navigation" aria-controls="mobile-drawer" aria-expanded="false" class="p-2 text-brand-black hover:bg-stone-200/50 rounded-lg transition-colors">
+          <i data-lucide="menu" class="w-6 h-6" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" inert class="lg:hidden p-5 sm:p-6 flex flex-col justify-between overflow-y-auto">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-brand-border">
+        <a href="#top" class="flex items-center gap-2.5">
+          <img src="assets/bgetlogo.png" alt="BGET" width="28" height="28" class="w-7 h-7 rounded-lg object-cover">
+          <span class="text-[19px] font-bold tracking-tight text-brand-black">BGET</span>
+        </a>
+        <button id="close-mobile-menu" type="button" aria-label="Close navigation" class="p-2 text-brand-black hover:bg-stone-200/50 rounded-lg transition-colors">
+          <i data-lucide="x" class="w-5 h-5" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <nav class="flex flex-col mt-4 text-[15px] font-medium text-brand-muted">
+        <a href="manifesto.html" aria-current="page" class="py-3 border-b border-stone-100 hover:text-brand-black">The Manifesto</a>
+        <a href="index.html#vision" class="py-3 border-b border-stone-100 hover:text-brand-black">What BGET stands for</a>
+        <a href="index.html#people" class="py-3 border-b border-stone-100 hover:text-brand-black">Who it's for</a>
+        <a href="index.html#character" class="py-3 border-b border-stone-100 hover:text-brand-black">Character before capability</a>
+        <a href="index.html#how" class="py-3 border-b border-stone-100 hover:text-brand-black">How it compounds</a>
+        <a href="index.html#labs" class="py-3 border-b border-stone-100 hover:text-brand-black">BGET Labs</a>
+        <a href="index.html#north-star" class="py-3 border-b border-stone-100 hover:text-brand-black">The North Star</a>
+      </nav>
+    </div>
+
+    <div class="pt-6 border-t border-brand-border flex flex-col gap-2.5">
+      <a href="apply.html" class="w-full py-3 bg-brand-black hover:bg-stone-800 text-white text-center font-semibold rounded-full text-xs">Apply to join BGET</a>
+      <a href="manifesto.html" aria-current="page" class="w-full py-2.5 border border-stone-300 hover:border-black text-center font-medium rounded-full text-xs text-stone-800">Read the manifesto</a>
+      <div class="text-center text-[11px] text-stone-500 mt-1">Build. Grow. Evolve. Together.</div>
+    </div>
+  </div>
+  <!-- SHARED:HEADER:END -->
+
+  <!-- Reading progress -->
+  <div id="manifesto-progress" class="manifesto-progress" aria-hidden="true"></div>
+
+  <main id="top">
+
+    <!-- ============================ DOCUMENT HEADER ============================ -->
+    <header class="manifesto-header" id="the-vision">
+      <div class="max-w-[1360px] mx-auto px-6 lg:px-12">
+        <div class="manifesto-header-inner">
+          <span class="eyebrow-label manifesto-eyebrow">Vision &amp; Philosophy</span>
+          <h1 class="manifesto-title">BGET — Build. Grow. Evolve. Together.</h1>
+          <h2 class="manifesto-vision-label">The Vision</h2>
+          <p class="lead-body manifesto-lead">BGET is envisioned as a global, multidisciplinary community and eventually an ecosystem of exceptional human beings who come together to <strong>build, grow, evolve, learn, help one another, and create meaningful positive impact on the world</strong>.</p>
+          <div class="manifesto-intro">
+            <p class="prose">At its heart, BGET is about bringing together people with different forms of intelligence, knowledge, skills, experiences, perspectives, professions, cultures, and dreams — and creating an environment where those differences become a source of <strong>collective intelligence and collective action</strong>.</p>
+            <p class="prose">The ultimate ambition is not simply to create another online community, networking group, developer server, startup, or professional organization.</p>
+            <p class="prose">The long-term vision is to create a place where <strong>human capability compounds</strong>.</p>
+            <p class="prose">A place where exceptional minds can meet exceptional hearts, learn from one another, build together, solve difficult problems, and use their combined capabilities to contribute toward a more advanced, peaceful, harmonious, sustainable, and capable human civilization.</p>
+          </div>
+          <div class="manifesto-meta">
+            <span class="manifesto-meta-count">26 chapters · the complete document</span>
+            <a href="apply.html" class="manifesto-meta-link">Apply to join &rarr;</a>
+            <a href="index.html" class="manifesto-meta-link">Back to the homepage</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================ THE DOCUMENT ============================ -->
+    <div class="manifesto-layout max-w-[1360px] mx-auto px-6 lg:px-12">
+
+      <!-- Table of contents -->
+      <aside class="manifesto-toc" id="manifesto-toc" aria-label="Table of contents">
+        <div class="manifesto-toc-head">
+          <span class="eyebrow-label">Contents</span>
+          <button type="button" class="toc-toggle" id="toc-toggle" aria-expanded="true" aria-controls="toc-list">Hide</button>
+        </div>
+        <div class="toc-list-wrap" id="toc-list">
+          <nav class="toc-list">
+            <a class="toc-link" href="#the-vision" data-target="the-vision"><span class="toc-num">00</span><span class="toc-label">The Vision</span></a>
+            <a class="toc-link" href="#chapter-1-what-bget-stands-for" data-target="chapter-1-what-bget-stands-for"><span class="toc-num">01</span><span class="toc-label">What BGET Stands For</span></a>
+            <a class="toc-link" href="#chapter-2-the-people-bget-wants-to-bring-together" data-target="chapter-2-the-people-bget-wants-to-bring-together"><span class="toc-num">02</span><span class="toc-label">The People BGET Wants to Bring Together</span></a>
+            <a class="toc-link" href="#chapter-3-intelligence-is-not-limited-to-iq" data-target="chapter-3-intelligence-is-not-limited-to-iq"><span class="toc-num">03</span><span class="toc-label">Intelligence Is Not Limited to IQ</span></a>
+            <a class="toc-link" href="#chapter-4-the-ideal-bget-person" data-target="chapter-4-the-ideal-bget-person"><span class="toc-num">04</span><span class="toc-label">The Ideal BGET Person</span></a>
+            <a class="toc-link" href="#chapter-5-character-before-capability" data-target="chapter-5-character-before-capability"><span class="toc-num">05</span><span class="toc-label">Character Before Capability</span></a>
+            <a class="toc-link" href="#chapter-6-bget-s-culture" data-target="chapter-6-bget-s-culture"><span class="toc-num">06</span><span class="toc-label">BGET's Culture</span></a>
+            <a class="toc-link" href="#chapter-7-bget-should-help-people-believe-in-good-people-again" data-target="chapter-7-bget-should-help-people-believe-in-good-people-again"><span class="toc-num">07</span><span class="toc-label">BGET Should Help People Believe in Good People Again</span></a>
+            <a class="toc-link" href="#chapter-8-the-problem-solver-philosophy" data-target="chapter-8-the-problem-solver-philosophy"><span class="toc-num">08</span><span class="toc-label">The Problem-Solver Philosophy</span></a>
+            <a class="toc-link" href="#chapter-9-collective-intelligence" data-target="chapter-9-collective-intelligence"><span class="toc-num">09</span><span class="toc-label">Collective Intelligence</span></a>
+            <a class="toc-link" href="#chapter-10-becoming-a-problem-solver" data-target="chapter-10-becoming-a-problem-solver"><span class="toc-num">10</span><span class="toc-label">Becoming a Problem Solver</span></a>
+            <a class="toc-link" href="#chapter-11-from-community-to-real-world-action" data-target="chapter-11-from-community-to-real-world-action"><span class="toc-num">11</span><span class="toc-label">From Community to Real-World Action</span></a>
+            <a class="toc-link" href="#chapter-12-bget-labs" data-target="chapter-12-bget-labs"><span class="toc-num">12</span><span class="toc-label">BGET Labs</span></a>
+            <a class="toc-link" href="#chapter-13-public-good-work" data-target="chapter-13-public-good-work"><span class="toc-num">13</span><span class="toc-label">Public-Good Work</span></a>
+            <a class="toc-link" href="#chapter-14-entrepreneurship-still-has-a-place" data-target="chapter-14-entrepreneurship-still-has-a-place"><span class="toc-num">14</span><span class="toc-label">Entrepreneurship Still Has a Place</span></a>
+            <a class="toc-link" href="#chapter-15-the-civilization-level-vision" data-target="chapter-15-the-civilization-level-vision"><span class="toc-num">15</span><span class="toc-label">The Civilization-Level Vision</span></a>
+            <a class="toc-link" href="#chapter-16-nature-is-non-negotiable" data-target="chapter-16-nature-is-non-negotiable"><span class="toc-num">16</span><span class="toc-label">Nature Is Non-Negotiable</span></a>
+            <a class="toc-link" href="#chapter-17-peace-and-harmony" data-target="chapter-17-peace-and-harmony"><span class="toc-num">17</span><span class="toc-label">Peace and Harmony</span></a>
+            <a class="toc-link" href="#chapter-18-quality-over-quantity" data-target="chapter-18-quality-over-quantity"><span class="toc-num">18</span><span class="toc-label">Quality Over Quantity</span></a>
+            <a class="toc-link" href="#chapter-19-how-people-should-be-evaluated" data-target="chapter-19-how-people-should-be-evaluated"><span class="toc-num">19</span><span class="toc-label">How People Should Be Evaluated</span></a>
+            <a class="toc-link" href="#chapter-20-bget-should-be-a-magnet-not-a-marketplace" data-target="chapter-20-bget-should-be-a-magnet-not-a-marketplace"><span class="toc-num">20</span><span class="toc-label">BGET Should Be a Magnet, Not a Marketplace</span></a>
+            <a class="toc-link" href="#chapter-21-growth-through-trust" data-target="chapter-21-growth-through-trust"><span class="toc-num">21</span><span class="toc-label">Growth Through Trust</span></a>
+            <a class="toc-link" href="#chapter-22-bget-should-never-become-an-ego-club" data-target="chapter-22-bget-should-never-become-an-ego-club"><span class="toc-num">22</span><span class="toc-label">BGET Should Never Become an Ego Club</span></a>
+            <a class="toc-link" href="#chapter-23-the-core-balance" data-target="chapter-23-the-core-balance"><span class="toc-num">23</span><span class="toc-label">The Core Balance</span></a>
+            <a class="toc-link" href="#chapter-24-the-emotional-experience-bget-should-create" data-target="chapter-24-the-emotional-experience-bget-should-create"><span class="toc-num">24</span><span class="toc-label">The Emotional Experience BGET Should Create</span></a>
+            <a class="toc-link" href="#chapter-25-the-ultimate-bget-loop" data-target="chapter-25-the-ultimate-bget-loop"><span class="toc-num">25</span><span class="toc-label">The Ultimate BGET Loop</span></a>
+            <a class="toc-link" href="#chapter-26-the-ultimate-goal" data-target="chapter-26-the-ultimate-goal"><span class="toc-num">26</span><span class="toc-label">The Ultimate Goal</span></a>
+            <a class="toc-link" href="#chapter-bget-in-one-paragraph" data-target="chapter-bget-in-one-paragraph"><span class="toc-num">—</span><span class="toc-label">BGET in One Paragraph</span></a>
+            <a class="toc-link" href="#chapter-the-bget-north-star" data-target="chapter-the-bget-north-star"><span class="toc-num">—</span><span class="toc-label">The BGET North Star</span></a>
+          </nav>
+          <a href="apply.html" class="btn-primary btn-sm toc-apply">Apply to join</a>
+        </div>
+      </aside>
+
+      <!-- Prose -->
+      <div class="manifesto-prose">
+        <section id="chapter-1-what-bget-stands-for" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">01</span>
+            <h2>What BGET Stands For</h2>
+          </div>
+          <h4 class="prose-h4">B — Build</h4>
+          <p class="prose">Build things that matter.</p>
+          <p class="prose">Build software, companies, research, technologies, communities, organizations, solutions, ideas, infrastructure, knowledge, relationships, and better versions of ourselves.</p>
+          <p class="prose">BGET should encourage people to move from:</p>
+          <p class="prose md-emph"><strong>Idea → Action → Experiment → Solution → Real-world impact.</strong></p>
+          <p class="prose">The community should not be centered around endlessly talking about what should be done.</p>
+          <p class="prose">It should encourage people to actually do it.</p>
+          <p class="prose">If something is broken, try to improve it.</p>
+          <p class="prose">If a problem exists, investigate it.</p>
+          <p class="prose">If an opportunity exists, explore it.</p>
+          <p class="prose">If an idea is worth pursuing, build it.</p>
+          <h4 class="prose-h4">G — Grow</h4>
+          <p class="prose">Growth happens individually and collectively.</p>
+          <p class="prose">Members should help one another grow:</p>
+          <ul class="prose-list">
+          <li>intellectually</li>
+          <li>technically</li>
+          <li>professionally</li>
+          <li>physically</li>
+          <li>mentally</li>
+          <li>emotionally</li>
+          <li>socially</li>
+          <li>spiritually</li>
+          <li>financially</li>
+          <li>creatively</li>
+          <li>strategically</li>
+          <li>ethically</li>
+          </ul>
+          <p class="prose">Growth should not be viewed purely through career advancement or money.</p>
+          <p class="prose">A person should ideally become <strong>more capable without becoming less human</strong>.</p>
+          <p class="prose">BGET should be a place where people raise each other's standards while remaining supportive and compassionate.</p>
+          <h4 class="prose-h4">E — Evolve</h4>
+          <p class="prose">BGET is about continuously becoming better.</p>
+          <p class="prose">Members should be willing to:</p>
+          <ul class="prose-list">
+          <li>question themselves</li>
+          <li>challenge assumptions</li>
+          <li>learn from mistakes</li>
+          <li>accept criticism</li>
+          <li>change their minds when evidence demands it</li>
+          <li>learn outside their fields</li>
+          <li>understand perspectives different from their own</li>
+          <li>develop new capabilities</li>
+          <li>improve their character</li>
+          <li>become wiser alongside becoming more capable</li>
+          </ul>
+          <p class="prose">Evolution applies to individuals, teams, projects, organizations, and eventually civilization itself.</p>
+          <h4 class="prose-h4">T — Together</h4>
+          <p class="prose">The word "together" is fundamental.</p>
+          <p class="prose">BGET is built on the belief that <strong>collective intelligence can accomplish things that isolated individuals cannot.</strong></p>
+          <p class="prose">A mathematician has knowledge that an engineer may not.</p>
+          <p class="prose">A doctor sees problems that a software engineer may never encounter.</p>
+          <p class="prose">A cybersecurity researcher sees threats that an entrepreneur may overlook.</p>
+          <p class="prose">A civil engineer understands physical infrastructure.</p>
+          <p class="prose">A scientist understands phenomena at a deeper level.</p>
+          <p class="prose">A strategist understands systems.</p>
+          <p class="prose">A philosopher challenges assumptions.</p>
+          <p class="prose">An entrepreneur understands execution and markets.</p>
+          <p class="prose">A designer understands human interaction.</p>
+          <p class="prose">A community member understands lived experience.</p>
+          <p class="prose">When these perspectives come together, a problem can be examined from multiple dimensions rather than through a single professional lens.</p>
+          <p class="prose">That multidisciplinary collaboration is one of the central mechanisms of BGET.</p>
+        </section>
+
+        <section id="chapter-2-the-people-bget-wants-to-bring-together" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">02</span>
+            <h2>The People BGET Wants to Bring Together</h2>
+          </div>
+          <p class="prose">BGET is intended to be <strong>multidisciplinary by design</strong>.</p>
+          <p class="prose">It should not be restricted to software developers or technologists.</p>
+          <p class="prose">The community should eventually include exceptional people from virtually every field.</p>
+          <h4 class="prose-h4">Science</h4>
+          <ul class="prose-list">
+          <li>Mathematicians</li>
+          <li>Physicists</li>
+          <li>Chemists</li>
+          <li>Biologists</li>
+          <li>Astronomers</li>
+          <li>Researchers</li>
+          <li>Scientists</li>
+          <li>Statisticians</li>
+          <li>Other scientific disciplines</li>
+          </ul>
+          <h4 class="prose-h4">Medicine and Health</h4>
+          <ul class="prose-list">
+          <li>Doctors</li>
+          <li>Surgeons</li>
+          <li>Medical researchers</li>
+          <li>Neuroscientists</li>
+          <li>Psychologists</li>
+          <li>Healthcare professionals</li>
+          <li>Biomedical researchers</li>
+          <li>Public-health specialists</li>
+          </ul>
+          <h4 class="prose-h4">Engineering</h4>
+          <p class="prose">Every engineering discipline can have a place:</p>
+          <ul class="prose-list">
+          <li>Software engineering</li>
+          <li>Computer engineering</li>
+          <li>Cybersecurity</li>
+          <li>AI/ML</li>
+          <li>Electrical engineering</li>
+          <li>Electronics</li>
+          <li>Mechanical engineering</li>
+          <li>Civil engineering</li>
+          <li>Chemical engineering</li>
+          <li>Aerospace engineering</li>
+          <li>Biomedical engineering</li>
+          <li>Environmental engineering</li>
+          <li>Robotics</li>
+          <li>Materials engineering</li>
+          <li>Energy engineering</li>
+          <li>Systems engineering</li>
+          <li>And many others</li>
+          </ul>
+          <h4 class="prose-h4">Technology</h4>
+          <ul class="prose-list">
+          <li>Advanced software engineers</li>
+          <li>AI researchers</li>
+          <li>Security researchers</li>
+          <li>Systems architects</li>
+          <li>Infrastructure engineers</li>
+          <li>Cloud engineers</li>
+          <li>Hardware builders</li>
+          <li>Open-source developers</li>
+          <li>Technical researchers</li>
+          </ul>
+          <h4 class="prose-h4">Business and Entrepreneurship</h4>
+          <ul class="prose-list">
+          <li>Entrepreneurs</li>
+          <li>Founders</li>
+          <li>Business strategists</li>
+          <li>Product builders</li>
+          <li>Operators</li>
+          <li>Investors</li>
+          <li>Economists</li>
+          <li>Financial professionals</li>
+          <li>Marketing and growth specialists</li>
+          </ul>
+          <h4 class="prose-h4">Strategy and Thought</h4>
+          <ul class="prose-list">
+          <li>Critical thinkers</li>
+          <li>Deep thinkers</li>
+          <li>Strategists</li>
+          <li>Philosophers</li>
+          <li>Analysts</li>
+          <li>Planners</li>
+          <li>Managers</li>
+          <li>Leaders</li>
+          <li>Policy thinkers</li>
+          <li>Educators</li>
+          </ul>
+          <h4 class="prose-h4">Other disciplines</h4>
+          <p class="prose">BGET should remain open to people from fields such as:</p>
+          <ul class="prose-list">
+          <li>Architecture</li>
+          <li>Design</li>
+          <li>Arts</li>
+          <li>Communication</li>
+          <li>Agriculture</li>
+          <li>Environmental science</li>
+          <li>Law</li>
+          <li>Education</li>
+          <li>Economics</li>
+          <li>Psychology</li>
+          <li>Humanities</li>
+          <li>Skilled trades</li>
+          <li>Exploration</li>
+          <li>Space</li>
+          <li>And disciplines that may not even exist today</li>
+          </ul>
+          <p class="prose">The objective is not merely to gather people with impressive titles.</p>
+          <p class="prose">The objective is to bring together <strong>different kinds of intelligence and experience.</strong></p>
+        </section>
+
+        <section id="chapter-3-intelligence-is-not-limited-to-iq" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">03</span>
+            <h2>Intelligence Is Not Limited to IQ</h2>
+          </div>
+          <p class="prose">BGET wants extremely capable people, including some of the smartest minds available across different fields.</p>
+          <p class="prose">However, intelligence should not be reduced to a numerical IQ score.</p>
+          <p class="prose">BGET should value:</p>
+          <ul class="prose-list">
+          <li>analytical intelligence</li>
+          <li>technical intelligence</li>
+          <li>mathematical intelligence</li>
+          <li>scientific reasoning</li>
+          <li>creativity</li>
+          <li>practical intelligence</li>
+          <li>emotional intelligence</li>
+          <li>social intelligence</li>
+          <li>strategic thinking</li>
+          <li>intuition</li>
+          <li>wisdom</li>
+          <li>leadership</li>
+          <li>resilience</li>
+          <li>craftsmanship</li>
+          <li>domain expertise</li>
+          <li>curiosity</li>
+          <li>ability to learn</li>
+          </ul>
+          <p class="prose">Someone may have extraordinary potential even if they have not yet had the opportunity to demonstrate it.</p>
+          <p class="prose">Therefore:</p>
+          <p class="prose md-emph"><strong>Character + potential + capability + trajectory matter more than credentials alone.</strong></p>
+        </section>
+
+        <section id="chapter-4-the-ideal-bget-person" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">04</span>
+            <h2>The Ideal BGET Person</h2>
+          </div>
+          <p class="prose">The ideal BGET member is not necessarily perfect.</p>
+          <p class="prose">They are someone who genuinely wants to become better.</p>
+          <p class="prose">They are:</p>
+          <h4 class="prose-h4">Genuine</h4>
+          <p class="prose">They don't constantly perform a fake version of themselves to impress others.</p>
+          <h4 class="prose-h4">Humble</h4>
+          <p class="prose">They can be extremely capable without believing they are superior to everyone else.</p>
+          <p class="prose">They can say:</p>
+          <blockquote class="prose-quote">
+          <p>"I don't know."</p>
+          </blockquote>
+          <p class="prose">And:</p>
+          <blockquote class="prose-quote">
+          <p>"You're better at this than me. Teach me."</p>
+          </blockquote>
+          <h4 class="prose-h4">Ambitious</h4>
+          <p class="prose">They have dreams.</p>
+          <p class="prose">They want to accomplish something meaningful with their life.</p>
+          <p class="prose">They don't want to simply drift through existence.</p>
+          <h4 class="prose-h4">Hardworking</h4>
+          <p class="prose">They don't merely talk about their ambitions.</p>
+          <p class="prose">They act.</p>
+          <h4 class="prose-h4">Proactive</h4>
+          <p class="prose">They see something that can be improved and take initiative.</p>
+          <h4 class="prose-h4">Solution-oriented</h4>
+          <p class="prose">Their instinct is:</p>
+          <blockquote class="prose-quote">
+          <p>"Okay, this is a problem. What can we do about it?"</p>
+          </blockquote>
+          <p class="prose">rather than simply complaining.</p>
+          <h4 class="prose-h4">Helpful</h4>
+          <p class="prose">They want to help people even when there is nothing immediately in it for them.</p>
+          <h4 class="prose-h4">Compassionate</h4>
+          <p class="prose">They genuinely care about other people.</p>
+          <p class="prose">They try to understand before judging.</p>
+          <h4 class="prose-h4">God-conscious / spiritually grounded</h4>
+          <p class="prose">They care about morality and believe their actions matter even when nobody is watching.</p>
+          <h4 class="prose-h4">Ethical</h4>
+          <p class="prose">They don't believe that achieving a goal justifies harming people.</p>
+          <p class="prose">They understand that capability comes with responsibility.</p>
+          <h4 class="prose-h4">Positive</h4>
+          <p class="prose">Not fake positivity or denial of problems.</p>
+          <p class="prose">Rather, the belief that problems are worth attempting to solve.</p>
+          <h4 class="prose-h4">Resilient</h4>
+          <p class="prose">They possess strong willpower.</p>
+          <p class="prose">When something genuinely matters to them, they are willing to:</p>
+          <ul class="prose-list">
+          <li>learn</li>
+          <li>fail</li>
+          <li>adapt</li>
+          <li>try again</li>
+          <li>persist</li>
+          <li>find another way</li>
+          </ul>
+          <h4 class="prose-h4">Curious</h4>
+          <p class="prose">They want to understand how things work.</p>
+          <h4 class="prose-h4">Multidisciplinary</h4>
+          <p class="prose">They are willing to learn outside their specialization.</p>
+          <h4 class="prose-h4">Collaborative</h4>
+          <p class="prose">They don't see another person's intelligence as a threat.</p>
+          <p class="prose">They see it as an opportunity to learn.</p>
+          <h4 class="prose-h4">Playful</h4>
+          <p class="prose">They can work incredibly hard while still laughing, joking, playing games, exploring hobbies and enjoying life.</p>
+          <h4 class="prose-h4">Human</h4>
+          <p class="prose">They have dreams outside of work.</p>
+          <p class="prose">They want friendships, families, adventures, experiences, creativity, spirituality, peace, happiness and meaningful lives.</p>
+          <p class="prose">BGET should never become a place where people believe they must grind 18 hours a day to prove their worth.</p>
+        </section>
+
+        <section id="chapter-5-character-before-capability" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">05</span>
+            <h2>Character Before Capability</h2>
+          </div>
+          <p class="prose">One of the most important principles of BGET is:</p>
+          <blockquote class="prose-quote">
+          <p><strong>Exceptional capability without character is not enough.</strong></p>
+          </blockquote>
+          <p class="prose">A person can be brilliant and still be wrong for BGET.</p>
+          <p class="prose">Someone can have:</p>
+          <ul class="prose-list">
+          <li>an extraordinary résumé</li>
+          <li>enormous technical ability</li>
+          <li>prestigious credentials</li>
+          <li>high intelligence</li>
+          <li>impressive achievements</li>
+          </ul>
+          <p class="prose">and still lack the qualities necessary for a healthy community.</p>
+          <p class="prose">BGET therefore prioritizes:</p>
+          <p class="prose md-emph"><strong>Character + integrity + kindness + humility + responsibility</strong></p>
+          <p class="prose">alongside:</p>
+          <p class="prose md-emph"><strong>Intelligence + competence + ambition + execution.</strong></p>
+          <p class="prose">The goal is not to create the most powerful people possible.</p>
+          <p class="prose">It is to create <strong>highly capable people who can be trusted with their capabilities.</strong></p>
+        </section>
+
+        <section id="chapter-6-bget-s-culture" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">06</span>
+            <h2>BGET's Culture</h2>
+          </div>
+          <p class="prose">The desired atmosphere is:</p>
+          <p class="prose md-emph"><strong>Deep but playful.</strong></p>
+          <p class="prose md-emph"><strong>Ambitious but humble.</strong></p>
+          <p class="prose md-emph"><strong>Hardworking but relaxed.</strong></p>
+          <p class="prose md-emph"><strong>Spiritual but not judgmental.</strong></p>
+          <p class="prose md-emph"><strong>Intelligent but not arrogant.</strong></p>
+          <p class="prose md-emph"><strong>Competitive but supportive.</strong></p>
+          <p class="prose md-emph"><strong>Serious about purpose but not serious about every little thing.</strong></p>
+          <p class="prose">Someone should be able to discuss:</p>
+          <ul class="prose-list">
+          <li>consciousness</li>
+          <li>physics</li>
+          <li>artificial intelligence</li>
+          <li>God</li>
+          <li>civilization</li>
+          <li>philosophy</li>
+          <li>geopolitics</li>
+          <li>cybersecurity</li>
+          <li>mathematics</li>
+          <li>climate</li>
+          <li>medicine</li>
+          </ul>
+          <p class="prose">and then five minutes later:</p>
+          <ul class="prose-list">
+          <li>play chess</li>
+          <li>share memes</li>
+          <li>joke around</li>
+          <li>talk about music</li>
+          <li>discuss travel</li>
+          <li>talk about their hobbies</li>
+          <li>simply hang out</li>
+          </ul>
+          <p class="prose">BGET should be a <strong>human community</strong>, not a corporate conference room.</p>
+        </section>
+
+        <section id="chapter-7-bget-should-help-people-believe-in-good-people-again" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">07</span>
+            <h2>BGET Should Help People Believe in Good People Again</h2>
+          </div>
+          <p class="prose">A deeper purpose of the community is to create an environment where people experience genuine kindness.</p>
+          <p class="prose">Members should encounter people who:</p>
+          <ul class="prose-list">
+          <li>help without expecting something in return</li>
+          <li>share knowledge</li>
+          <li>encourage others</li>
+          <li>introduce people to opportunities</li>
+          <li>celebrate other people's success</li>
+          <li>respectfully disagree</li>
+          <li>support people when they're struggling</li>
+          <li>give others credit</li>
+          <li>admit mistakes</li>
+          <li>genuinely want others to succeed</li>
+          </ul>
+          <p class="prose">Instead of simply telling people:</p>
+          <blockquote class="prose-quote">
+          <p>"There are still good people in the world."</p>
+          </blockquote>
+          <p class="prose">BGET should allow them to <strong>experience it.</strong></p>
+        </section>
+
+        <section id="chapter-8-the-problem-solver-philosophy" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">08</span>
+            <h2>The Problem-Solver Philosophy</h2>
+          </div>
+          <p class="prose">BGET should develop people who don't simply identify problems.</p>
+          <p class="prose">They attempt to solve them.</p>
+          <p class="prose">The philosophy is:</p>
+          <blockquote class="prose-quote">
+          <p><strong>Don't just point at the problem. Be part of the solution.</strong></p>
+          </blockquote>
+          <p class="prose">This does not mean blindly rushing into action.</p>
+          <p class="prose">Critical thinking remains essential.</p>
+          <p class="prose">Members should:</p>
+          <ol class="prose-list prose-ordered">
+          <li>Understand the problem.</li>
+          <li>Investigate its causes.</li>
+          <li>Identify constraints.</li>
+          <li>Gather relevant expertise.</li>
+          <li>Consider multiple perspectives.</li>
+          <li>Develop possible solutions.</li>
+          <li>Examine risks and unintended consequences.</li>
+          <li>Build or test something.</li>
+          <li>Measure whether it actually works.</li>
+          <li>Learn from failure.</li>
+          <li>Improve the solution.</li>
+          <li>Deploy it responsibly.</li>
+          </ol>
+          <p class="prose">This is <strong>knowledge converted into action.</strong></p>
+        </section>
+
+        <section id="chapter-9-collective-intelligence" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">09</span>
+            <h2>Collective Intelligence</h2>
+          </div>
+          <p class="prose">One of the central beliefs behind BGET is that:</p>
+          <blockquote class="prose-quote">
+          <p><strong>No single person needs to know everything when extraordinary people can learn from and complement one another.</strong></p>
+          </blockquote>
+          <p class="prose">Consider a problem such as providing clean water to a remote community.</p>
+          <p class="prose">It may require:</p>
+          <ul class="prose-list">
+          <li>civil engineering</li>
+          <li>hydrology</li>
+          <li>chemistry</li>
+          <li>biology</li>
+          <li>electrical engineering</li>
+          <li>software</li>
+          <li>data science</li>
+          <li>economics</li>
+          <li>logistics</li>
+          <li>government knowledge</li>
+          <li>psychology</li>
+          <li>local community knowledge</li>
+          <li>entrepreneurship</li>
+          <li>environmental science</li>
+          </ul>
+          <p class="prose">No single profession owns the entire solution.</p>
+          <p class="prose">BGET's purpose is to bring those perspectives together.</p>
+          <p class="prose">The community becomes a network in which:</p>
+          <p class="prose md-emph"><strong>knowledge connects to knowledge,</strong></p>
+          <p class="prose md-emph"><strong>people connect to people,</strong></p>
+          <p class="prose md-emph"><strong>ideas connect to ideas,</strong></p>
+          <p class="prose">and eventually:</p>
+          <p class="prose md-emph"><strong>capability connects to capability.</strong></p>
+        </section>
+
+        <section id="chapter-10-becoming-a-problem-solver" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">10</span>
+            <h2>Becoming a Problem Solver</h2>
+          </div>
+          <p class="prose">A personal aspiration within this philosophy is to become a highly capable generalist.</p>
+          <p class="prose">The goal is not necessarily to literally become the world's greatest expert at every individual discipline.</p>
+          <p class="prose">Rather, the goal is to develop the ability to:</p>
+          <ul class="prose-list">
+          <li>understand complex problems</li>
+          <li>learn rapidly</li>
+          <li>connect different fields</li>
+          <li>identify important questions</li>
+          <li>reason about systems</li>
+          <li>understand enough of multiple disciplines to communicate with specialists</li>
+          <li>find the right experts</li>
+          <li>combine expertise</li>
+          <li>evaluate solutions</li>
+          <li>turn knowledge into action</li>
+          </ul>
+          <p class="prose">Deep expertise remains valuable.</p>
+          <p class="prose">But real-world problems often cross disciplinary boundaries.</p>
+          <p class="prose">Therefore BGET encourages:</p>
+          <blockquote class="prose-quote">
+          <p><strong>Depth where it matters + breadth where it creates connections.</strong></p>
+          </blockquote>
+        </section>
+
+        <section id="chapter-11-from-community-to-real-world-action" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">11</span>
+            <h2>From Community to Real-World Action</h2>
+          </div>
+          <p class="prose">BGET should not stop at discussion.</p>
+          <p class="prose">The community should eventually produce:</p>
+          <ul class="prose-list">
+          <li>software</li>
+          <li>hardware</li>
+          <li>research</li>
+          <li>startups</li>
+          <li>nonprofits</li>
+          <li>open-source projects</li>
+          <li>educational resources</li>
+          <li>environmental projects</li>
+          <li>scientific experiments</li>
+          <li>cybersecurity tools</li>
+          <li>infrastructure</li>
+          <li>public-interest technology</li>
+          <li>humanitarian solutions</li>
+          <li>free products</li>
+          <li>government solutions</li>
+          <li>community services</li>
+          </ul>
+          <p class="prose">The philosophy is:</p>
+          <blockquote class="prose-quote">
+          <p><strong>Build things that actually work.</strong></p>
+          </blockquote>
+          <p class="prose">Not simply ideas.</p>
+          <p class="prose">Not endless presentations.</p>
+          <p class="prose">Not empty motivational content.</p>
+          <p class="prose">Actual solutions.</p>
+        </section>
+
+        <section id="chapter-12-bget-labs" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">12</span>
+            <h2>BGET Labs</h2>
+          </div>
+          <p class="prose">A major future component could be <strong>BGET Labs</strong>.</p>
+          <p class="prose">BGET Labs would allow multidisciplinary teams to form around meaningful problems.</p>
+          <p class="prose">For example:</p>
+          <h4 class="prose-h4">Problem</h4>
+          <p class="prose">How can we reduce energy waste in cities?</p>
+          <h4 class="prose-h4">Potential BGET team</h4>
+          <ul class="prose-list">
+          <li>Electrical engineer</li>
+          <li>Software engineer</li>
+          <li>Data scientist</li>
+          <li>Environmental scientist</li>
+          <li>Economist</li>
+          <li>Urban planner</li>
+          <li>Entrepreneur</li>
+          <li>Policy specialist</li>
+          </ul>
+          <p class="prose">Together they research, prototype, test and potentially deploy a solution.</p>
+          <p class="prose">Another team could work on:</p>
+          <ul class="prose-list">
+          <li>accessible healthcare</li>
+          <li>cybersecurity</li>
+          <li>education</li>
+          <li>clean water</li>
+          <li>sustainable agriculture</li>
+          <li>disaster response</li>
+          <li>climate monitoring</li>
+          <li>public transportation</li>
+          <li>energy</li>
+          <li>accessibility</li>
+          <li>scientific research</li>
+          <li>AI safety</li>
+          <li>humanitarian technology</li>
+          </ul>
+          <p class="prose">The possibilities are enormous.</p>
+        </section>
+
+        <section id="chapter-13-public-good-work" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">13</span>
+            <h2>Public-Good Work</h2>
+          </div>
+          <p class="prose">Not everything BGET builds needs to become a commercial business.</p>
+          <p class="prose">Some projects could deliberately be created for public benefit.</p>
+          <p class="prose">Examples include:</p>
+          <ul class="prose-list">
+          <li>free software</li>
+          <li>open-source tools</li>
+          <li>free educational platforms</li>
+          <li>government technology</li>
+          <li>environmental monitoring</li>
+          <li>humanitarian systems</li>
+          <li>research</li>
+          <li>accessibility tools</li>
+          <li>nonprofit infrastructure</li>
+          <li>public datasets</li>
+          <li>community resources</li>
+          </ul>
+          <p class="prose">Where appropriate, BGET could provide solutions to:</p>
+          <ul class="prose-list">
+          <li>governments</li>
+          <li>NGOs</li>
+          <li>schools</li>
+          <li>communities</li>
+          <li>researchers</li>
+          <li>humanitarian organizations</li>
+          <li>people who cannot otherwise afford them</li>
+          </ul>
+          <p class="prose">The guiding question becomes:</p>
+          <blockquote class="prose-quote">
+          <p><strong>"Can this capability create meaningful positive impact?"</strong></p>
+          </blockquote>
+          <p class="prose">rather than:</p>
+          <blockquote class="prose-quote">
+          <p><strong>"How much money can we extract from it?"</strong></p>
+          </blockquote>
+        </section>
+
+        <section id="chapter-14-entrepreneurship-still-has-a-place" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">14</span>
+            <h2>Entrepreneurship Still Has a Place</h2>
+          </div>
+          <p class="prose">BGET is not anti-business.</p>
+          <p class="prose">Entrepreneurship can be one of the mechanisms through which useful ideas become sustainable and scalable.</p>
+          <p class="prose">Members can:</p>
+          <ul class="prose-list">
+          <li>create startups</li>
+          <li>build products</li>
+          <li>launch companies</li>
+          <li>raise capital</li>
+          <li>commercialize technologies</li>
+          <li>create jobs</li>
+          <li>develop sustainable businesses</li>
+          </ul>
+          <p class="prose">Some BGET projects may become companies.</p>
+          <p class="prose">Some may remain open source.</p>
+          <p class="prose">Some may become nonprofits.</p>
+          <p class="prose">Some may become research projects.</p>
+          <p class="prose">Some may simply help a small community.</p>
+          <p class="prose md-emph"><strong>Impact determines the path.</strong></p>
+        </section>
+
+        <section id="chapter-15-the-civilization-level-vision" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">15</span>
+            <h2>The Civilization-Level Vision</h2>
+          </div>
+          <p class="prose">The ultimate aspiration goes beyond individual projects.</p>
+          <p class="prose">BGET aims to contribute, however modestly, toward a future in which humanity becomes:</p>
+          <ul class="prose-list">
+          <li>more scientifically capable</li>
+          <li>more technologically advanced</li>
+          <li>more educated</li>
+          <li>more resilient</li>
+          <li>more cooperative</li>
+          <li>more peaceful</li>
+          <li>more compassionate</li>
+          <li>more environmentally responsible</li>
+          <li>more capable of solving complex problems</li>
+          </ul>
+          <p class="prose">The ambition is to help humanity progress toward a <strong>more advanced civilization without sacrificing the things that make civilization worth having.</strong></p>
+          <p class="prose">That means:</p>
+          <h4 class="prose-h4">More technology — without destroying nature.</h4>
+          <h4 class="prose-h4">More power — with more responsibility.</h4>
+          <h4 class="prose-h4">More intelligence — with more wisdom.</h4>
+          <h4 class="prose-h4">More ambition — with more humility.</h4>
+          <h4 class="prose-h4">More progress — with more compassion.</h4>
+          <h4 class="prose-h4">More capability — with more ethical responsibility.</h4>
+        </section>
+
+        <section id="chapter-16-nature-is-non-negotiable" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">16</span>
+            <h2>Nature Is Non-Negotiable</h2>
+          </div>
+          <p class="prose">Human advancement should not come at the cost of destroying the natural systems that sustain life.</p>
+          <p class="prose">BGET therefore wants to care about:</p>
+          <ul class="prose-list">
+          <li>nature</li>
+          <li>biodiversity</li>
+          <li>ecosystems</li>
+          <li>climate</li>
+          <li>sustainable resource use</li>
+          <li>environmental health</li>
+          <li>long-term planetary sustainability</li>
+          </ul>
+          <p class="prose">The goal is not:</p>
+          <blockquote class="prose-quote">
+          <p>"Advance humanity at any cost."</p>
+          </blockquote>
+          <p class="prose">It is:</p>
+          <blockquote class="prose-quote">
+          <p><strong>"Advance humanity while sustaining the world that humanity depends upon."</strong></p>
+          </blockquote>
+          <p class="prose">A better civilization should ultimately be better for both <strong>people and the planet.</strong></p>
+        </section>
+
+        <section id="chapter-17-peace-and-harmony" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">17</span>
+            <h2>Peace and Harmony</h2>
+          </div>
+          <p class="prose">The vision is not technological dominance.</p>
+          <p class="prose">BGET should promote:</p>
+          <ul class="prose-list">
+          <li>cooperation</li>
+          <li>peaceful problem-solving</li>
+          <li>mutual respect</li>
+          <li>understanding</li>
+          <li>dialogue</li>
+          <li>empathy</li>
+          <li>ethical responsibility</li>
+          </ul>
+          <p class="prose">Different people will have different:</p>
+          <ul class="prose-list">
+          <li>cultures</li>
+          <li>beliefs</li>
+          <li>religions</li>
+          <li>political views</li>
+          <li>professions</li>
+          <li>philosophies</li>
+          <li>experiences</li>
+          </ul>
+          <p class="prose">BGET should be capable of bringing them together around shared positive objectives without requiring everyone to become identical.</p>
+          <p class="prose">The objective is <strong>unity without uniformity.</strong></p>
+        </section>
+
+        <section id="chapter-18-quality-over-quantity" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">18</span>
+            <h2>Quality Over Quantity</h2>
+          </div>
+          <p class="prose">BGET should not optimize for member count.</p>
+          <p class="prose">The objective is not:</p>
+          <blockquote class="prose-quote">
+          <p>100,000 random Discord members.</p>
+          </blockquote>
+          <p class="prose">The objective is:</p>
+          <blockquote class="prose-quote">
+          <p><strong>A network of genuinely exceptional human beings who trust one another and create extraordinary things together.</strong></p>
+          </blockquote>
+          <p class="prose">The first 5–10 people matter enormously.</p>
+          <p class="prose">The first 50 matter enormously.</p>
+          <p class="prose">Culture should be protected while the network grows.</p>
+          <p class="prose">A small group of exceptional, trustworthy people can be more valuable than thousands of inactive or incompatible members.</p>
+        </section>
+
+        <section id="chapter-19-how-people-should-be-evaluated" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">19</span>
+            <h2>How People Should Be Evaluated</h2>
+          </div>
+          <p class="prose">Credentials alone should not determine membership.</p>
+          <p class="prose">A person should ideally be evaluated through:</p>
+          <h4 class="prose-h4">Character</h4>
+          <p class="prose">Are they genuine?</p>
+          <h4 class="prose-h4">Intent</h4>
+          <p class="prose">Do they actually care about people and positive impact?</p>
+          <h4 class="prose-h4">Capability</h4>
+          <p class="prose">What can they do?</p>
+          <h4 class="prose-h4">Potential</h4>
+          <p class="prose">What could they become?</p>
+          <h4 class="prose-h4">Initiative</h4>
+          <p class="prose">Do they take action?</p>
+          <h4 class="prose-h4">Curiosity</h4>
+          <p class="prose">Do they want to learn?</p>
+          <h4 class="prose-h4">Humility</h4>
+          <p class="prose">Can they admit when they're wrong?</p>
+          <h4 class="prose-h4">Collaboration</h4>
+          <p class="prose">Do they make others better?</p>
+          <h4 class="prose-h4">Integrity</h4>
+          <p class="prose">Can they be trusted?</p>
+          <h4 class="prose-h4">Trajectory</h4>
+          <p class="prose">Are they continuously improving?</p>
+          <h4 class="prose-h4">Life balance</h4>
+          <p class="prose">Can they work hard while still living a healthy, joyful life?</p>
+          <p class="prose">The goal is to identify <strong>good humans with exceptional potential or capability.</strong></p>
+        </section>
+
+        <section id="chapter-20-bget-should-be-a-magnet-not-a-marketplace" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">20</span>
+            <h2>BGET Should Be a Magnet, Not a Marketplace</h2>
+          </div>
+          <p class="prose">Rather than desperately collecting members, BGET should become the kind of place exceptional people naturally want to join.</p>
+          <p class="prose">The goal is for someone to discover BGET and think:</p>
+          <blockquote class="prose-quote">
+          <p><strong>"These are my people."</strong></p>
+          </blockquote>
+          <p class="prose">That means the community's culture must be stronger than its marketing.</p>
+          <p class="prose">People should join because they see:</p>
+          <ul class="prose-list">
+          <li>interesting minds</li>
+          <li>meaningful projects</li>
+          <li>genuine friendships</li>
+          <li>intellectual curiosity</li>
+          <li>kindness</li>
+          <li>ambition</li>
+          <li>humor</li>
+          <li>action</li>
+          <li>positive impact</li>
+          </ul>
+        </section>
+
+        <section id="chapter-21-growth-through-trust" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">21</span>
+            <h2>Growth Through Trust</h2>
+          </div>
+          <p class="prose">The ideal growth mechanism is not random mass recruitment.</p>
+          <p class="prose">It is:</p>
+          <p class="prose md-emph"><strong>Good people → good experiences → trust → relationships → introductions → more good people.</strong></p>
+          <p class="prose">One exceptional member knows another exceptional person.</p>
+          <p class="prose">That person knows someone else.</p>
+          <p class="prose">Eventually BGET becomes a network of trusted introductions.</p>
+          <p class="prose">This allows quality to compound.</p>
+        </section>
+
+        <section id="chapter-22-bget-should-never-become-an-ego-club" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">22</span>
+            <h2>BGET Should Never Become an Ego Club</h2>
+          </div>
+          <p class="prose">Exceptional people must not gather merely to prove they are exceptional.</p>
+          <p class="prose">The purpose of intelligence is not status.</p>
+          <p class="prose">The purpose of capability is not superiority.</p>
+          <p class="prose">The purpose of knowledge is not to dominate others.</p>
+          <p class="prose">The purpose of expertise is to <strong>create, understand, help and solve.</strong></p>
+          <p class="prose">The community should encourage people to become extraordinary while remaining grounded.</p>
+        </section>
+
+        <section id="chapter-23-the-core-balance" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">23</span>
+            <h2>The Core Balance</h2>
+          </div>
+          <p class="prose">BGET is built around several deliberate balances:</p>
+          <p class="prose md-emph"><strong>Ambition + Humility</strong></p>
+          <p class="prose md-emph"><strong>Intelligence + Compassion</strong></p>
+          <p class="prose md-emph"><strong>Capability + Responsibility</strong></p>
+          <p class="prose md-emph"><strong>Technology + Nature</strong></p>
+          <p class="prose md-emph"><strong>Deep Thinking + Action</strong></p>
+          <p class="prose md-emph"><strong>Hard Work + Play</strong></p>
+          <p class="prose md-emph"><strong>Individual Dreams + Collective Purpose</strong></p>
+          <p class="prose md-emph"><strong>Specialization + Multidisciplinary Thinking</strong></p>
+          <p class="prose md-emph"><strong>Competition + Cooperation</strong></p>
+          <p class="prose md-emph"><strong>Progress + Sustainability</strong></p>
+          <p class="prose md-emph"><strong>Faith + Openness</strong></p>
+          <p class="prose md-emph"><strong>Power + Ethics</strong></p>
+          <p class="prose">These balances are central to the identity of BGET.</p>
+        </section>
+
+        <section id="chapter-24-the-emotional-experience-bget-should-create" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">24</span>
+            <h2>The Emotional Experience BGET Should Create</h2>
+          </div>
+          <p class="prose">Someone should enter BGET and feel:</p>
+          <blockquote class="prose-quote">
+          <p>"I can be myself here."</p>
+          </blockquote>
+          <p class="prose">Then:</p>
+          <blockquote class="prose-quote">
+          <p>"These people actually care."</p>
+          </blockquote>
+          <p class="prose">Then:</p>
+          <blockquote class="prose-quote">
+          <p>"These people are insanely capable."</p>
+          </blockquote>
+          <p class="prose">Then:</p>
+          <blockquote class="prose-quote">
+          <p>"They're willing to help me."</p>
+          </blockquote>
+          <p class="prose">Then:</p>
+          <blockquote class="prose-quote">
+          <p>"They're going to challenge me to become better."</p>
+          </blockquote>
+          <p class="prose">Then:</p>
+          <blockquote class="prose-quote">
+          <p>"I can contribute too."</p>
+          </blockquote>
+          <p class="prose">And eventually:</p>
+          <blockquote class="prose-quote">
+          <p><strong>"These are my people."</strong></p>
+          </blockquote>
+          <p class="prose">That emotional experience may ultimately be more important than any particular Discord channel or project.</p>
+        </section>
+
+        <section id="chapter-25-the-ultimate-bget-loop" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">25</span>
+            <h2>The Ultimate BGET Loop</h2>
+          </div>
+          <p class="prose">The entire philosophy can be expressed as:</p>
+          <p class="prose md-emph"><strong>Find exceptional people</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Create genuine relationships</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Share knowledge</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Help one another grow</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Combine different disciplines</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Identify meaningful problems</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Think deeply</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Build practical solutions</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Test them in the real world</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Learn</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Improve</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Deploy</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Create positive impact</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Help more people</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Attract more exceptional people</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Increase collective capability</strong></p>
+          <p class="prose md-arrow">↓</p>
+          <p class="prose md-emph"><strong>Repeat</strong></p>
+          <p class="prose">This is how the community compounds.</p>
+        </section>
+
+        <section id="chapter-26-the-ultimate-goal" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">26</span>
+            <h2>The Ultimate Goal</h2>
+          </div>
+          <p class="prose">The ultimate goal of BGET is not simply to create successful individuals.</p>
+          <p class="prose">It is not simply to create successful companies.</p>
+          <p class="prose">It is not simply to create a large Discord server.</p>
+          <p class="prose">It is not simply to produce impressive technology.</p>
+          <p class="prose">The ultimate goal is:</p>
+          <blockquote class="prose-quote">
+          <p><strong>To bring capable, curious, genuine and compassionate human beings together so that their combined knowledge, character, creativity and determination can be used to build a better future.</strong></p>
+          </blockquote>
+          <p class="prose">A future where humanity can become:</p>
+          <p class="prose md-emph"><strong>more capable,</strong></p>
+          <p class="prose md-emph"><strong>more knowledgeable,</strong></p>
+          <p class="prose md-emph"><strong>more technologically advanced,</strong></p>
+          <p class="prose md-emph"><strong>more peaceful,</strong></p>
+          <p class="prose md-emph"><strong>more compassionate,</strong></p>
+          <p class="prose md-emph"><strong>more sustainable,</strong></p>
+          <p class="prose">and ultimately <strong>better equipped to solve the enormous problems facing civilization.</strong></p>
+        </section>
+
+        <section id="chapter-bget-in-one-paragraph" class="manifesto-chapter">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">—</span>
+            <h2>BGET in One Paragraph</h2>
+          </div>
+          <p class="prose"><strong>BGET — Build. Grow. Evolve. Together — is a global multidisciplinary community for genuine, ambitious, curious, hardworking and compassionate people who want to become more capable while remaining deeply human. It seeks to bring together exceptional minds and people with exceptional potential across science, medicine, engineering, technology, cybersecurity, mathematics, research, business, entrepreneurship, strategy, philosophy, management, arts and countless other disciplines. By combining different forms of intelligence and experience, BGET aims to create collective intelligence that can move beyond discussion into real action: building projects, conducting research, creating companies and nonprofits, developing open-source and free public-good solutions, helping communities, protecting nature and solving meaningful problems. At its deepest level, BGET seeks to help people build better lives while contributing toward a more advanced, peaceful, harmonious and sustainable human civilization — advancing human capability without sacrificing human dignity, compassion, ethics, or the natural world.</strong></p>
+        </section>
+
+        <section id="chapter-the-bget-north-star" class="north-star manifesto-north-star">
+          <div class="manifesto-chapter-head">
+            <span class="chapter-num">—</span>
+            <h2>The BGET North Star</h2>
+          </div>
+
+          <p class="manifesto-ns-hero">Become more capable without becoming less human.</p>
+
+          <p class="manifesto-ns-intro">And beneath it:</p>
+          <ul class="manifesto-ns-grid">
+            <li class="tenet">Build boldly.</li>
+            <li class="tenet">Grow continuously.</li>
+            <li class="tenet">Evolve consciously.</li>
+            <li class="tenet">Help others rise.</li>
+            <li class="tenet">Think deeply.</li>
+            <li class="tenet">Act relentlessly.</li>
+            <li class="tenet">Stay humble.</li>
+            <li class="tenet">Care deeply.</li>
+            <li class="tenet">Protect nature.</li>
+            <li class="tenet">Leave the world better than you found it.</li>
+          </ul>
+
+          <p class="manifesto-ns-intro">Finally:</p>
+          <div class="manifesto-ns-closing">
+            <p class="manifesto-ns-closing-line">If there is a will, there is a way.<br>
+              <span class="manifesto-ns-closing-sub">And together, we can find that way.</span></p>
+            <div class="manifesto-ns-actions">
+              <a href="apply.html" class="btn-on-dark">
+                Apply to join
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- ============================ CLOSING CTA ============================ -->
+    <section class="manifesto-cta" aria-label="Next step">
+      <div class="max-w-[1360px] mx-auto px-6 lg:px-12 manifesto-cta-inner">
+        <div class="manifesto-cta-copy">
+          <span class="eyebrow-label">Next step</span>
+          <p class="manifesto-cta-text">You have read the whole document. The next step is the first members.</p>
+        </div>
+        <div class="manifesto-cta-actions">
+          <a href="apply.html" class="btn-primary">Apply to join &rarr;</a>
+          <a href="index.html" class="btn-secondary">Back to the homepage</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<!-- SHARED:FOOTER:START -->
+  <footer class="bg-white border-t border-brand-border pt-12 sm:pt-16 pb-20 md:pb-12 px-6 lg:px-12">
+    <div class="max-w-[1360px] mx-auto">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 pb-12 sm:pb-16 border-b border-brand-border">
+
+        <!-- Brand column -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <a href="#top" class="flex items-center gap-2.5 mb-5">
+            <img src="assets/bgetlogo.png" alt="BGET" width="32" height="32" class="w-8 h-8 rounded-lg object-cover">
+            <span class="text-[19px] font-semibold tracking-tight text-brand-black">BGET</span>
+          </a>
+          <p class="text-sm text-brand-muted leading-relaxed mb-5">
+            Build. Grow. Evolve. Together.<br>
+            A global multidisciplinary community where human capability compounds.
+          </p>
+          <span class="badge-neutral">
+            <span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            Open to the whole world
+          </span>
+        </div>
+
+        <!-- Vision -->
+        <div>
+          <div class="text-[11px] font-semibold uppercase tracking-[0.09em] text-brand-black mb-4">Vision</div>
+          <ul class="space-y-2.5 text-sm text-brand-muted">
+            <li><a href="manifesto.html" aria-current="page" class="text-stone-900 font-medium hover:text-brand-black transition-colors">The Manifesto</a></li>
+            <li><a href="index.html#vision" class="hover:text-brand-black transition-colors">What BGET stands for</a></li>
+            <li><a href="index.html#people" class="hover:text-brand-black transition-colors">Who it's for</a></li>
+            <li><a href="index.html#character" class="hover:text-brand-black transition-colors">Character before capability</a></li>
+            <li><a href="index.html#belong" class="hover:text-brand-black transition-colors">What it feels like</a></li>
+            <li><a href="index.html#how" class="hover:text-brand-black transition-colors">How it compounds</a></li>
+          </ul>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <div class="text-[11px] font-semibold uppercase tracking-[0.09em] text-brand-black mb-4">Community</div>
+          <ul class="space-y-2.5 text-sm text-brand-muted">
+            <li><a href="apply.html" class="text-stone-900 font-medium hover:text-brand-black transition-colors">Apply to join</a></li>
+            <li><a href="apply.html#process" class="hover:text-brand-black transition-colors">How selection works</a></li>
+            <li><a href="index.html#people" class="hover:text-brand-black transition-colors">Disciplines</a></li>
+            <li><a href="index.html#character" class="hover:text-brand-black transition-colors">Values & balance</a></li>
+            <li><a href="index.html#north-star" class="hover:text-brand-black transition-colors">The North Star</a></li>
+          </ul>
+        </div>
+
+        <!-- Labs -->
+        <div>
+          <div class="text-[11px] font-semibold uppercase tracking-[0.09em] text-brand-black mb-4">Labs</div>
+          <ul class="space-y-2.5 text-sm text-brand-muted">
+            <li><a href="index.html#labs" class="text-stone-900 font-medium hover:text-brand-black transition-colors">Pick a problem</a></li>
+            <li><a href="index.html#labs" class="hover:text-brand-black transition-colors">Energy waste in cities</a></li>
+            <li><a href="index.html#labs" class="hover:text-brand-black transition-colors">Clean water for remote communities</a></li>
+            <li><a href="index.html#labs" class="hover:text-brand-black transition-colors">Accessible healthcare</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <div class="text-[11px] font-semibold uppercase tracking-[0.09em] text-brand-black mb-4">Contact</div>
+          <ul class="space-y-2.5 text-sm text-brand-muted">
+            <li><a href="apply.html" class="text-stone-900 font-medium hover:text-brand-black transition-colors">Applications inbox</a></li>
+            <li><a href="mailto:nikhilnagpure1111@gmail.com" class="hover:text-brand-black transition-colors">nikhilnagpure1111@gmail.com</a></li>
+            <li><a href="mailto:nikhilnagpure1111@gmail.com?subject=Propose%20a%20problem%20for%20BGET%20Labs" class="hover:text-brand-black transition-colors">Propose a problem</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p class="text-xs text-brand-subtle">
+          © 2026 BGET — Build. Grow. Evolve. Together. · Open to the whole world.
+        </p>
+        <div class="flex items-center gap-5 text-xs">
+          <a href="manifesto.html" aria-current="page" class="text-brand-muted hover:text-brand-black transition-colors">Manifesto</a>
+          <a href="apply.html" class="text-brand-muted hover:text-brand-black transition-colors">Apply</a>
+          <a href="#top" class="font-medium text-brand-muted hover:text-brand-black transition-colors">Back to top ↑</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+  <!-- SHARED:FOOTER:END -->
+
+  <script src="js/bget.js"></script>
+  <script src="js/manifesto.js"></script>
+</body>
+</html>

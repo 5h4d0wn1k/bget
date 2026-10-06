@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <title>BGET — Build. Grow. Evolve. Together.</title>
+  <meta name="description" content="BGET is a global community of capable, curious and compassionate people from every country and discipline, building real solutions together. Character before capability.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BGET — Build. Grow. Evolve. Together.">
+  <meta property="og:description" content="A global multidisciplinary community where human capability compounds — without losing humanity.">
+  <meta property="og:image" content="https://5h4d0wn1k.github.io/bget/assets/bgetlogo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Type -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Utility classes (design tokens mapped to `brand.*`) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#111111',
+              charcoal: '#1a1918',
+              paper: '#ffffff',
+              warm: '#f6f5f0',
+              border: '#e7e5de',
+              borderDark: '#d5d2c8',
+              muted: '#575653',
+              subtle: '#767470'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+          },
+          boxShadow: {
+            xs: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+            '2xs': '0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Design system + page styles -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/bget.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "BGET",
+    "alternateName": "Build. Grow. Evolve. Together.",
+    "description": "A global multidisciplinary community where human capability compounds.",
+    "url": "https://5h4d0wn1k.github.io/bget/"
+  }
+  </script>
+</head>
+
+<body class="bg-white text-brand-black antialiased selection:bg-brand-black selection:text-white">
+
+  <!-- Skip link -->
+  <a href="#top" class="skip-link">Skip to content</a>
+
+  <!-- SHARED:HEADER:START -->
+  <!-- Top Announcement Bar -->
+  <div id="top-announcement-bar" role="region" aria-label="Announcement" class="w-full bg-[#000000] text-white text-[13px] py-2.5 px-10 sm:px-12 flex items-center justify-center relative z-50">
+    <div class="text-center font-normal text-stone-200">
+      ✦ Applications for the first members of BGET are open — every application is read and reviewed personally.
+      <a href="apply.html" class="underline hover:text-white font-medium ml-1">Apply to join &rarr;</a>
+    </div>
+    <button id="close-announcement" class="absolute right-3 sm:right-4 p-1 text-stone-400 hover:text-white transition-colors rounded-sm" aria-label="Close announcement">
+      <i data-lucide="x" class="w-4 h-4" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-brand-border transition-all duration-200">
+    <div class="max-w-[1360px] mx-auto px-6 lg:px-12 h-[76px] flex items-center justify-between">
+
+      <!-- Brand -->
+      <div class="flex items-center gap-8">
+        <a href="#top" class="flex items-center gap-2.5 text-brand-black group">
+          <img src="assets/bgetlogo.png" alt="BGET" width="32" height="32" class="w-8 h-8 rounded-lg object-cover transition-transform duration-200 group-hover:scale-95">
+          <span class="text-[20px] font-semibold tracking-tight text-brand-black">BGET</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav aria-label="Primary" class="hidden lg:flex items-center gap-1 text-[14.5px] font-medium text-brand-muted">
+          <a href="manifesto.html" class="px-3 py-2 rounded-md hover:text-brand-black transition-colors">Manifesto</a>
+          <a href="#vision" class="px-3 py-2 rounded-md hover:text-brand-black transition-colors">Vision</a>
+          <a href="#people" class="px-3 py-2 rounded-md hover:text-brand-black transition-colors">People</a>
+          <a href="#labs" class="px-3 py-2 rounded-md hover:text-brand-black transition-colors">Labs</a>
+          <a href="#north-star" class="px-3 py-2 rounded-md hover:text-brand-black transition-colors">North Star</a>
+        </nav>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="hidden md:flex items-center gap-2.5">
+        <a href="apply.html#process" class="text-[14px] font-medium text-stone-700 hover:text-brand-black px-2.5 py-2 transition-colors">How selection works</a>
+        <a href="apply.html" class="btn-primary btn-sm text-[13.5px] px-4 py-2">Apply to join</a>
+      </div>
+
+      <!-- Mobile -->
+      <div class="lg:hidden flex items-center gap-2">
+        <a href="apply.html" class="btn-primary btn-sm text-xs px-3 py-1.5 md:hidden">Apply</a>
+        <button id="mobile-menu-btn" type="button" aria-label="Open navigation" aria-controls="mobile-drawer" aria-expanded="false" class="p-2 text-brand-black hover:bg-stone-200/50 rounded-lg transition-colors">
+          <i data-lucide="menu" class="w-6 h-6" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" inert class="lg:hidden p-5 sm:p-6 flex flex-col justify-between overflow-y-auto">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-brand-border">
+        <a href="#top" class="flex items-center gap-2.5">
+          <img src="assets/bgetlogo.png" alt="BGET" width="28" height="28" class="w-7 h-7 rounded-lg object-cover">
+          <span class="text-[19px] font-bold tracking-tight text-brand-black">BGET</span>
+        </a>
+        <button id="close-mobile-menu" type="button" aria-label="Close navigation" class="p-2 text-brand-black hover:bg-stone-200/50 rounded-lg transition-colors">
+          <i data-lucide="x" class="w-5 h-5" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <nav class="flex flex-col mt-4 text-[15px] font-medium text-brand-muted">
+        <a href="manifesto.html" class="py-3 border-b border-stone-100 hover:text-brand-black">The Manifesto</a>
+        <a href="#vision" class="py-3 border-b border-stone-100 hover:text-brand-black">What BGET stands for</a>
+        <a href="#people" class="py-3 border-b border-stone-100 hover:text-brand-black">Who it's for</a>
+        <a href="#character" class="py-3 border-b border-stone-100 hover:text-brand-black">Character before capability</a>
+        <a href="#how" class="py-3 border-b border-stone-100 hover:text-brand-black">How it compounds</a>
+        <a href="#labs" class="py-3 border-b border-stone-100 hover:text-brand-black">BGET Labs</a>
+        <a href="#north-star" class="py-3 border-b border-stone-100 hover:text-brand-black">The North Star</a>
+      </nav>
+    </div>
+
+    <div class="pt-6 border-t border-brand-border flex flex-col gap-2.5">
+      <a href="apply.html" class="w-full py-3 bg-brand-black hover:bg-stone-800 text-white text-center font-semibold rounded-full text-xs">Apply to join BGET</a>
+      <a href="manifesto.html" class="w-full py-2.5 border border-stone-300 hover:border-black text-center font-medium rounded-full text-xs text-stone-800">Read the manifesto</a>
+      <div class="text-center text-[11px] text-stone-500 mt-1">Build. Grow. Evolve. Together.</div>
+    </div>
+  </div>
+  <!-- SHARED:HEADER:END -->
+
+  <main id="top">
+
+    <!-- ============================ HERO ============================ -->
+    <section class="relative pt-14 pb-16 md:pt-20 md:pb-24 px-4 sm:px-6 lg:px-12 overflow-hidden bg-white">
+      <!-- Editorial accent dots -->
+      <div aria-hidden="true" class="absolute left-6 top-6 w-1.5 h-1.5 bg-[#0057ff] hidden md:block"></div>
+      <div aria-hidden="true" class="absolute right-6 top-6 w-1.5 h-1.5 bg-[#0057ff] hidden md:block"></div>
+
+      <div class="max-w-[960px] mx-auto text-center relative z-20">
+        <img src="assets/bgetlogo.png" alt="BGET" width="44" height="44"
+             class="mx-auto mb-7 w-11 h-11 rounded-[10px] object-cover shadow-[0_6px_20px_-8px_rgba(17,17,17,0.45)]">
+
+        <div class="flex items-center justify-center gap-2 mb-6 text-[13px] sm:text-[13.5px] text-[#6e6d6a] font-normal">
+          <span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+          <span>Build. Grow. Evolve. Together. — open to every country and discipline</span>
+        </div>
+
+        <h1 class="text-[40px] sm:text-[56px] md:text-[68px] lg:text-[78px] leading-[1.05] tracking-[-0.04em] font-normal mb-7">
+          <span class="block text-[#6e6d6a]">Become more capable</span>
+          <span class="block text-[#111111] font-semibold">without becoming</span>
+          <span class="block text-[#6e6d6a]">less human.</span>
+        </h1>
+
+        <p class="text-[15.5px] sm:text-[17px] leading-[1.7] max-w-[660px] mx-auto mb-9 font-normal">
+          <span class="text-[#3f3e3b]">BGET is a global community of capable, curious and compassionate people building real solutions together</span><span class="text-[#6e6d6a]"> — where ideas become action, people grow each other, and collective intelligence does what no individual can.</span>
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-5 px-3 sm:px-0">
+          <a href="#vision" class="w-full sm:w-auto inline-flex items-center justify-center bg-[#111111] hover:bg-black text-white text-[14px] font-medium px-6 py-3 rounded-[6px] transition-colors shadow-xs">
+            Explore the vision
+          </a>
+          <a href="#labs" class="w-full sm:w-auto inline-flex items-center justify-center bg-white hover:bg-stone-50 text-stone-900 border border-[#dcdad0] hover:border-stone-400 text-[14px] font-medium px-6 py-3 rounded-[6px] transition-colors shadow-2xs">
+            <span>See BGET Labs</span>
+            <span aria-hidden="true" class="ml-1.5">&rarr;</span>
+          </a>
+        </div>
+
+        <div class="flex items-center justify-center gap-1.5 text-[12px] text-stone-500 font-normal">
+          <svg aria-hidden="true" class="w-3.5 h-3.5 text-stone-900 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          <span>Open to the whole world. No credentials required.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== HERO VISUAL: THE GLOBE ==================== -->
+    <section class="px-6 lg:px-12 pb-14 md:pb-20">
+      <div class="max-w-[1360px] mx-auto">
+        <div class="browser-window reveal">
+          <div class="browser-header">
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <div class="browser-address">
+              <i data-lucide="globe-2" class="w-3.5 h-3.5"></i>
+              <span>bget.org — Build. Grow. Evolve. Together.</span>
+            </div>
+          </div>
+
+          <div class="globe-stage" role="group" aria-label="Interactive globe">
+            <canvas id="bget-globe" aria-hidden="true"></canvas>
+            <p class="globe-hint">Drag the globe. Every arc is two people building something together.</p>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 border-t border-brand-border">
+            <div class="p-5 border-r border-brand-border">
+              <div class="text-[22px] font-medium tracking-tight text-brand-black">20</div>
+              <div class="text-xs text-brand-subtle mt-1">languages saying “together”</div>
+            </div>
+            <div class="p-5 md:border-r border-brand-border">
+              <div class="text-[22px] font-medium tracking-tight text-brand-black">Every</div>
+              <div class="text-xs text-brand-subtle mt-1">discipline, not just developers</div>
+            </div>
+            <div class="p-5 border-r border-t md:border-t-0 border-brand-border">
+              <div class="text-[22px] font-medium tracking-tight text-brand-black">Character</div>
+              <div class="text-xs text-brand-subtle mt-1">before capability</div>
+            </div>
+            <div class="p-5 border-t md:border-t-0 border-brand-border">
+              <div class="text-[22px] font-medium tracking-tight text-brand-black">1</div>
+              <div class="text-xs text-brand-subtle mt-1">shared direction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== “TOGETHER” MARQUEE ==================== -->
+    <div class="bget-marquee" role="group" aria-label="Together, in many languages">
+      <div class="bget-marquee-track" id="bget-marquee-track"></div>
+    </div>
+
+    <!-- ==================== WHAT BGET STANDS FOR ==================== -->
+    <section id="vision" class="py-16 md:py-24 px-6 lg:px-12 bg-white">
+      <div class="max-w-[1360px] mx-auto">
+        <div class="max-w-[920px] mb-12 lg:mb-14">
+          <span class="eyebrow-label block mb-4">What BGET stands for</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-normal tracking-tight text-stone-900 leading-[1.12] mb-6">
+            Four words,<br>
+            one direction.
+          </h2>
+          <p class="lead-body text-brand-muted">
+            Ideas become action, people grow each other, and collective intelligence does what no individual can.
+            Each letter is a promise members make to each other.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 border-t border-brand-border pt-10 reveal">
+          <div class="pillar">
+            <div class="flex items-baseline justify-between mb-5">
+              <span class="pillar-letter">B</span>
+              <span class="text-xs font-mono text-stone-500">01</span>
+            </div>
+            <h3 class="text-xl font-medium text-stone-900 mb-2">Build</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">
+              Move from idea to action to experiment to solution to real-world impact.
+              If something is broken, improve it. If an idea is worth pursuing, build it.
+            </p>
+          </div>
+
+          <div class="pillar">
+            <div class="flex items-baseline justify-between mb-5">
+              <span class="pillar-letter">G</span>
+              <span class="text-xs font-mono text-stone-500">02</span>
+            </div>
+            <h3 class="text-xl font-medium text-stone-900 mb-2">Grow</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">
+              Grow intellectually, technically, mentally, socially, creatively and ethically —
+              and help others do the same. More capable, never less human.
+            </p>
+          </div>
+
+          <div class="pillar">
+            <div class="flex items-baseline justify-between mb-5">
+              <span class="pillar-letter">E</span>
+              <span class="text-xs font-mono text-stone-500">03</span>
+            </div>
+            <h3 class="text-xl font-medium text-stone-900 mb-2">Evolve</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">
+              Question assumptions, learn from mistakes, accept criticism and change your mind
+              when evidence demands it. Become wiser as you become more capable.
+            </p>
+          </div>
+
+          <div class="pillar">
+            <div class="flex items-baseline justify-between mb-5">
+              <span class="pillar-letter">T</span>
+              <span class="text-xs font-mono text-stone-500">04</span>
+            </div>
+            <h3 class="text-xl font-medium text-stone-900 mb-2">Together</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">
+              The doctor, the engineer, the philosopher and the founder each see a different problem.
+              Together they see the whole one.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== WHO IT'S FOR ==================== -->
+    <section id="people" class="py-16 md:py-24 px-6 lg:px-12 bg-[#fbfbf9] border-t border-brand-border">
+      <div class="max-w-[1360px] mx-auto">
+        <div class="max-w-[920px] mb-12 lg:mb-14">
+          <span class="eyebrow-label block mb-4">Who it's for</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-normal tracking-tight text-stone-900 leading-[1.12] mb-6">
+            Every kind of intelligence,<br>
+            from every corner of the world.
+          </h2>
+          <p class="lead-body text-brand-muted">
+            BGET is multidisciplinary by design. It gathers different forms of knowledge, not impressive titles —
+            valuing character, potential, capability and trajectory over credentials alone.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-9 border-t border-brand-border pt-10 reveal">
+          <div>
+            <h3 class="text-[11px] font-bold uppercase tracking-wider text-stone-500 mb-3.5">Science</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">Mathematics</span><span class="chip">Physics</span><span class="chip">Chemistry</span>
+              <span class="chip">Biology</span><span class="chip">Astronomy</span><span class="chip">Statistics</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-[11px] font-bold uppercase tracking-wider text-stone-500 mb-3.5">Medicine and health</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">Medicine</span><span class="chip">Surgery</span><span class="chip">Neuroscience</span>
+              <span class="chip">Psychology</span><span class="chip">Public health</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-[11px] font-bold uppercase tracking-wider text-stone-500 mb-3.5">Engineering</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">Software</span><span class="chip">Electrical</span><span class="chip">Mechanical</span>
+              <span class="chip">Civil</span><span class="chip">Aerospace</span><span class="chip">Biomedical</span>
+              <span class="chip">Environmental</span><span class="chip">Robotics</span><span class="chip">Energy</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-[11px] font-bold uppercase tracking-wider text-stone-500 mb-3.5">Technology</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">AI and ML</span><span class="chip">Cybersecurity</span><span class="chip">Cloud</span>
+              <span class="chip">Hardware</span><span class="chip">Open source</span><span class="chip">Systems</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-[11px] font-bold uppercase tracking-wider text-stone-500 mb-3.5">Business</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">Founders</span><span class="chip">Product</span><span class="chip">Investing</span>
+              <span class="chip">Economics</span><span class="chip">Marketing</span><span class="chip">Operations</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-[11px] font-bold uppercase tracking-wider text-stone-500 mb-3.5">Thought and society</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">Philosophy</span><span class="chip">Strategy</span><span class="chip">Policy</span>
+              <span class="chip">Education</span><span class="chip">Law</span><span class="chip">Leadership</span>
+            </div>
+          </div>
+
+          <div class="sm:col-span-2 lg:col-span-3 pt-2 border-t border-brand-border">
+            <h3 class="text-[11px] font-bold uppercase tracking-wider text-stone-500 mb-3.5 mt-6">Creative and land</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">Design</span><span class="chip">Architecture</span><span class="chip">Arts</span>
+              <span class="chip">Agriculture</span><span class="chip">Exploration</span>
+              <span class="chip">Fields not yet invented</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ALWAYS MORNING (CLOCKS) ==================== -->
+    <section class="py-14 md:py-20 px-6 lg:px-12 bg-white border-t border-brand-border">
+      <div class="max-w-[1360px] mx-auto">
+        <div class="max-w-[920px] mb-8 lg:mb-10">
+          <span class="eyebrow-label block mb-4">Unity without uniformity</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-normal tracking-tight text-stone-900 leading-[1.12] mb-6">
+            Somewhere, it's always morning.
+          </h2>
+          <p class="lead-body text-brand-muted">
+            Different cultures, beliefs, professions and philosophies, gathered around shared positive goals —
+            while the rest of the world sleeps.
+          </p>
+        </div>
+
+        <div id="bget-clocks" role="list" aria-label="Local time in twelve cities" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-l border-brand-border reveal"></div>
+      </div>
+    </section>
+
+    <!-- ==================== WHAT IT FEELS LIKE (THE EMOTIONAL EXPERIENCE) ==================== -->
+    <section id="belong" class="py-16 md:py-24 px-6 lg:px-12 bg-[#fbfbf9] border-t border-brand-border">
+      <div class="max-w-[1360px] mx-auto">
+        <div class="max-w-[920px] mb-12 lg:mb-14">
+          <span class="eyebrow-label block mb-4">What it feels like</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-normal tracking-tight text-stone-900 leading-[1.12] mb-6">
+            It starts with “I can be myself here.”<br>
+            It ends with “These are my people.”
+          </h2>
+          <p class="lead-body text-brand-muted">
+            Capability is what people join for. What makes them stay is how they are treated —
+            so the feeling is not a side effect of the community, it is the product.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 border-t border-brand-border pt-10 reveal">
+          <!-- The ladder -->
+          <ol class="belong-ladder lg:col-span-7" aria-label="What a member feels, step by step">
+            <li>“I can be myself here.”</li>
+            <li>“These people actually care.”</li>
+            <li>“These people are insanely capable.”</li>
+            <li>“They're willing to help me.”</li>
+            <li>“They're going to challenge me to become better.”</li>
+            <li>“I can contribute too.”</li>
+            <li>“These are my people.”</li>
+          </ol>
+
+          <!-- The proof, in principle -->
+          <div class="lg:col-span-5">
+            <div class="belong-note">
+              <h3>Experience it, don't just hear it.</h3>
+              <p>
+                Instead of being told there are still good people in the world, members meet the ones who
+                help without expecting anything in return, give others credit, admit mistakes and celebrate
+                other people's success.
+              </p>
+            </div>
+            <div class="belong-note">
+              <h3>Quality over quantity.</h3>
+              <p>
+                BGET does not optimise for member count. The aim is a network of genuinely exceptional
+                human beings who trust one another and create extraordinary things together.
+              </p>
+            </div>
+            <div class="belong-note">
+              <h3>A magnet, not a marketplace.</h3>
+              <p>
+                Culture stronger than marketing. People come because they find interesting minds,
+                meaningful projects, genuine friendship, kindness, ambition — and action.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CHARACTER BEFORE CAPABILITY ==================== -->
+    <section id="character" class="py-16 md:py-24 px-6 lg:px-12 bg-white border-t border-brand-border">
+      <div class="max-w-[1360px] mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          <!-- Copy -->
+          <div class="lg:col-span-5">
+            <span class="eyebrow-label block mb-4">Character before capability</span>
+            <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-normal tracking-tight text-stone-900 leading-[1.12] mb-6">
+              Highly capable people who can be trusted with their capabilities.
+            </h2>
+            <p class="lead-body text-brand-muted mb-8">
+              A person can be brilliant and still be wrong for BGET. Integrity, kindness, humility and
+              responsibility come first — capability is what comes after.
+            </p>
+
+            <blockquote class="border-l-2 border-brand-black pl-5 text-[19px] leading-[1.5] text-stone-900 font-normal italic">
+              “You're better at this than me. Teach me.”
+              <div class="text-[12px] not-italic text-brand-subtle mt-3">The sentence the whole community is built on.</div>
+            </blockquote>
+          </div>
+
+          <!-- Values -->
+          <div class="lg:col-span-7">
+            <div class="reveal">
+              <div class="border-t border-brand-border flex items-baseline justify-between gap-4 pt-3.5 pb-1">
+                <span class="eyebrow-label">The sixteen values</span>
+                <span class="font-mono text-[11px] text-brand-subtle">01–16</span>
+              </div>
+              <div class="values-grid grid sm:grid-cols-2 sm:gap-x-10">
+                <div>
+                  <div class="value-row">Genuine</div>
+                  <div class="value-row">Humble</div>
+                  <div class="value-row">Ambitious</div>
+                  <div class="value-row">Hardworking</div>
+                  <div class="value-row">Proactive</div>
+                  <div class="value-row">Solution-oriented</div>
+                  <div class="value-row">Helpful</div>
+                  <div class="value-row">Compassionate</div>
+                </div>
+                <div>
+                  <div class="value-row">Ethical</div>
+                  <div class="value-row">Positive</div>
+                  <div class="value-row">Resilient</div>
+                  <div class="value-row">Curious</div>
+                  <div class="value-row">Multidisciplinary</div>
+                  <div class="value-row">Collaborative</div>
+                  <div class="value-row">Playful</div>
+                  <div class="value-row">Human</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Balance panel -->
+        <div class="mt-14 border border-brand-border rounded-[14px] bg-[#fbfbf9] p-6 sm:p-9 reveal">
+          <div class="max-w-[720px] mb-8">
+            <span class="eyebrow-label block mb-3">A culture built on balance</span>
+            <p class="text-[17px] leading-[1.5] text-stone-900">
+              Deep but playful. Ambitious but humble. Talk about consciousness and physics,
+              then play chess five minutes later.
+            </p>
+          </div>
+          <div id="bget-balances" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== HOW IT COMPOUNDS ==================== -->
+    <section id="how" class="py-16 md:py-24 px-6 lg:px-12 bg-[#fbfbf9] border-t border-brand-border">
+      <div class="max-w-[1360px] mx-auto">
+        <div class="max-w-[920px] mb-12 lg:mb-14">
+          <span class="eyebrow-label block mb-4">How it compounds</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-normal tracking-tight text-stone-900 leading-[1.12] mb-6">
+            Trust turns good people<br>
+            into collective capability.
+          </h2>
+          <p class="lead-body text-brand-muted">
+            Quality grows through trust: good people, good experiences, relationships, introductions —
+            and more good people. Then it repeats, with more capability each time.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-brand-border reveal">
+          <div class="py-7 pr-8 border-b sm:border-b-0 border-brand-border">
+            <span class="text-xs font-mono text-stone-500">01</span>
+            <h3 class="text-lg font-medium text-stone-900 mt-3 mb-2">Find exceptional people</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Meet people who are capable, curious and compassionate — each on their own journey.</p>
+          </div>
+          <div class="py-7 pr-8 lg:border-r border-b sm:border-b-0 border-brand-border">
+            <span class="text-xs font-mono text-stone-500">02</span>
+            <h3 class="text-lg font-medium text-stone-900 mt-3 mb-2">Create real relationships</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Talk, laugh, disagree, learn — and discover what people are actually like.</p>
+          </div>
+          <div class="py-7 pr-8 border-b lg:border-b-0 border-brand-border">
+            <span class="text-xs font-mono text-stone-500">03</span>
+            <h3 class="text-lg font-medium text-stone-900 mt-3 mb-2">Share knowledge</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Help one another grow, openly and without keeping score.</p>
+          </div>
+          <div class="py-7 lg:pl-8 border-b lg:border-b-0 border-brand-border">
+            <span class="text-xs font-mono text-stone-500">04</span>
+            <h3 class="text-lg font-medium text-stone-900 mt-3 mb-2">Combine disciplines</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Put the doctor, the engineer and the philosopher in the same room.</p>
+          </div>
+          <div class="py-7 pr-8 border-b sm:border-b-0 border-brand-border">
+            <span class="text-xs font-mono text-stone-500">05</span>
+            <h3 class="text-lg font-medium text-stone-900 mt-3 mb-2">Think deeply</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Identify meaningful problems worth years of attention, not minutes of scrolling.</p>
+          </div>
+          <div class="py-7 pr-8 lg:border-r border-b sm:border-b-0 border-brand-border">
+            <span class="text-xs font-mono text-stone-500">06</span>
+            <h3 class="text-lg font-medium text-stone-900 mt-3 mb-2">Build and test</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Turn practical solutions into things that exist in the real world.</p>
+          </div>
+          <div class="py-7 pr-8 border-b lg:border-b-0 border-brand-border">
+            <span class="text-xs font-mono text-stone-500">07</span>
+            <h3 class="text-lg font-medium text-stone-900 mt-3 mb-2">Learn and improve</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Deploy, measure, admit what failed, then do better.</p>
+          </div>
+          <div class="py-7 lg:pl-8">
+            <span class="text-xs font-mono text-stone-500">08 ↻</span>
+            <h3 class="text-lg font-medium text-stone-900 mt-3 mb-2">Repeat</h3>
+            <p class="text-sm text-brand-muted leading-relaxed">Help more people, attract more exceptional people, and start again.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== BGET LABS ==================== -->
+    <section id="labs" class="py-16 md:py-24 px-6 lg:px-12 bg-white border-t border-brand-border">
+      <div class="max-w-[1360px] mx-auto">
+        <div class="max-w-[920px] mb-12 lg:mb-14">
+          <span class="eyebrow-label block mb-4">BGET Labs</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-normal tracking-tight text-stone-900 leading-[1.12] mb-6">
+            Pick a problem.<br>
+            See who is in the room.
+          </h2>
+          <p class="lead-body text-brand-muted">
+            Multidisciplinary teams form around meaningful problems, then research, prototype, test and deploy.
+            Some become companies, some stay open source, some serve a single community. Impact picks the path.
+          </p>
+        </div>
+
+        <div class="border border-brand-border rounded-[14px] bg-[#fbfbf9] p-6 sm:p-9 reveal">
+          <div class="flex flex-wrap items-baseline justify-between gap-3 mb-4">
+            <span class="eyebrow-label">Pick a problem</span>
+            <span id="bget-labs-count" class="font-mono text-[11px] text-brand-subtle"></span>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-7" id="bget-labs-tabs" role="group" aria-label="Choose a problem"></div>
+
+          <div class="border-t border-brand-border pt-6">
+            <p id="bget-labs-question" aria-live="polite" class="text-[21px] sm:text-[26px] leading-[1.32] tracking-[-0.025em] text-stone-900 font-normal mb-7"></p>
+
+            <h3 class="text-[11px] font-semibold uppercase tracking-[0.08em] text-stone-500 mb-3.5">Who is in the room</h3>
+            <div id="bget-labs-room" class="flex flex-wrap gap-2"></div>
+          </div>
+
+          <p class="text-xs text-brand-subtle mt-7 pt-5 border-t border-brand-border">
+            No pitch decks required. Bring a problem, character, and the willingness to work on it —
+            impact decides whether it becomes a company, open source, or a gift to one community.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== THE NORTH STAR ==================== -->
+    <section id="north-star" class="north-star py-16 md:py-24 px-6 lg:px-12">
+      <div class="max-w-[1360px] mx-auto">
+        <div class="max-w-[960px]">
+          <span class="block mb-4 text-[12px] font-semibold uppercase tracking-[0.08em] text-emerald-400">The North Star</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-[52px] font-normal tracking-tight text-white leading-[1.1] mb-6">
+            Advance humanity while sustaining<br class="hidden sm:block">
+            the world it depends on.
+          </h2>
+          <p class="text-[16px] sm:text-[17px] leading-[1.65] text-stone-300 max-w-[720px] mb-12">
+            More technology without destroying nature. More power with more responsibility.
+            Unity without uniformity — across every culture, belief and border.
+          </p>
+        </div>
+
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-8 mb-14 reveal">
+          <li class="tenet">Build boldly.</li>
+          <li class="tenet">Grow continuously.</li>
+          <li class="tenet">Evolve consciously.</li>
+          <li class="tenet">Help others rise.</li>
+          <li class="tenet">Think deeply.</li>
+          <li class="tenet">Act relentlessly.</li>
+          <li class="tenet">Stay humble.</li>
+          <li class="tenet">Care deeply.</li>
+          <li class="tenet">Protect nature.</li>
+          <li class="tenet">Leave the world better than you found it.</li>
+        </ul>
+
+        <div id="join" class="border-t border-white/15 pt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          <div class="lg:col-span-7">
+            <p class="text-[22px] sm:text-[26px] leading-[1.35] tracking-[-0.02em] text-white font-light">
+              If there is a will, there is a way.<br>
+              <span class="text-stone-400">And together, we can find that way.</span>
+            </p>
+          </div>
+          <div class="lg:col-span-5 flex flex-wrap gap-3 lg:justify-end">
+            <a href="apply.html" class="btn-on-dark">
+              Apply to join
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <a href="manifesto.html" class="btn-outline-dark">Read the manifesto</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <!-- SHARED:FOOTER:START -->
+  <footer class="bg-white border-t border-brand-border pt-12 sm:pt-16 pb-20 md:pb-12 px-6 lg:px-12">
+    <div class="max-w-[1360px] mx-auto">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 pb-12 sm:pb-16 border-b border-brand-border">
+
+        <!-- Brand column -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <a href="#top" class="flex items-center gap-2.5 mb-5">
+            <img src="assets/bgetlogo.png" alt="BGET" width="32" height="32" class="w-8 h-8 rounded-lg object-cover">
+            <span class="text-[19px] font-semibold tracking-tight text-brand-black">BGET</span>
+          </a>
+          <p class="text-sm text-brand-muted leading-relaxed mb-5">
+            Build. Grow. Evolve. Together.<br>
+            A global multidisciplinary community where human capability compounds.
+          </p>
+          <span class="badge-neutral">
+            <span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            Open to the whole world
+          </span>
+        </div>
+
+        <!-- Vision -->
+        <div>
+          <div class="text-[11px] font-semibold uppercase tracking-[0.09em] text-brand-black mb-4">Vision</div>
+          <ul class="space-y-2.5 text-sm text-brand-muted">
+            <li><a href="manifesto.html" class="text-stone-900 font-medium hover:text-brand-black transition-colors">The Manifesto</a></li>
+            <li><a href="#vision" class="hover:text-brand-black transition-colors">What BGET stands for</a></li>
+            <li><a href="#people" class="hover:text-brand-black transition-colors">Who it's for</a></li>
+            <li><a href="#character" class="hover:text-brand-black transition-colors">Character before capability</a></li>
+            <li><a href="index.html#belong" class="hover:text-brand-black transition-colors">What it feels like</a></li>
+            <li><a href="#how" class="hover:text-brand-black transition-colors">How it compounds</a></li>
+          </ul>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <div class="text-[11px] font-semibold uppercase tracking-[0.09em] text-brand-black mb-4">Community</div>
+          <ul class="space-y-2.5 text-sm text-brand-muted">
+            <li><a href="apply.html" class="text-stone-900 font-medium hover:text-brand-black transition-colors">Apply to join</a></li>
+            <li><a href="apply.html#process" class="hover:text-brand-black transition-colors">How selection works</a></li>
+            <li><a href="#people" class="hover:text-brand-black transition-colors">Disciplines</a></li>
+            <li><a href="#character" class="hover:text-brand-black transition-colors">Values & balance</a></li>
+            <li><a href="#north-star" class="hover:text-brand-black transition-colors">The North Star</a></li>
+          </ul>
+        </div>
+
+        <!-- Labs -->
+        <div>
+          <div class="text-[11px] font-semibold uppercase tracking-[0.09em] text-brand-black mb-4">Labs</div>
+          <ul class="space-y-2.5 text-sm text-brand-muted">
+            <li><a href="#labs" class="text-stone-900 font-medium hover:text-brand-black transition-colors">Pick a problem</a></li>
+            <li><a href="#labs" class="hover:text-brand-black transition-colors">Energy waste in cities</a></li>
+            <li><a href="#labs" class="hover:text-brand-black transition-colors">Clean water for remote communities</a></li>
+            <li><a href="#labs" class="hover:text-brand-black transition-colors">Accessible healthcare</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <div class="text-[11px] font-semibold uppercase tracking-[0.09em] text-brand-black mb-4">Contact</div>
+          <ul class="space-y-2.5 text-sm text-brand-muted">
+            <li><a href="apply.html" class="text-stone-900 font-medium hover:text-brand-black transition-colors">Applications inbox</a></li>
+            <li><a href="mailto:nikhilnagpure1111@gmail.com" class="hover:text-brand-black transition-colors">nikhilnagpure1111@gmail.com</a></li>
+            <li><a href="mailto:nikhilnagpure1111@gmail.com?subject=Propose%20a%20problem%20for%20BGET%20Labs" class="hover:text-brand-black transition-colors">Propose a problem</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p class="text-xs text-brand-subtle">
+          © 2026 BGET — Build. Grow. Evolve. Together. · Open to the whole world.
+        </p>
+        <div class="flex items-center gap-5 text-xs">
+          <a href="manifesto.html" class="text-brand-muted hover:text-brand-black transition-colors">Manifesto</a>
+          <a href="apply.html" class="text-brand-muted hover:text-brand-black transition-colors">Apply</a>
+          <a href="#top" class="font-medium text-brand-muted hover:text-brand-black transition-colors">Back to top ↑</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+  <!-- SHARED:FOOTER:END -->
+
+  <script src="js/bget.js"></script>
+</body>
+</html>

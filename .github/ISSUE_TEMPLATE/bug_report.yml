@@ -1,0 +1,60 @@
+name: Bug report
+description: Something on the site is broken or looks wrong
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please search existing
+        issues first, and **do not use this form for security issues** —
+        follow [SECURITY.md](https://github.com/5h4d0wn1k/bget/blob/main/SECURITY.md)
+        instead.
+  - type: dropdown
+    id: page
+    attributes:
+      label: Page
+      description: Where does the bug show up?
+      options:
+        - index.html (home)
+        - apply.html
+        - manifesto.html
+        - All pages / site chrome
+        - CI or build
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the problem.
+      placeholder: The mobile drawer stays open after tapping a link…
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps, including browser and viewport/width if relevant.
+      placeholder: |
+        1. Open … at 390px width
+        2. Tap …
+        3. See …
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: Browser + OS, or branch/commit if it happens in CI.
+      placeholder: Firefox 142 / macOS 15, or commit abc1234
+  - type: textarea
+    id: extras
+    attributes:
+      label: Anything else?
+      description: Console errors, screenshots, or links.

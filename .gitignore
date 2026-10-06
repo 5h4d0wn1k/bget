@@ -1,0 +1,22 @@
+# Third-party / work-in-progress directories — not part of the published site
+reference/
+drafts/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / editor noise
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Logs & caches
+*.log
+.cache/
+
+# Playwright artifacts
+.playwright/
+playwright-report/
+test-results/
