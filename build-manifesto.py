@@ -615,7 +615,7 @@ def main() -> int:
     sections_html = page.count("<section")
     toc_links = page.count('class="toc-link"')
     print(
-        f"Wrote {OUTPUT.name}: {len(page):,} bytes, "
+        f"Wrote {OUTPUT.name}: {len(page.encode('utf-8')):,} bytes, "
         f"{len(SECTIONS)} top-level headings "
         f"({chapters} chapters + intro/closings), "
         f"{sections_html} sections, {toc_links} TOC links."
