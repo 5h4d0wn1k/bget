@@ -13,7 +13,15 @@ const APPLY_CONFIG = {
   endpoint: 'https://formsubmit.co/ajax/nikhilnagpure1111@gmail.com',
   email: 'nikhilnagpure1111@gmail.com',
   minFillMs: 8000,           // submissions faster than this after load are rejected
-  submitLabel: 'Submit application'
+  submitLabel: 'Submit application',
+  /* Optional Cloudflare Worker relay (see workers/bget-forms/README.md).
+     Set relayEndpoint to the deployed Worker URL and relayToken to the
+     FORM_TOKEN variable to also deliver submissions into Discord. The email
+     path above keeps working either way; the relay is best-effort and never
+     changes the result the applicant sees. */
+  relayEndpoint: '',         // e.g. 'https://bget-forms.<account>.workers.dev'
+  relayToken: '',
+  relayForm: 'apply'
 };
 
 /* --------------------------------------------------------------------------
@@ -271,6 +279,11 @@ function initApply() {
       // Anti-spam honeypot: it gates the send above but is never part of the
       // payload — an empty `_honey` row would show up in the emailed table.
       if (el.name === '_honey') continue;
+      // Second honeypot for the Discord relay (name `website`); never sent to
+      // the email path, included in the relay payload so the Worker can drop bots.
+      if (el.name === 'website') continue;
+      // Files can't ride in a JSON payload — handled separately in send().
+      if (el.type === 'file') continue;
       if (el.type === 'checkbox') {
         if (el.checked) payload[el.name] = el.value || 'Yes';
         continue;
@@ -342,19 +355,27 @@ function initApply() {
     }
   }
 
+  /* ---------- Files (resume upload, optional) ---------- */
+  function attachedFiles() {
+    const out = [];
+    for (const el of form.elements) {
+      if (el.type === 'file' && el.files && el.files[0]) {
+        out.push({ name: el.name || 'Attachment', file: el.files[0] });
+      }
+    }
+    return out;
+  }
+
   /* ---------- Send ---------- */
   let inFlight = false;
   async function send() {
     const payload = collectPayload();
+    const files = attachedFiles();
     inFlight = true;
     setSending(true);
 
     try {
-      const res = await fetch(APPLY_CONFIG.endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload)
-      });
+      const res = await post(payload, files);
 
       let data = null;
       try { data = await res.json(); } catch (ignore) { data = null; }
@@ -364,12 +385,48 @@ function initApply() {
 
       if (succeeded) showSuccess(payload);
       else showFailure(payload);
+
+      /* Best-effort Discord relay — runs after the email path, never blocks
+         or changes the UI. The Worker validates origin, honeypot and token. */
+      if (succeeded && APPLY_CONFIG.relayEndpoint) {
+        try {
+          const body = Object.assign({}, payload, {
+            token: APPLY_CONFIG.relayToken,
+            website: (honeypot && honeypot.value) || ''
+          });
+          await fetch(APPLY_CONFIG.relayEndpoint + '?form=' + APPLY_CONFIG.relayForm, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+          });
+        } catch (ignore) { /* the email path already succeeded */ }
+      }
     } catch (err) {
       showFailure(payload);
     } finally {
       inFlight = false;
       setSending(false);
     }
+  }
+
+  /* With a file attached we must send multipart/form-data (the JSON route
+     can't carry attachments; the table email template can't either). */
+  function post(payload, files) {
+    if (files.length) {
+      const fd = new FormData();
+      for (const [key, value] of Object.entries(payload)) {
+        if (key === '_template') continue; // table template is text-only
+        if (value === undefined || value === null) continue;
+        fd.append(key, String(value));
+      }
+      for (const f of files) fd.append(f.name, f.file, f.file.name);
+      return fetch(APPLY_CONFIG.endpoint, { method: 'POST', body: fd });
+    }
+    return fetch(APPLY_CONFIG.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
+    });
   }
 
   /* ---------- Submit ---------- */

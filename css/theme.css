@@ -1,9 +1,10 @@
 /* ==========================================================================
    CUBOIDPILOT — THEME SYSTEM & BASE TOKENS
    Visual Reference: Intercom (Editorial, restrained, neutral, enterprise-grade)
-   ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+   Fonts are loaded from a <link> in each page head (see index.html "Type").
+   No @import here: it is render-blocking and duplicates the request.
+   ========================================================================== */
 
 :root {
   /* Surface & Background Colors */

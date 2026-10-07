@@ -34,7 +34,7 @@ SOURCE = ROOT / "content" / "philosophy.md"
 INDEX = ROOT / "index.html"
 OUTPUT = ROOT / "manifesto.html"
 
-PAGE_TITLE = "The Manifesto — BGET"
+PAGE_TITLE = "The BGET Manifesto — 26 chapters on human capability"
 DESCRIPTION = (
     "The complete BGET manifesto — 26 chapters on character before capability, "
     "collective intelligence and real-world action, closing with the North Star."
@@ -237,7 +237,7 @@ def render_blocks(blocks: list[dict]) -> str:
     for b in blocks:
         kind = b["type"]
         if kind == "heading":
-            if b["level"] <= 2:
+            if b["level"] <= 3:
                 out.append(f'<h3 class="prose-h3">{inline(b["text"])}</h3>')
             else:
                 out.append(f'<h4 class="prose-h4">{inline(b["text"])}</h4>')
@@ -536,7 +536,7 @@ def build_page() -> str:
 {tailwind_config}
 
   <!-- Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.460.0"></script>
 
   <!-- Design system + page styles -->
   <link rel="stylesheet" href="css/theme.css">
@@ -559,6 +559,10 @@ def build_page() -> str:
       "@type": "Article",
       "headline": "{PAGE_TITLE}",
       "description": "{DESCRIPTION}",
+      "image": "https://5h4d0wn1k.github.io/bget/assets/og-card.png",
+      "datePublished": "2026-10-07",
+      "dateModified": "2026-10-07",
+      "inLanguage": "en",
       "author": {{ "@type": "Organization", "name": "BGET", "url": "https://5h4d0wn1k.github.io/bget/" }},
       "publisher": {{ "@type": "Organization", "name": "BGET", "url": "https://5h4d0wn1k.github.io/bget/" }},
       "mainEntityOfPage": "https://5h4d0wn1k.github.io/bget/manifesto.html"
@@ -612,6 +616,7 @@ def build_page() -> str:
 # main
 # --------------------------------------------------------------------------
 def main() -> int:
+    check_only = "--check" in sys.argv
     if not SOURCE.is_file():
         die(f"missing source document: {SOURCE}")
     if not INDEX.is_file():
@@ -629,6 +634,12 @@ def main() -> int:
         die("unconverted '**' found in the output — check the source Markdown")
     if re.search(r"^\s*# ", page, re.M):
         die("an unconverted '# ' heading found in the output")
+
+    if check_only:
+        if OUTPUT.is_file() and OUTPUT.read_text(encoding="utf-8") == page:
+            print(f"{OUTPUT.name} is up to date.")
+            return 0
+        die(f"{OUTPUT.name} is out of date — run `python3 build-manifesto.py`")
 
     OUTPUT.write_text(page, encoding="utf-8")
 

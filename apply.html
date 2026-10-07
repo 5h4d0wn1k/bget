@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111111">
   <title>Apply to join BGET — applications are read personally</title>
-  <meta name="description" content="Apply to join BGET — a global community of builders, scientists, makers and thinkers. Every application is read personally, answered within about 14 days, most applicants are declined. Quality over quantity.">
+  <meta name="description" content="Apply to join BGET — a selective community of builders, scientists, makers and thinkers. Every application is read; most are declined.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://5h4d0wn1k.github.io/bget/apply.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="BGET">
   <meta property="og:title" content="Apply to join BGET — applications are read personally">
-  <meta property="og:description" content="A selective application, read in full by a person. Character before capability. Open to every country and discipline.">
+  <meta property="og:description" content="A selective application, read in full by a person. Every application is read; most are declined. Character before capability.">
   <meta property="og:url" content="https://5h4d0wn1k.github.io/bget/apply.html">
   <meta property="og:image" content="https://5h4d0wn1k.github.io/bget/assets/og-card.png">
   <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
   <meta property="og:image:alt" content="Become more capable without becoming less human.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Apply to join BGET — applications are read personally">
-  <meta name="twitter:description" content="A selective application, read in full by a person. Character before capability. Open to every country and discipline.">
+  <meta name="twitter:description" content="A selective application, read in full by a person. Every application is read; most are declined. Character before capability.">
   <meta name="twitter:image" content="https://5h4d0wn1k.github.io/bget/assets/og-card.png">
   <link rel="icon" type="image/png" href="assets/favicon.png">
 
@@ -59,7 +59,7 @@
   </script>
 
   <!-- Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.460.0"></script>
 
   <!-- Design system + page styles -->
   <link rel="stylesheet" href="css/theme.css">
@@ -83,7 +83,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Do I need credentials, a degree, or a famous portfolio to apply?",
+          "name": "Do I need credentials, a degree, or a famous portfolio?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "No. There is no credential threshold. Proof beats titles — something you built, fixed, run or improved, with links if you have them."
@@ -520,7 +520,7 @@
                   </li>
                   <li class="flex gap-2.5 py-3 border-b border-brand-border text-[13.5px] leading-[1.5] text-brand-muted">
                     <i data-lucide="check" class="w-4 h-4 shrink-0 text-emerald-600 mt-0.5"></i>
-                    <span>You can give this about 15 honest minutes — there are six short essays.</span>
+                    <span>You can give this about 15 honest minutes — there are eight short essays.</span>
                   </li>
                   <li class="flex gap-2.5 py-3 border-b border-brand-border text-[13.5px] leading-[1.5] text-brand-muted">
                     <i data-lucide="check" class="w-4 h-4 shrink-0 text-emerald-600 mt-0.5"></i>
@@ -539,6 +539,14 @@
                     We reply to every application within 14 days — including a no.
                     Add the address to your contacts so the reply isn't filtered.
                   </p>
+                </div>
+
+                <div class="border border-brand-border rounded-[14px] bg-[#fbfbf9] p-5 mt-4">
+                  <div class="text-[13px] font-semibold text-stone-900 mb-1.5">Have a problem, not a résumé?</div>
+                  <p class="text-[12.5px] leading-[1.55] text-brand-muted mb-2.5">
+                    The Problem Queue is where BGET accepts world problems from anyone — no application needed.
+                  </p>
+                  <a href="problems.html" class="text-[13px] text-stone-900 underline underline-offset-2 hover:text-brand-black transition-colors">Propose a problem &rarr;</a>
                 </div>
 
                 <p class="text-[12px] leading-[1.55] text-brand-subtle mt-4">
@@ -622,7 +630,7 @@
                 <!-- Essays -->
                 <div class="border-t border-brand-border pt-7 mb-2">
                   <span class="eyebrow-label block mb-2">The essays</span>
-                  <p class="text-[13px] text-brand-subtle">Six questions, all required. Short is fine; honest is not optional.</p>
+                  <p class="text-[13px] text-brand-subtle">Eight questions, all required. Short is fine; honest is not optional.</p>
                 </div>
 
                 <div class="apply-field mb-6">
@@ -665,6 +673,33 @@
                   <div class="apply-counter" aria-live="polite"></div>
                 </div>
 
+                <div class="apply-field mb-6">
+                  <label class="apply-label" for="f-hard">7. What's the hardest part of what you're working on right now? <span aria-hidden="true">*</span></label>
+                  <textarea class="apply-input" id="f-hard" name="Hardest part now" rows="4" minlength="120" required placeholder="Be specific — 'right now' means this week." aria-describedby="hint-f-hard"></textarea>
+                  <p class="apply-hint" id="hint-f-hard">We ask this because struggling honestly is respected here. There is no wrong answer.</p>
+                  <div class="apply-counter" aria-live="polite"></div>
+                </div>
+
+                <div class="apply-field mb-6">
+                  <label class="apply-label" for="f-passed">8. When did someone last help you — and did you pass it on? <span aria-hidden="true">*</span></label>
+                  <textarea class="apply-input" id="f-passed" name="Helped then passed on" rows="4" minlength="120" required placeholder="A real moment — both halves."></textarea>
+                  <div class="apply-counter" aria-live="polite"></div>
+                </div>
+
+                <!-- Resume / proof of work (optional) -->
+                <div class="apply-field mb-6 border-t border-brand-border pt-7">
+                  <span class="text-[13.5px] font-medium text-stone-900 block mb-1">Your work, on record <span class="text-brand-subtle font-normal">— optional, encouraged</span></span>
+                  <p class="apply-hint mb-4" id="hint-f-resume">One file or a few lines of text. Never send anything you wouldn't post publicly — this form isn't encrypted beyond standard HTTPS.</p>
+
+                  <label class="apply-label" for="f-resume-file">Resume, CV or portfolio (file)</label>
+                  <input class="apply-input" type="file" id="f-resume-file" name="Resume — file" accept=".pdf,.doc,.docx,.txt,.md,.rtf,image/png,image/jpeg" title="Optional — PDF, DOC, TXT, MD, PNG or JPG, up to ~10 MB">
+                  <p class="text-[12px] text-brand-subtle mt-1">PDF, Word, text, Markdown, PNG or JPG — up to ~10 MB. Links from the questions above count just as much.</p>
+
+                  <label class="apply-label mt-4" for="f-resume-paste">…or paste it here</label>
+                  <textarea class="apply-input" id="f-resume-paste" name="Resume — pasted" rows="6" placeholder="A few lines is plenty: what you do, key work, links. Plain text, no formatting needed."></textarea>
+                  <div class="apply-counter" aria-live="polite"></div>
+                </div>
+
                 <!-- Commitments -->
                 <div class="apply-field mb-6 border-t border-brand-border pt-7">
                   <div class="text-[13.5px] font-medium text-stone-900 mb-1">Commitments <span aria-hidden="true">*</span></div>
@@ -688,6 +723,7 @@
                 <div class="apply-hp" aria-hidden="true">
                   <label for="f-honey">Leave this field empty</label>
                   <input type="text" id="f-honey" name="_honey" tabindex="-1" autocomplete="off">
+                   <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" class="apply-sr-only" aria-hidden="true">
                 </div>
 
                 <!-- Submit -->
