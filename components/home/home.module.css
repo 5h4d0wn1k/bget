@@ -1,25 +1,26 @@
 /* ==========================================================================
-   BGET HOMEPAGE — component styles. Tokens come from app/globals.css.
-   Editorial language: ink #101512 cover · paper #F7F5F0 below ·
-   sharp 4px radii · monospaced ledger numerals · masked line reveals.
+   BGET HOMEPAGE — "Constellation".
+   Deep obsidian canvas · warm gold/bronze light · liquid glass ·
+   neural-connection hero for a network of exceptional people.
+   Tokens come from app/globals.css.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   THE COVER — light-on-dark hero band
+   THE COVER — constellation hero
    -------------------------------------------------------------------------- */
 .cover {
   position: relative;
-  background: var(--ink);
+  background: radial-gradient(120% 90% at 50% 0%, #0d0f0d 0%, var(--ink) 55%);
   color: var(--paper);
   overflow: hidden;
 }
 
 .coverInner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 48px;
+  gap: clamp(40px, 5vw, 64px);
   align-items: center;
   padding-block: clamp(72px, 11svh, 132px) clamp(64px, 9svh, 112px);
   min-height: calc(100svh - var(--nav-h));
@@ -27,8 +28,7 @@
 
 @media (min-width: 960px) {
   .coverInner {
-    grid-template-columns: minmax(0, 7.5fr) minmax(0, 4.5fr);
-    gap: 40px;
+    grid-template-columns: minmax(0, 6.5fr) minmax(0, 5.5fr);
   }
 }
 
@@ -40,14 +40,12 @@
 
 .heroTitle {
   margin-top: clamp(24px, 3.4vw, 36px);
-  font-size: clamp(2.7rem, 5.6vw, 4.9rem);
+  font-size: clamp(2.6rem, 5.4vw, 4.7rem);
   line-height: 1.04;
   letter-spacing: -0.03em;
 }
 
-/* Masked line reveal — each line is clipped, text slides up from below.
-   The .reveal class (globals) fades/rises the wrapper in sync via
-   --reveal-delay; the inner mask does the editorial slide. */
+/* Masked line reveal — each line clipped, text slides up from below. */
 .h1line {
   display: block;
 }
@@ -62,7 +60,7 @@
 .h1maskInner {
   display: inline-block;
   will-change: transform;
-  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.9s var(--ease-swell);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -81,14 +79,16 @@ html.js .h1line:global(.is-in) .h1maskInner {
   }
 }
 
-/* The oversized serif-italic accent word inside the h1 lockup */
+/* The gold gradient accent — warm highlight on the h1 */
 .becoming {
   font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 1.16em;
+  font-weight: 500;
+  font-size: 1.14em;
   letter-spacing: -0.01em;
-  color: var(--gold);
+  background: linear-gradient(120deg, #e8d5b7 0%, var(--gold-bright) 45%, var(--bronze) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .heroSupport {
@@ -96,7 +96,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   max-width: 46ch;
   font-size: clamp(16px, 1.4vw, 18px);
   line-height: 1.7;
-  color: rgba(244, 243, 238, 0.78);
+  color: rgba(242, 239, 232, 0.78);
 }
 
 .heroCtas {
@@ -106,17 +106,17 @@ html.js .h1line:global(.is-in) .h1maskInner {
   gap: 12px;
 }
 
-/* Inverted ghost on dark — transparent, hairline paper border */
+/* Ghost on dark — transparent, hairline bone border */
 .btnGhostInvert {
-  border-color: rgba(244, 243, 238, 0.34);
+  border-color: rgba(242, 239, 232, 0.28);
   color: var(--paper);
   background: transparent;
 }
 
 .btnGhostInvert:hover {
-  border-color: var(--paper);
-  color: var(--paper);
-  background: rgba(244, 243, 238, 0.06);
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(242, 239, 232, 0.05);
 }
 
 .heroTrust {
@@ -126,94 +126,285 @@ html.js .h1line:global(.is-in) .h1maskInner {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-variant-numeric: tabular-nums;
-  color: rgba(244, 243, 238, 0.42);
+  color: rgba(242, 239, 232, 0.42);
 }
 
-/* Wireframe globe — absolute ambient accent on mobile, grid column on desktop */
-.globe {
+/* The constellation stage — node panel + satellite chips */
+.nodeStage {
+  position: relative;
+  z-index: 1;
+}
+
+/* Live status pill — floating glass chip with a breathing green dot */
+.livePill {
   position: absolute;
-  top: 54%;
-  right: clamp(-80px, -3vw, -16px);
-  transform: translateY(-50%);
-  width: clamp(230px, 40vw, 340px);
-  opacity: 0.55;
-  pointer-events: none;
-  z-index: 0;
+  top: -14px;
+  left: clamp(0px, 4vw, 28px);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 14px 7px 11px;
+  border-radius: var(--r-pill);
+  background: rgba(16, 18, 17, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-brd);
+  box-shadow: var(--glass-hi), 0 10px 28px rgba(0, 0, 0, 0.35);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--paper);
+  white-space: nowrap;
 }
 
-@media (min-width: 960px) {
-  .globe {
-    position: static;
-    transform: none;
-    width: min(100%, 430px);
-    justify-self: end;
-    opacity: 1;
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green-live);
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5);
+  animation: liveBreath 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes liveBreath {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(52, 211, 153, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
   }
 }
 
-.globeSvg {
+/* Satellite chips — floating facts on the network, each a node */
+.chip {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 15px;
+  border-radius: var(--r-pill);
+  background: rgba(16, 18, 17, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-brd);
+  box-shadow: var(--glass-hi), 0 12px 32px rgba(0, 0, 0, 0.35);
+  font-size: 12.5px;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+  white-space: nowrap;
+  animation: chipFloat 7s ease-in-out infinite;
+}
+
+.chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 10px rgba(232, 184, 75, 0.8);
+}
+
+.chipGrow {
+  top: clamp(0px, 8vw, 56px);
+  right: -12px;
+}
+
+.chipGlobal {
+  bottom: -16px;
+  left: -10px;
+  animation-delay: -2.2s;
+}
+
+.chipRule {
+  bottom: clamp(28px, 6vw, 56px);
+  right: -6px;
+  animation-delay: -4.6s;
+}
+
+@media (max-width: 1080px) {
+  .chipGrow {
+    right: 0;
+  }
+  .chipGlobal {
+    left: 0;
+  }
+  .chipRule {
+    right: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .livePill {
+    top: -12px;
+  }
+  .chip {
+    display: none;
+  }
+}
+
+@keyframes chipFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* The node panel — liquid glass card holding the network */
+.node {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-brd);
+  box-shadow: var(--glass-hi), 0 0 100px rgba(167, 139, 113, 0.16),
+    0 30px 90px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.node::before {
+  /* inner top sheen — liquid-glass rim light */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(255, 255, 255, 0) 75%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.nodeGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(52% 60% at 50% 46%, rgba(201, 184, 160, 0.14), transparent 70%);
+}
+
+.nodeSvg {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  overflow: visible;
+  height: 100%;
 }
 
-.globeStars {
-  fill: rgba(244, 243, 238, 0.28);
-}
-
-.globeHalo {
+/* The network lines — gradient stroke, pulsing like a heartbeat */
+.nodeLine {
   fill: none;
-  stroke: rgba(232, 184, 75, 0.5);
-  stroke-width: 1.1;
-  stroke-dasharray: 2 11;
+  stroke: url(#bgetLine);
+  stroke-width: 2.5;
   stroke-linecap: round;
+  animation: branchPulse 3.4s ease-in-out infinite alternate;
 }
 
-.globeRing {
+.nodeDash {
   fill: none;
-  stroke: rgba(244, 243, 238, 0.38);
-  stroke-width: 1.4;
+  stroke: rgba(232, 184, 75, 0.55);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 15;
+  stroke-linecap: round;
+  animation: dashFlow 3.2s linear infinite;
+  opacity: 0;
 }
 
-.globeLine {
+.nodeDash:nth-of-type(2n) {
+  animation-delay: -1.6s;
+}
+
+@keyframes branchPulse {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -80;
+  }
+}
+
+.nodeCore {
+  fill: var(--gold-bright);
+  filter: drop-shadow(0 0 12px rgba(232, 184, 75, 0.9));
+}
+
+.nodeCoreHalo {
   fill: none;
-  stroke: rgba(244, 243, 238, 0.24);
+  stroke: rgba(232, 184, 75, 0.6);
+  stroke-width: 1.5;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: haloPulse 3.4s ease-out infinite;
+}
+
+.nodeCoreHalo2 {
+  animation-delay: 1.7s;
+}
+
+@keyframes haloPulse {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.nodeSat {
+  fill: var(--paper);
+  filter: drop-shadow(0 0 6px rgba(242, 239, 232, 0.5));
+}
+
+.nodeSatGold {
+  fill: var(--gold-bright);
+  filter: drop-shadow(0 0 10px rgba(232, 184, 75, 0.85));
+}
+
+.nodeLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  fill: rgba(242, 239, 232, 0.5);
+  text-anchor: middle;
+}
+
+.nodeRing {
+  fill: none;
+  stroke: rgba(242, 239, 232, 0.08);
   stroke-width: 1;
 }
 
-.dotBase {
-  fill: rgba(244, 243, 238, 0.6);
-}
-
-.dotGold {
-  fill: var(--gold);
-}
-
-.dotGreen {
-  fill: var(--green);
-}
-
-.globeGlint {
-  fill: var(--gold);
-  animation: globePulse 2.6s ease-in-out infinite;
-}
-
-@keyframes globePulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.2;
-  }
-}
-
 /* --------------------------------------------------------------------------
-   THE LEDGER — four monospaced rows on paper, sitting on the dark→light edge
+   THE LEDGER — four glass rows on the dark canvas
    -------------------------------------------------------------------------- */
 .ledger {
-  background: var(--paper);
-  border-top: 1px solid var(--ink);
+  position: relative;
+  background: var(--ink);
 }
 
 .ledgerInner {
@@ -236,7 +427,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   content: "";
   flex: 1;
   height: 1px;
-  background: var(--border);
+  background: var(--border-soft);
 }
 
 .ledgerList {
@@ -245,11 +436,11 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .ledgerRow {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-soft);
 }
 
 .ledgerRow:last-child {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-soft);
 }
 
 .ledgerLink {
@@ -259,20 +450,20 @@ html.js .h1line:global(.is-in) .h1maskInner {
   gap: clamp(12px, 2vw, 20px);
   padding: clamp(18px, 2.6vw, 26px) 10px;
   text-decoration: none;
-  color: var(--ink);
+  color: var(--paper);
   font-variant-numeric: tabular-nums;
   transition: background var(--snap), padding var(--snap);
 }
 
 .ledgerLink:hover {
-  background: var(--green-soft);
+  background: var(--gold-soft);
   padding-inline: clamp(16px, 2.4vw, 24px);
 }
 
 .ledgerNum {
   font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .ledgerText {
@@ -300,7 +491,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .ledgerArrow {
-  color: var(--green);
+  color: var(--gold);
   opacity: 0;
   transform: translate(-6px, 6px);
   transition: opacity var(--snap), transform var(--snap);
@@ -319,12 +510,13 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 /* --------------------------------------------------------------------------
-   MARQUEE — slow ticker band, pauses on hover (pure CSS)
+   MARQUEE — slow ticker with gold glints
    -------------------------------------------------------------------------- */
 .marquee {
+  position: relative;
   background: var(--ink);
   color: var(--paper);
-  border-block: 1px solid var(--border-dark);
+  border-block: 1px solid var(--border-soft);
   overflow: hidden;
   padding-block: 17px 19px;
 }
@@ -340,18 +532,23 @@ html.js .h1line:global(.is-in) .h1maskInner {
   animation-play-state: paused;
 }
 
+.marqueeInner {
+  display: flex;
+  align-items: center;
+}
+
 .marqueeWord {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(244, 243, 238, 0.72);
+  font-family: var(--font-serif);
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: rgba(242, 239, 232, 0.8);
   white-space: nowrap;
 }
 
 .marqueeDot {
-  color: var(--gold);
-  margin-inline: 3.2em;
+  color: var(--gold-bright);
+  margin-inline: 2.2em;
+  font-family: var(--font-sans);
 }
 
 @keyframes marqueeScroll {
@@ -368,25 +565,25 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 /* --------------------------------------------------------------------------
-   BODY SECTIONS — paper, generous whitespace
+   BODY SECTIONS — dark canvas, glass accents
    -------------------------------------------------------------------------- */
 .section {
+  position: relative;
   padding-block: clamp(76px, 10vw, 140px);
   scroll-margin-top: calc(var(--nav-h) + 16px);
 }
 
 .sectionTitle {
   margin-top: 18px;
-  font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
   letter-spacing: -0.03em;
   max-width: 24ch;
 }
 
 .serifAccent {
   font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  color: var(--green);
+  font-weight: 500;
+  color: var(--gold);
 }
 
 /* Vision */
@@ -408,6 +605,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   line-height: 1.5;
   font-weight: 550;
   letter-spacing: -0.01em;
+  color: var(--paper);
 }
 
 .visionBody {
@@ -419,16 +617,16 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .pullQuote {
   margin-top: clamp(48px, 7vw, 88px);
   padding: clamp(24px, 3vw, 32px) 0 4px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-soft);
   font-family: var(--font-serif);
-  font-style: italic;
   font-size: clamp(1.7rem, 3.6vw, 2.6rem);
   line-height: 1.24;
   letter-spacing: -0.01em;
+  color: var(--paper);
 }
 
 .pullQuote em {
-  color: var(--green);
+  color: var(--gold-bright);
 }
 
 .pullAttribution {
@@ -445,10 +643,10 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .pullAttribution:hover {
-  color: var(--green);
+  color: var(--gold);
 }
 
-/* Disciplines */
+/* Disciplines — glass card grid */
 .disciplineGrid {
   display: grid;
   gap: 14px;
@@ -468,23 +666,35 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .disciplineCard {
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  background: var(--paper);
+  border: 1px solid var(--glass-brd);
+  border-radius: var(--r-md);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--glass-hi);
   padding: 26px 22px;
-  transition: background var(--snap), border-color var(--snap), transform var(--snap);
+  transition: border-color var(--snap), transform var(--snap), box-shadow var(--snap);
 }
 
 .disciplineCard:hover {
-  background: var(--paper-2);
-  border-color: var(--ink);
-  transform: translateY(-2px);
+  border-color: rgba(201, 184, 160, 0.4);
+  transform: translateY(-3px);
+  box-shadow: var(--glass-hi), 0 16px 44px rgba(167, 139, 113, 0.1);
 }
 
 .disciplineIcon {
-  width: 22px;
-  height: 22px;
-  color: var(--green);
+  width: 46px;
+  height: 46px;
+  padding: 11px;
+  box-sizing: border-box;
+  color: var(--gold);
+  background: var(--gold-soft);
+  border-radius: 14px;
+  transition: transform var(--snap);
+}
+
+.disciplineCard:hover .disciplineIcon {
+  transform: scale(1.12);
 }
 
 .disciplineName {
@@ -512,7 +722,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .loopRows {
   list-style: none;
   margin-top: clamp(32px, 4.4vw, 48px);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-soft);
 }
 
 .loopRow {
@@ -522,19 +732,19 @@ html.js .h1line:global(.is-in) .h1maskInner {
   row-gap: 6px;
   align-items: baseline;
   padding: 22px 10px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-soft);
   transition: background var(--snap);
 }
 
 .loopRow:hover {
-  background: var(--paper-2);
+  background: var(--gold-soft);
 }
 
 .loopNum {
   font-family: var(--font-mono);
   font-size: 13px;
   font-variant-numeric: tabular-nums;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .loopTitle {
@@ -547,7 +757,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .loopRepeat {
-  color: var(--gold);
+  color: var(--gold-bright);
 }
 
 .loopDesc {
@@ -570,13 +780,15 @@ html.js .h1line:global(.is-in) .h1maskInner {
   }
 }
 
-/* The Problem Queue teaser — stark ink band */
+/* The Problem Queue teaser — dark band with a warm aura */
 .problems {
   position: relative;
-  background: var(--ink);
+  background: radial-gradient(90% 110% at 80% 20%, rgba(167, 139, 113, 0.16), transparent 60%),
+    var(--ink);
   color: var(--paper);
   overflow: hidden;
   padding-block: clamp(88px, 12vw, 160px);
+  border-block: 1px solid var(--border-soft);
   scroll-margin-top: calc(var(--nav-h) + 16px);
 }
 
@@ -595,15 +807,14 @@ html.js .h1line:global(.is-in) .h1maskInner {
 
 .serifAccentGold {
   font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  color: var(--gold);
+  font-weight: 500;
+  color: var(--gold-bright);
 }
 
 .problemsLead {
   margin-top: 26px;
   max-width: 62ch;
-  color: rgba(244, 243, 238, 0.78);
+  color: rgba(242, 239, 232, 0.78);
   font-size: 17px;
   line-height: 1.7;
 }
@@ -622,11 +833,12 @@ html.js .h1line:global(.is-in) .h1maskInner {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-variant-numeric: tabular-nums;
-  color: rgba(244, 243, 238, 0.42);
+  color: rgba(242, 239, 232, 0.42);
 }
 
-/* North Star — centered serif quote + mono compulsions */
+/* North Star — centered serif quote + compulsion grid */
 .northStar {
+  position: relative;
   padding-block: clamp(88px, 12vw, 160px);
   text-align: center;
   scroll-margin-top: calc(var(--nav-h) + 16px);
@@ -635,8 +847,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .nsTitle {
   margin-top: 22px;
   font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(2.1rem, 4.8vw, 3.7rem);
   line-height: 1.12;
   letter-spacing: -0.015em;
@@ -659,7 +870,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   max-width: 780px;
   display: grid;
   gap: 0;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-soft);
   text-align: left;
 }
 
@@ -674,7 +885,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   align-items: baseline;
   gap: 14px;
   padding: 15px 8px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-soft);
   font-family: var(--font-mono);
   font-size: 13.5px;
   letter-spacing: 0.04em;
@@ -683,7 +894,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 
 @media (min-width: 640px) {
   .nsItem:nth-child(odd) {
-    border-right: 1px solid var(--border);
+    border-right: 1px solid var(--border-soft);
     padding-right: 18px;
   }
 
@@ -693,28 +904,41 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .nsIndex {
-  color: var(--green);
+  color: var(--gold);
   font-variant-numeric: tabular-nums;
 }
 
-/* Closing CTA — gold band */
+/* Closing CTA — the gold band */
 .closing {
-  background: var(--gold);
+  position: relative;
+  background: linear-gradient(135deg, #e8d5b7 0%, var(--gold) 48%, var(--bronze) 100%);
   color: var(--ink);
   padding-block: clamp(88px, 12vw, 150px);
   text-align: center;
+  overflow: hidden;
   scroll-margin-top: calc(var(--nav-h) + 16px);
 }
 
+.closing::before {
+  /* radial highlight + faint orb for depth */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(58% 90% at 50% 100%, rgba(255, 255, 255, 0.35), transparent 65%);
+}
+
 .closingKicker {
+  position: relative;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(16, 21, 18, 0.6);
+  color: rgba(16, 18, 17, 0.62);
 }
 
 .closingTitle {
+  position: relative;
   margin-top: 18px;
   font-size: clamp(2.1rem, 4.8vw, 3.9rem);
   letter-spacing: -0.025em;
@@ -723,20 +947,21 @@ html.js .h1line:global(.is-in) .h1maskInner {
 
 .closingHi {
   font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.12em;
 }
 
 .closingBody {
+  position: relative;
   margin: 22px auto 0;
   max-width: 46ch;
-  color: rgba(16, 21, 18, 0.72);
+  color: rgba(16, 18, 17, 0.72);
   font-size: 16.5px;
   line-height: 1.7;
 }
 
 .closingCtas {
+  position: relative;
   margin-top: 38px;
   display: flex;
   flex-wrap: wrap;
@@ -746,12 +971,31 @@ html.js .h1line:global(.is-in) .h1maskInner {
 
 /* Ghost button on gold — ink hairline */
 .btnInkGhost {
-  border-color: rgba(16, 21, 18, 0.4);
+  border-color: rgba(16, 18, 17, 0.4);
   color: var(--ink);
   background: transparent;
 }
 
 .btnInkGhost:hover {
   border-color: var(--ink);
-  background: transparent;
+  background: rgba(16, 18, 17, 0.06);
+}
+
+/* ------------------------------------------------------------------ Motion */
+@media (prefers-reduced-motion: reduce) {
+  .nodeLine,
+  .nodeDash,
+  .nodeCoreHalo,
+  .liveDot,
+  .chip {
+    animation: none;
+  }
+
+  .nodeDash {
+    opacity: 0;
+  }
+
+  .chip {
+    transform: none;
+  }
 }

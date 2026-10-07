@@ -1,55 +1,69 @@
 /* ==========================================================================
    BGET — Build. Grow. Evolve. Together.
-   DESIGN SYSTEM — tokens, baseline, shared primitives.
-   Palette (BRANDING): ink #101512 · paper #F7F5F0 · green #1F7A4D · gold #E8B84B
-   Type: Inter (text) + Instrument Serif italic (accent). Numeral-ledger mono.
+   DESIGN SYSTEM — "Constellation".
+   Deep obsidian canvas · warm gold/bronze light · liquid glass ·
+   neural-connection motif for a network of exceptional people.
+   Type: Inter (UI) — straight, upright, no italic/serif accents.
    ========================================================================== */
 
 :root {
-  /* Surfaces */
-  --ink: #101512;
-  --ink-2: #1a211c;
-  --ink-soft: #2a332c;
-  --paper: #f7f5f0;
-  --paper-2: #efebe4;
+  /* Surfaces — deep obsidian */
+  --bg: #0a0a0a;
+  --ink: #0a0a0a; /* darkest — cover bands, buttons on dark */
+  --ink-2: #101211; /* elevated surface */
+  --ink-soft: #171a18; /* hover surface */
+  --paper: #f2efe8; /* bone — light text on dark */
+  --paper-2: #c0bbae; /* secondary bone */
   --white: #ffffff;
 
-  /* Brand */
-  --green: #1f7a4d;
-  --green-soft: #e4efe8;
-  --gold: #e8b84b;
-  --gold-soft: #f8edd6;
+  /* Brand — warm metallic spectrum (gold → bronze). No blue/purple. */
+  --gold: #c9b8a0; /* primary gold accent */
+  --gold-bright: #e8b84b; /* bright gold — glints, dots, selection */
+  --bronze: #a78b71; /* deep gold — gradient ends, muted gold */
+  --gold-soft: rgba(201, 184, 160, 0.1); /* gold tint / wash */
+  --gold-glow: rgba(167, 139, 113, 0.22); /* central aura */
+
+  /* Functional status green — tiny accents only (LIVE dot, shipped) */
+  --green: #3d9a6e;
+  --green-soft: rgba(61, 154, 110, 0.14);
+  --green-live: #34d399;
 
   /* Text */
-  --text-primary: var(--ink);
-  --text-muted: #5c645e;
-  --text-faint: #6a726c;
-  --text-invert: #f4f3ee;
+  --text-primary: var(--paper);
+  --text-muted: #a2a098;
+  --text-faint: #6e6c65;
+  --text-invert: var(--ink);
 
-  /* Lines */
-  --border: #ddd8cc;
-  --border-soft: #e8e4d9;
-  --border-dark: #39413b;
+  /* Lines + glass */
+  --border: rgba(242, 239, 232, 0.14);
+  --border-soft: rgba(242, 239, 232, 0.08);
+  --border-dark: rgba(242, 239, 232, 0.24);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-brd: rgba(255, 255, 255, 0.1);
+  --glass-hi: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
   /* Motion */
-  --ease-swell: cubic-bezier(0.16, 1, 0.3, 1);
-  --snap: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-swell: cubic-bezier(0.16, 1, 0.3, 1); /* power4.out */
+  --snap: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Radii — sharp editorial geometry (4px family, no pills) */
-  --r-sm: 4px;
-  --r-md: 6px;
-  --r-lg: 10px;
+  /* Radii — luxe glass (12/16/24 + pills) */
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-pill: 999px;
 
-  /* Type */
+  /* Type — straight, upright (no italic serif) */
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  /* Kept as a token for compatibility; resolves to the same straight stack
+     so no rule ever renders an italic/serif accent. */
+  --font-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "SF Mono", ui-monospace, "Cascadia Mono", "JetBrains Mono", Menlo, monospace;
 
   /* Layout */
   --w-page: 1180px;
   --w-narrow: 820px;
   --gutter: clamp(20px, 4vw, 48px);
-  --nav-h: 72px;
+  --nav-h: 64px;
 }
 
 *,
@@ -78,7 +92,13 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background-color: var(--bg);
+  /* Faint constellation dot-grid — the network-of-people backdrop. */
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1.3px
+  );
+  background-size: 36px 36px;
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: 16px;
@@ -86,6 +106,18 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+}
+
+/* Fixed film-grain + vignette over the whole canvas — never a flat gradient. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 img,
@@ -130,6 +162,13 @@ button {
   cursor: pointer;
 }
 
+/* Editorial type is straight — no synthesized italics anywhere.
+   Emphasis is expressed via weight/color instead (see accent rules). */
+em,
+i {
+  font-style: normal;
+}
+
 input,
 textarea,
 select {
@@ -138,7 +177,7 @@ select {
 }
 
 ::selection {
-  background: var(--gold);
+  background: var(--gold-bright);
   color: var(--ink);
 }
 
@@ -162,22 +201,22 @@ select {
   align-items: center;
   gap: 10px;
   font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .eyebrow::before {
   content: "";
-  width: 22px;
+  width: 26px;
   height: 1px;
   background: currentColor;
   opacity: 0.7;
 }
 
 .eyebrow--gold {
-  color: var(--gold);
+  color: var(--gold-bright);
 }
 
 /* Light-grain overlay for dark cover bands (static data-URI — no filters) */
@@ -190,44 +229,68 @@ select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Buttons — sharp 4px, editorial */
+/* Buttons — glass pills, luxe */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 26px;
-  border-radius: var(--r-sm);
+  padding: 13px 26px;
+  border-radius: var(--r-pill);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.01em;
   border: 1px solid transparent;
-  transition: background var(--snap), color var(--snap), border-color var(--snap), transform var(--snap);
+  transition: background var(--snap), color var(--snap), border-color var(--snap),
+    transform var(--snap), box-shadow var(--snap);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .btn:active {
   transform: translateY(1px);
 }
 
+/* Signature CTA — warm gold→bronze, ink text */
 .btn--primary {
-  background: var(--green);
-  color: var(--white);
+  background: linear-gradient(135deg, #e8d5b7 0%, var(--gold) 55%, var(--bronze) 100%);
+  color: var(--ink);
+  box-shadow: 0 0 0 1px rgba(233, 216, 188, 0.18) inset,
+    0 10px 30px rgba(167, 139, 113, 0.18);
 }
 
 .btn--primary:hover {
-  background: #16653f;
+  background: linear-gradient(135deg, #f0e2c9 0%, #d8c7ac 55%, #b39278 100%);
+  box-shadow: 0 0 0 1px rgba(233, 216, 188, 0.24) inset,
+    0 14px 40px rgba(167, 139, 113, 0.26);
 }
 
+/* Bright gold accent button */
+.btn--gold {
+  background: var(--gold-bright);
+  color: var(--ink);
+  box-shadow: 0 0 0 1px rgba(232, 184, 75, 0.22) inset,
+    0 10px 30px rgba(232, 184, 75, 0.16);
+}
+
+.btn--gold:hover {
+  background: #f2c65e;
+}
+
+/* Dark glass surface button */
 .btn--dark {
-  background: var(--ink);
+  background: var(--ink-2);
   color: var(--paper);
+  border-color: var(--glass-brd);
+  box-shadow: var(--glass-hi);
 }
 
 .btn--dark:hover {
-  background: var(--ink-2);
+  background: var(--ink-soft);
+  border-color: rgba(255, 255, 255, 0.16);
 }
 
+/* Hairline ghost */
 .btn--ghost {
   border-color: var(--border-dark);
   color: inherit;
@@ -235,17 +298,21 @@ select {
 }
 
 .btn--ghost:hover {
-  border-color: var(--ink);
+  border-color: var(--gold);
+  color: var(--gold);
   background: transparent;
 }
 
-.btn--gold {
-  background: var(--gold);
+/* Solid white pill — hero CTA on dark */
+.btn--white {
+  background: var(--white);
   color: var(--ink);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
 }
 
-.btn--gold:hover {
-  background: #ddab3d;
+.btn--white:hover {
+  background: #f2efe8;
+  box-shadow: 0 14px 40px rgba(255, 255, 255, 0.14);
 }
 
 /* Reveal-on-scroll bases — gated by .js, safe without JS */
@@ -281,10 +348,11 @@ html.js .reveal.is-in {
   top: -100px;
   left: 16px;
   z-index: 200;
-  background: var(--ink);
+  background: var(--ink-2);
   color: var(--paper);
   padding: 12px 18px;
   border-radius: var(--r-sm);
+  border: 1px solid var(--glass-brd);
   transition: top var(--snap);
 }
 
@@ -307,7 +375,7 @@ html.js .reveal.is-in {
 
 /* Focus visible */
 :focus-visible {
-  outline: 2px solid var(--green);
+  outline: 2px solid var(--gold-bright);
   outline-offset: 3px;
   border-radius: 3px;
 }

@@ -1,32 +1,40 @@
 .footer {
-  border-top: 1px solid var(--border);
-  background: var(--paper);
-  margin-top: 96px;
+  position: relative;
+  border-top: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 40%),
+    var(--ink);
 }
 
 .inner {
   width: min(100% - calc(var(--gutter) * 2), var(--w-page));
   margin-inline: auto;
-  padding: 56px 0 28px;
+  padding: 64px 0 32px;
 }
 
 .top {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 36px;
+  gap: 40px;
 }
 
 @media (min-width: 760px) {
   .top {
     grid-template-columns: 2fr 1fr 1fr 1.2fr;
-    gap: 40px;
+    gap: 44px;
   }
 }
 
 .brand {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: 0.02em;
+  color: var(--paper);
+}
+
+.brand::after {
+  content: ".";
+  color: var(--gold-bright);
 }
 
 .tag {
@@ -34,23 +42,22 @@
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--green);
-  margin-top: 2px;
+  color: var(--gold);
+  margin-top: 4px;
 }
 
 .blurb {
-  margin-top: 14px;
+  margin-top: 16px;
   font-size: 14.5px;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--text-muted);
-  max-width: 320px;
+  max-width: 300px;
 }
 
 .serif {
   font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.1em;
-  color: var(--ink);
+  font-size: 1.12em;
+  color: var(--gold);
 }
 
 .col {
@@ -62,11 +69,11 @@
 
 .colTitle {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10.5px;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   color: var(--text-faint);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .link {
@@ -80,15 +87,14 @@
 }
 
 .link:hover {
-  color: var(--ink);
+  color: var(--gold);
 }
 
 .northStar {
   font-family: var(--font-serif);
-  font-style: italic;
   font-size: 17px;
-  line-height: 1.35;
-  color: var(--ink);
+  line-height: 1.4;
+  color: var(--paper);
 }
 
 .form {
@@ -100,29 +106,44 @@
 .input {
   flex: 1;
   min-width: 0;
-  padding: 11px 13px;
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  background: var(--white);
+  padding: 11px 15px;
+  border: 1px solid var(--glass-brd);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.04);
   font-size: 14px;
+  color: var(--paper);
+  transition: border-color var(--snap), background var(--snap);
+}
+
+.input::placeholder {
+  color: var(--text-faint);
+  opacity: 0.85;
 }
 
 .input:focus {
-  outline: 2px solid var(--green);
-  outline-offset: 1px;
+  outline: none;
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .formBtn {
-  padding: 11px 16px;
-  background: var(--ink);
-  color: var(--paper);
-  border-radius: var(--r-sm);
+  flex: none;
+  padding: 11px 18px;
+  background: linear-gradient(135deg, #e8d5b7 0%, var(--gold) 60%, var(--bronze) 100%);
+  color: var(--ink);
+  border-radius: var(--r-pill);
   font-size: 14px;
   font-weight: 600;
+  transition: filter var(--snap), transform var(--snap);
 }
 
 .formBtn:hover {
-  background: #000;
+  filter: brightness(1.06);
+}
+
+.formBtn:disabled {
+  opacity: 0.6;
+  cursor: wait;
 }
 
 .formNote {
@@ -132,7 +153,7 @@
 
 .done {
   font-size: 14px;
-  color: var(--green);
+  color: var(--gold);
   font-weight: 600;
 }
 
@@ -158,4 +179,5 @@
   font-family: var(--font-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--gold);
 }

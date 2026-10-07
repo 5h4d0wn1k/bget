@@ -315,17 +315,17 @@ export function ClosingCta() {
   return (
     <section id="join" className={styles.closing} aria-labelledby="closing-title">
       <div className="container-narrow">
-        <p className={`${styles.closingKicker} reveal`}>Quality over quantity</p>
+        <p className={`${styles.closingKicker} reveal`}>Apply</p>
         <h2
           id="closing-title"
           className={`${styles.closingTitle} reveal`}
           style={delay(80)}
         >
-          The first <em className={styles.closingHi}>5–10</em> people matter enormously.
+          BGET is growing deliberately.
         </h2>
         <p className={`${styles.closingBody} reveal`} style={delay(180)}>
-          A network of genuinely exceptional human beings who trust one another — and
-          create extraordinary things together.
+          Applications are read by a person. No automation, no pay-to-play — if you
+          apply, your work speaks for you.
         </p>
         <div className={`${styles.closingCtas} reveal`} style={delay(280)}>
           <Link href="/apply" className="btn btn--dark">

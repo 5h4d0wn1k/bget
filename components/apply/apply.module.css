@@ -7,7 +7,7 @@
 /* ---------------------------------------------------------- Cover band */
 .cover {
   padding: 104px 0 88px;
-  border-bottom: 3px solid var(--ink);
+  border-bottom: 3px solid var(--gold-bright);
 }
 
 .coverInner {
@@ -25,9 +25,8 @@
 
 .coverH1 em {
   font-family: var(--font-serif);
-  font-style: italic;
   font-weight: 400;
-  color: var(--green);
+  color: var(--gold);
   letter-spacing: -0.01em;
 }
 
@@ -44,7 +43,7 @@
   display: inline-flex;
   flex-wrap: wrap;
   border: 1px solid var(--border);
-  background: var(--white);
+  background: var(--ink-2);
   border-radius: var(--r-sm);
   overflow: hidden;
 }
@@ -54,7 +53,7 @@
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--gold);
   padding: 11px 16px;
   white-space: nowrap;
 }
@@ -117,7 +116,7 @@
   align-items: flex-start;
   font-size: 16.5px;
   line-height: 1.6;
-  color: var(--ink);
+  color: var(--paper);
   max-width: 640px;
 }
 
@@ -127,7 +126,7 @@
   height: 30px;
   border-radius: var(--r-sm);
   background: var(--green-soft);
-  color: var(--green);
+  color: var(--gold);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -143,10 +142,9 @@
 
 .pullQuoteText {
   font-family: var(--font-serif);
-  font-style: italic;
   font-size: clamp(26px, 3.4vw, 36px);
   line-height: 1.28;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .pullQuoteKicker {
@@ -154,7 +152,7 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--gold);
   margin-bottom: 14px;
 }
 
@@ -214,7 +212,7 @@
 
 .asideCard {
   border: 1px solid var(--border);
-  background: var(--white);
+  background: var(--ink-2);
   border-radius: var(--r-sm);
   padding: 22px;
 }
@@ -224,7 +222,7 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--gold);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -283,7 +281,7 @@
   font-size: 10.5px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--paper);
   min-width: 84px;
   flex: none;
 }
@@ -299,7 +297,7 @@
   margin-top: 12px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--paper);
   text-decoration: underline;
   text-decoration-color: var(--gold);
   text-underline-offset: 3px;
@@ -307,7 +305,7 @@
 }
 
 .inboxEmail:hover {
-  text-decoration-color: var(--ink);
+  text-decoration-color: var(--paper);
 }
 
 .asideNote {
@@ -355,7 +353,7 @@
 /* ------------------------------------------------------------------ Form */
 .formCard {
   border: 1px solid var(--border);
-  background: var(--white);
+  background: var(--ink-2);
   border-radius: var(--r-sm);
   padding: clamp(26px, 4vw, 52px);
 }
@@ -401,7 +399,7 @@
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
-  color: var(--green);
+  color: var(--gold);
   background: var(--green-soft);
   border: 1px solid transparent;
   border-radius: 3px;
@@ -413,7 +411,7 @@
   font-weight: 600;
   font-size: 16px;
   letter-spacing: -0.01em;
-  color: var(--ink);
+  color: var(--paper);
   line-height: 1.35;
 }
 
@@ -426,7 +424,7 @@
 }
 
 .tagReq {
-  color: var(--green);
+  color: var(--gold);
 }
 
 .tagOpt {
@@ -438,11 +436,11 @@
 .select {
   width: 100%;
   border: 1px solid var(--border);
-  background: var(--paper);
+  background: var(--ink-2);
   border-radius: var(--r-sm);
   padding: 13px 15px;
   font-size: 15px;
-  color: var(--ink);
+  color: var(--paper);
   transition: border-color var(--snap), background var(--snap), box-shadow var(--snap);
 }
 
@@ -456,9 +454,9 @@
 .textarea:focus,
 .select:focus {
   outline: none;
-  border-color: var(--green);
-  background: var(--white);
-  box-shadow: 0 0 0 3px rgba(31, 122, 77, 0.14);
+  border-color: var(--gold);
+  background: var(--ink-2);
+  box-shadow: 0 0 0 3px rgba(201, 184, 160, 0.18);
 }
 
 .textarea {
@@ -469,7 +467,7 @@
 
 .select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235c645e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a2a098' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 42px;
@@ -498,7 +496,6 @@
 .note {
   margin-top: 10px;
   font-family: var(--font-serif);
-  font-style: italic;
   font-size: 15px;
   line-height: 1.5;
   color: var(--text-muted);
@@ -513,7 +510,7 @@
 
 /* ------------------------------------------------------------ Résumé block */
 .resumeBox {
-  background: var(--paper);
+  background: var(--ink-2);
 }
 
 .resumeLegend {
@@ -532,7 +529,7 @@
   gap: 8px;
   font-weight: 600;
   font-size: 15px;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .modeChip {
@@ -565,7 +562,7 @@
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
   overflow: hidden;
-  background: var(--white);
+  background: var(--ink-2);
 }
 
 .segBtn {
@@ -600,18 +597,18 @@
   border: 1px dashed var(--border);
   border-radius: var(--r-sm);
   padding: 16px 18px;
-  background: var(--white);
+  background: var(--ink-2);
   cursor: pointer;
   transition: border-color var(--snap);
 }
 
 .fileBox:hover {
-  border-color: var(--green);
+  border-color: var(--gold);
 }
 
 .fileIcon {
   flex: none;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .fileName {
@@ -641,7 +638,7 @@
 }
 
 .fileBox:has(.fileInput:focus-visible) {
-  outline: 2px solid var(--green);
+  outline: 2px solid var(--gold-bright);
   outline-offset: 2px;
 }
 
@@ -654,15 +651,15 @@
   font-size: 12.5px;
   font-weight: 600;
   color: var(--text-muted);
-  background: var(--white);
+  background: var(--ink-2);
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
   transition: border-color var(--snap), color var(--snap);
 }
 
 .removeBtn:hover {
-  border-color: var(--ink);
-  color: var(--ink);
+  border-color: var(--paper);
+  color: var(--paper);
 }
 
 .fileError {
@@ -670,7 +667,7 @@
   padding: 11px 14px;
   font-size: 13px;
   line-height: 1.55;
-  color: var(--ink);
+  color: var(--paper);
   background: var(--gold-soft);
   border: 1px solid var(--gold);
   border-radius: var(--r-sm);
@@ -728,7 +725,7 @@
   padding: 13px 16px;
   font-size: 13.5px;
   line-height: 1.6;
-  color: var(--ink);
+  color: var(--paper);
   background: var(--gold-soft);
   border: 1px solid var(--gold);
   border-radius: var(--r-sm);
@@ -751,7 +748,7 @@
 .errorBoxBody {
   font-size: 13.5px;
   line-height: 1.6;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .errorActions {
@@ -775,7 +772,7 @@
   height: 54px;
   border-radius: var(--r-sm);
   background: var(--green-soft);
-  color: var(--green);
+  color: var(--gold);
   margin-bottom: 24px;
 }
 
@@ -791,9 +788,9 @@
   font-family: var(--font-mono);
   font-size: 13.5px;
   letter-spacing: 0.05em;
-  color: var(--green);
-  background: var(--green-soft);
-  border: 1px solid var(--green);
+  color: var(--gold-bright);
+  background: var(--gold-soft);
+  border: 1px solid var(--gold);
   border-radius: 3px;
 }
 
@@ -808,9 +805,8 @@
 .thankYou {
   margin-top: 14px;
   font-family: var(--font-serif);
-  font-style: italic;
   font-size: 17px;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .inboxBtn {

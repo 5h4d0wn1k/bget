@@ -11,7 +11,7 @@ type ChapterBodyProps = {
 
 /**
  * Server-side prose renderer for manifesto bodies. Covers h2–h4, strong,
- * *em* (the one serif-italic moment), blockquotes, lists, code and the closing
+ * *em* (straight, gold-tinted), blockquotes, lists, code and the closing
  * `---` hairline. `node` is dropped from props so nothing unknown reaches the DOM.
  */
 export default function ChapterBody({ markdown, variant = "default" }: ChapterBodyProps) {

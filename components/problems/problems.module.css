@@ -62,10 +62,9 @@ html.js .h1line:global(.is-in) .h1maskInner {
   }
 }
 
-/* The oversized serif-italic accent — "next?" */
+/* The oversized gold accent — "next?" */
 .h1Accent {
   font-family: var(--font-serif);
-  font-style: italic;
   font-weight: 400;
   font-size: 1.18em;
   letter-spacing: -0.01em;
@@ -114,7 +113,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 /* ------------------------------------------------------------ Founder note */
 .founder {
   padding: clamp(72px, 9vw, 104px) 0 clamp(56px, 7vw, 80px);
-  background: var(--paper);
+  background: var(--ink-2);
 }
 
 /* Pairs with the global .container-narrow — grid/column-safe min-width */
@@ -135,14 +134,15 @@ html.js .h1line:global(.is-in) .h1maskInner {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--green);
-  color: var(--paper);
+  background: linear-gradient(135deg, #e8d5b7 0%, var(--gold) 60%, var(--bronze) 100%);
+  color: var(--ink);
   font-family: var(--font-serif);
   font-size: 26px;
   font-weight: 400;
   line-height: 1;
   border-radius: var(--r-sm);
   margin-top: 4px;
+  box-shadow: 0 8px 20px rgba(167, 139, 113, 0.22);
 }
 
 .founderQuote {
@@ -151,10 +151,9 @@ html.js .h1line:global(.is-in) .h1maskInner {
 
 .founderQuote p {
   font-family: var(--font-serif);
-  font-style: italic;
   font-size: clamp(24px, 3.2vw, 34px);
   line-height: 1.3;
-  color: var(--ink);
+  color: var(--paper);
   max-width: 30ch;
   text-wrap: balance;
 }
@@ -183,7 +182,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   padding: clamp(56px, 7vw, 84px) 0;
   border-top: 1px solid var(--border-soft);
   border-bottom: 1px solid var(--border-soft);
-  background: var(--paper);
+  background: var(--ink-2);
 }
 
 /* Pairs with the global .container-narrow — grid/column-safe min-width */
@@ -218,7 +217,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   font-size: 13px;
   letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums;
-  color: var(--green);
+  color: var(--gold);
   padding-top: 6px;
 }
 
@@ -255,7 +254,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 /* --------------------------------------------------- Earns / Doesn't */
 .columns {
   padding: clamp(72px, 9vw, 104px) 0;
-  background: var(--paper);
+  background: var(--ink-2);
 }
 
 .columnsInner {
@@ -307,13 +306,13 @@ html.js .h1line:global(.is-in) .h1maskInner {
   justify-content: center;
   border-radius: var(--r-sm);
   background: var(--green-soft);
-  color: var(--green);
+  color: var(--gold);
   margin-top: 2px;
 }
 
 /* The "doesn't" column — muted, dashed, honest-negative */
 .colDoesnt {
-  background: var(--paper-2);
+  background: var(--ink-soft);
   border: 1px dashed var(--border);
   border-radius: var(--r-sm);
   padding: clamp(24px, 3.4vw, 34px);
@@ -344,8 +343,8 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .queue {
   scroll-margin-top: calc(var(--nav-h) + 20px);
   padding: clamp(72px, 9vw, 108px) 0;
-  border-top: 3px solid var(--ink);
-  background: var(--paper);
+  border-top: 3px solid var(--gold-bright);
+  background: var(--ink-2);
 }
 
 /* Pairs with the global .container-narrow — grid/column-safe min-width */
@@ -375,7 +374,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .legend {
   margin-top: 52px;
   border: 1px solid var(--border);
-  background: var(--white);
+  background: var(--ink-2);
   border-radius: var(--r-sm);
   padding: clamp(22px, 3.4vw, 30px);
 }
@@ -385,7 +384,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .legendGrid {
@@ -470,20 +469,20 @@ html.js .h1line:global(.is-in) .h1maskInner {
   font-size: 13.5px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--ink);
-  background: var(--white);
+  color: var(--paper);
+  background: var(--ink-2);
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
   transition: background var(--snap), color var(--snap), border-color var(--snap);
 }
 
 .chip:hover {
-  border-color: var(--ink);
+  border-color: var(--gold);
 }
 
 .chipActive {
   background: var(--ink);
-  border-color: var(--ink);
+  border-color: var(--gold);
   color: var(--paper);
 }
 
@@ -512,7 +511,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 
 /* -------------------------------------------------------------- Queue card */
 .card {
-  background: var(--white);
+  background: var(--ink-2);
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
   padding: clamp(22px, 3vw, 30px);
@@ -520,9 +519,9 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .card:hover {
-  border-color: var(--ink);
+  border-color: var(--gold);
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(16, 21, 18, 0.08);
+  box-shadow: 0 12px 28px rgba(167, 139, 113, 0.12);
 }
 
 .cardTop {
@@ -565,8 +564,8 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .toneReview {
-  color: var(--ink);
-  background: var(--paper-2);
+  color: var(--paper);
+  background: var(--ink-soft);
   border-color: var(--border);
 }
 
@@ -576,7 +575,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .toneLabs {
-  color: var(--ink);
+  color: var(--paper);
   background: var(--gold-soft);
 }
 
@@ -597,7 +596,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   font-size: 10.5px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #8a6d1f;
+  color: var(--gold-bright);
   background: var(--gold-soft);
   padding: 4px 9px;
   border-radius: 3px;
@@ -616,7 +615,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .cardTitle a:hover {
-  color: var(--green);
+  color: var(--gold);
 }
 
 .cardSummary {
@@ -661,14 +660,14 @@ html.js .h1line:global(.is-in) .h1maskInner {
   gap: 5px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--paper);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: color var(--snap), border-color var(--snap);
 }
 
 .extLink:hover {
-  color: var(--green);
+  color: var(--gold);
   border-bottom-color: var(--gold);
 }
 
@@ -678,7 +677,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .extLink:hover svg {
-  color: var(--green);
+  color: var(--gold);
 }
 
 .detailsBtn {
@@ -688,8 +687,8 @@ html.js .h1line:global(.is-in) .h1maskInner {
   padding: 9px 15px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--ink);
-  background: var(--paper);
+  color: var(--paper);
+  background: var(--ink-2);
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
   text-decoration: none;
@@ -698,7 +697,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 
 .detailsBtn:hover {
   background: var(--ink);
-  border-color: var(--ink);
+  border-color: var(--gold);
   color: var(--paper);
 }
 
@@ -706,8 +705,8 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .submitSection {
   scroll-margin-top: calc(var(--nav-h) + 20px);
   padding: clamp(72px, 9vw, 108px) 0;
-  border-top: 3px solid var(--ink);
-  background: var(--paper);
+  border-top: 3px solid var(--gold-bright);
+  background: var(--ink-2);
 }
 
 /* Pairs with the global .container-narrow — grid/column-safe min-width */
@@ -738,14 +737,14 @@ html.js .h1line:global(.is-in) .h1maskInner {
   align-items: flex-start;
   margin-top: 26px;
   padding: clamp(18px, 2.6vw, 24px);
-  background: var(--paper-2);
+  background: var(--ink-soft);
   border: 1px dashed var(--border);
   border-radius: var(--r-sm);
 }
 
 .privacyNote svg {
   flex: none;
-  color: var(--green);
+  color: var(--gold);
   margin-top: 3px;
 }
 
@@ -759,7 +758,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 /* ------------------------------------------------------------------- Form */
 .formCard {
   border: 1px solid var(--border);
-  background: var(--white);
+  background: var(--ink-2);
   border-radius: var(--r-sm);
   padding: clamp(26px, 4vw, 52px);
 }
@@ -818,7 +817,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
-  color: var(--green);
+  color: var(--gold);
   background: var(--green-soft);
   border-radius: 3px;
   padding: 2px 7px;
@@ -829,7 +828,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   font-weight: 600;
   font-size: 16px;
   letter-spacing: -0.01em;
-  color: var(--ink);
+  color: var(--paper);
   line-height: 1.35;
 }
 
@@ -842,7 +841,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .tagReq {
-  color: var(--green);
+  color: var(--gold);
 }
 
 .tagOpt {
@@ -854,11 +853,11 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .select {
   width: 100%;
   border: 1px solid var(--border);
-  background: var(--paper);
+  background: var(--ink-2);
   border-radius: var(--r-sm);
   padding: 13px 15px;
   font-size: 15px;
-  color: var(--ink);
+  color: var(--paper);
   transition: border-color var(--snap), background var(--snap), box-shadow var(--snap);
 }
 
@@ -872,9 +871,9 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .textarea:focus,
 .select:focus {
   outline: none;
-  border-color: var(--green);
-  background: var(--white);
-  box-shadow: 0 0 0 3px rgba(31, 122, 77, 0.14);
+  border-color: var(--gold);
+  background: var(--ink-2);
+  box-shadow: 0 0 0 3px rgba(201, 184, 160, 0.18);
 }
 
 .invalid {
@@ -890,7 +889,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 
 .select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235c645e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a2a098' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 42px;
@@ -919,7 +918,6 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .note {
   margin-top: 10px;
   font-family: var(--font-serif);
-  font-style: italic;
   font-size: 15px;
   line-height: 1.5;
   color: var(--text-muted);
@@ -937,7 +935,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   padding: 9px 13px;
   font-size: 13px;
   line-height: 1.5;
-  color: var(--ink);
+  color: var(--paper);
   background: var(--gold-soft);
   border: 1px solid var(--gold);
   border-radius: var(--r-sm);
@@ -957,18 +955,18 @@ html.js .h1line:global(.is-in) .h1maskInner {
   padding: 13px 15px;
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
-  background: var(--paper);
+  background: var(--ink-2);
   cursor: pointer;
   transition: border-color var(--snap), background var(--snap);
 }
 
 .radioOption:hover {
-  border-color: var(--ink);
+  border-color: var(--gold);
 }
 
 .radioOptionSelected {
-  border-color: var(--green);
-  background: var(--white);
+  border-color: var(--gold);
+  background: var(--ink-2);
 }
 
 .radioOption input {
@@ -976,7 +974,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   margin: 3px 0 0;
   width: 16px;
   height: 16px;
-  accent-color: var(--green);
+  accent-color: var(--gold);
 }
 
 .radioText {
@@ -1044,7 +1042,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   padding: 13px 16px;
   font-size: 13.5px;
   line-height: 1.6;
-  color: var(--ink);
+  color: var(--paper);
   background: var(--gold-soft);
   border: 1px solid var(--gold);
   border-radius: var(--r-sm);
@@ -1067,7 +1065,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .errorBody {
   font-size: 13.5px;
   line-height: 1.6;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .errorActions {
@@ -1091,7 +1089,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   height: 54px;
   border-radius: var(--r-sm);
   background: var(--green-soft);
-  color: var(--green);
+  color: var(--gold);
   margin-bottom: 24px;
 }
 
@@ -1107,9 +1105,9 @@ html.js .h1line:global(.is-in) .h1maskInner {
   font-family: var(--font-mono);
   font-size: 13.5px;
   letter-spacing: 0.05em;
-  color: var(--green);
-  background: var(--green-soft);
-  border: 1px solid var(--green);
+  color: var(--gold-bright);
+  background: var(--gold-soft);
+  border: 1px solid var(--gold);
   border-radius: 3px;
 }
 
@@ -1124,17 +1122,16 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .thankYou {
   margin-top: 14px;
   font-family: var(--font-serif);
-  font-style: italic;
   font-size: 17px;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 /* --------------------------------------------------- Partner / honesty */
 .partner {
   padding: clamp(72px, 9vw, 108px) 0;
   border-top: 1px solid var(--border-soft);
-  border-bottom: 3px solid var(--ink);
-  background: var(--paper-2);
+  border-bottom: 3px solid var(--gold-bright);
+  background: var(--ink-soft);
 }
 
 /* Pairs with the global .container-narrow — grid/column-safe min-width */
@@ -1175,7 +1172,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 /* -------------------------------------------------------------------- FAQ */
 .faq {
   padding: clamp(72px, 9vw, 104px) 0;
-  background: var(--paper);
+  background: var(--ink-2);
 }
 
 /* Pairs with the global .container-narrow — grid/column-safe min-width */
@@ -1197,13 +1194,13 @@ html.js .h1line:global(.is-in) .h1maskInner {
 
 .faqItem {
   border: 1px solid var(--border);
-  background: var(--white);
+  background: var(--ink-2);
   border-radius: var(--r-sm);
   transition: border-color var(--snap);
 }
 
 .faqItem[open] {
-  border-color: var(--ink);
+  border-color: var(--gold);
 }
 
 .faqSummary {
@@ -1226,7 +1223,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 
 .faqChevron {
   flex: none;
-  color: var(--green);
+  color: var(--gold);
   transition: transform var(--snap);
   transform: translateY(2px);
 }
@@ -1277,7 +1274,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
    ========================================================================== */
 .detail {
   padding: clamp(48px, 6vw, 72px) 0 104px;
-  background: var(--paper);
+  background: var(--ink-2);
 }
 
 /* Pairs with the global .container-narrow — grid/column-safe min-width */
@@ -1299,7 +1296,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .detailBack:hover {
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .backArrow {
@@ -1323,7 +1320,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.1em;
-  color: var(--green);
+  color: var(--gold);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1350,7 +1347,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   margin-top: 28px;
   font-size: 18.5px;
   line-height: 1.7;
-  color: var(--ink);
+  color: var(--paper);
   max-width: 66ch;
 }
 
@@ -1422,7 +1419,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   gap: 12px;
   padding: 13px 16px;
   border: 1px solid var(--border);
-  background: var(--white);
+  background: var(--ink-2);
   border-radius: var(--r-sm);
   font-size: 14px;
   font-weight: 600;
@@ -1431,7 +1428,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .effortLink:hover {
-  border-color: var(--ink);
+  border-color: var(--gold);
   transform: translateY(-1px);
 }
 
@@ -1456,16 +1453,16 @@ html.js .h1line:global(.is-in) .h1maskInner {
   display: block;
   padding: 20px;
   border: 1px solid var(--border);
-  background: var(--white);
+  background: var(--ink-2);
   border-radius: var(--r-sm);
   text-decoration: none;
   transition: border-color var(--snap), transform var(--snap), box-shadow var(--snap);
 }
 
 .relCard:hover {
-  border-color: var(--ink);
+  border-color: var(--gold);
   transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(16, 21, 18, 0.07);
+  box-shadow: 0 10px 22px rgba(167, 139, 113, 0.11);
 }
 
 .relIndex {
@@ -1481,7 +1478,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   font-size: 15.5px;
   font-weight: 600;
   line-height: 1.4;
-  color: var(--ink);
+  color: var(--paper);
   letter-spacing: -0.01em;
 }
 
@@ -1489,7 +1486,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
   margin-top: 10px;
   font-size: 12px;
   font-weight: 600;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .relArrow {
@@ -1503,7 +1500,7 @@ html.js .h1line:global(.is-in) .h1maskInner {
 }
 
 .relCard:hover .relArrow {
-  color: var(--green);
+  color: var(--gold);
 }
 
 /* ------------------------------------------------------------------ Motion */

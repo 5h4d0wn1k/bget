@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
-import Globe from "./Globe";
+import Constellation from "./Constellation";
 import styles from "./home.module.css";
 import { SITE } from "@/lib/site";
 
@@ -10,9 +10,10 @@ function delay(ms: number): CSSProperties {
 }
 
 /**
- * THE COVER — the ink band above the fold.
- * Single h1 lockup, masked line-by-line reveal, gold/ghost CTAs and the
- * inverted wireframe globe. `.grain` (globals) adds the static grain overlay.
+ * THE COVER — the constellation hero.
+ * Single h1 lockup on a deep obsidian canvas, masked line reveal,
+ * warm gold accent word, white/ghost pill CTAs and the network node
+ * panel with live pill + satellite chips. `.grain` adds film grain.
  */
 export default function Hero() {
   return (
@@ -28,7 +29,7 @@ export default function Hero() {
               <span className={styles.h1mask}>
                 <span className={styles.h1maskInner}>The world has hard problems.</span>
               </span>
-            </span>
+            </span>{" "}
             <span className={`reveal ${styles.h1line}`} style={delay(190)}>
               <span className={styles.h1mask}>
                 <span className={styles.h1maskInner}>
@@ -44,7 +45,7 @@ export default function Hero() {
           </p>
 
           <div className={`reveal ${styles.heroCtas}`} style={delay(420)}>
-            <Link href="/problems" className="btn btn--gold">
+            <Link href="/problems" className="btn btn--white">
               Propose a problem
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
@@ -58,7 +59,24 @@ export default function Hero() {
           </p>
         </div>
 
-        <Globe />
+        <div className={`reveal ${styles.nodeStage}`} style={delay(340)}>
+          <span className={styles.livePill} aria-hidden="true">
+            <span className={styles.liveDot} />
+            Applications open
+          </span>
+
+          <span className={`${styles.chip} ${styles.chipGlobal}`} aria-hidden="true">
+            Global · every country
+          </span>
+          <span className={`${styles.chip} ${styles.chipGrow}`} aria-hidden="true">
+            Every discipline
+          </span>
+          <span className={`${styles.chip} ${styles.chipRule}`} aria-hidden="true">
+            One rule — character first
+          </span>
+
+          <Constellation />
+        </div>
       </div>
     </section>
   );

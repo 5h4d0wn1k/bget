@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,14 +10,6 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
-});
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["italic", "normal"],
-  display: "swap",
-  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
@@ -57,7 +49,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#101512",
+  themeColor: "#0a0a0a",
   width: "device-width",
   initialScale: 1,
 };
@@ -75,11 +67,19 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body>
-        {/* Add the `js` gate before first paint so `.reveal` never flashes visible→hidden. */}
+        {/*
+          Add the `js` gate before first paint so `.reveal` never flashes
+          visible→hidden. Also arm a fail-safe: if RevealInit never mounts
+          (hydration blocked/stalled), drop the `js` gate after a few seconds
+          so content is ALWAYS visible — the reveal is decorative, never a
+          gate on content.
+        */}
         <script
-          dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js');" }}
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('js');window.__bgetRevealFailsafe=setTimeout(function(){document.documentElement.classList.remove('js');},4000);`,
+          }}
         />
         <script
           type="application/ld+json"

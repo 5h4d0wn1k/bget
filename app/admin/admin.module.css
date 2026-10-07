@@ -13,7 +13,7 @@
 
 .shell {
   min-height: 100vh;
-  background: var(--paper);
+  background: var(--ink);
   color: var(--text-primary);
 }
 
@@ -97,7 +97,7 @@
 }
 
 .modeChipLocked {
-  border-color: var(--green);
+  border-color: var(--gold);
   color: var(--green-soft);
 }
 
@@ -139,7 +139,7 @@
 .statCard {
   display: block;
   padding: 20px 22px;
-  background: var(--white);
+  background: var(--ink-2);
   border: 1px solid var(--border);
   border-radius: var(--r-md);
   text-decoration: none;
@@ -147,8 +147,8 @@
 }
 
 .statCard:hover {
-  border-color: var(--green);
-  box-shadow: 0 10px 24px rgba(16, 21, 18, 0.07);
+  border-color: var(--gold);
+  box-shadow: 0 10px 24px rgba(167, 139, 113, 0.12);
   transform: translateY(-2px);
 }
 
@@ -179,7 +179,7 @@
 /* ----------------------------------------------------------- panels */
 
 .panel {
-  background: var(--white);
+  background: var(--ink-2);
   border: 1px solid var(--border);
   border-radius: var(--r-md);
   padding: 22px 24px;
@@ -223,7 +223,7 @@
 /* -------------------------------------------------------------- table */
 
 .tableWrap {
-  background: var(--white);
+  background: var(--ink-2);
   border: 1px solid var(--border);
   border-radius: var(--r-md);
   overflow: hidden;
@@ -245,7 +245,7 @@
   text-align: left;
   padding: 12px 16px;
   border-bottom: 1px solid var(--border-soft);
-  background: var(--paper-2);
+  background: var(--ink-soft);
   white-space: nowrap;
 }
 
@@ -260,13 +260,13 @@
 }
 
 .table tbody tr:hover {
-  background: var(--paper);
+  background: var(--ink-soft);
 }
 
 .ref {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--green);
+  color: var(--gold);
   white-space: nowrap;
 }
 
@@ -295,14 +295,14 @@
 
 .pillNew {
   background: var(--gold-soft);
-  color: #8a6416;
+  color: var(--gold-bright);
   border-color: var(--gold);
 }
 
 .pillReviewing {
   background: var(--green-soft);
-  color: var(--green);
-  border-color: var(--green);
+  color: var(--gold);
+  border-color: var(--gold);
 }
 
 .pillAccepted {
@@ -311,19 +311,19 @@
 }
 
 .pillDeclined {
-  background: var(--paper-2);
+  background: var(--ink-soft);
   color: var(--text-muted);
   border-color: var(--border);
 }
 
 .pillArchived {
-  background: var(--paper-2);
+  background: var(--ink-soft);
   color: var(--text-faint);
   border-color: var(--border-soft);
 }
 
 .pillUnknown {
-  background: var(--paper-2);
+  background: var(--ink-soft);
   color: var(--text-faint);
   border-color: var(--border-soft);
 }
@@ -353,7 +353,7 @@
   padding: 5px 26px 5px 10px;
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
-  background: var(--white);
+  background: var(--ink-2);
   color: var(--text-primary);
   cursor: pointer;
   background-image: linear-gradient(45deg, transparent 50%, var(--text-faint) 50%),
@@ -364,7 +364,7 @@
 }
 
 .statusSelect:hover {
-  border-color: var(--green);
+  border-color: var(--gold);
 }
 
 .statusSelect:disabled {
@@ -375,7 +375,7 @@
 .statusError {
   display: block;
   font-size: 12px;
-  color: #a33; /* failure tone, not a brand colour */
+  color: #ff8a80; /* failure tone, not a brand colour */
   margin-top: 4px;
 }
 
@@ -393,7 +393,7 @@
 }
 
 .fieldsSummary:hover {
-  color: var(--green);
+  color: var(--gold);
 }
 
 .fieldsPre {
@@ -416,7 +416,7 @@
   padding: 28px 24px;
   border: 1px dashed var(--border-dark);
   border-radius: var(--r-md);
-  background: var(--white);
+  background: var(--ink-2);
 }
 
 .emptyTitle {
@@ -433,7 +433,7 @@
 .emptyText code {
   font-family: var(--font-mono);
   font-size: 12.5px;
-  background: var(--paper-2);
+  background: var(--ink-soft);
   border: 1px solid var(--border-soft);
   border-radius: 3px;
   padding: 1px 5px;
@@ -454,7 +454,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--green);
+  color: var(--gold);
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;

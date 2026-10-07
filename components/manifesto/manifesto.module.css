@@ -3,7 +3,7 @@
    Shared by app/manifesto/page.tsx, app/manifesto/[slug]/page.tsx,
    app/not-found.tsx and app/error.tsx.
    Tokens from app/globals.css: ink cover · paper body · mono numerals ·
-   an Instrument Serif italic only where markdown says *em*.
+   straight upright type only, no italics anywhere.
    ========================================================================== */
 
 /* --------------------------------------------------------------- Cover band */
@@ -29,10 +29,9 @@
   text-wrap: balance;
 }
 
-/* Serif-italic accent inside the cover headline ("missing.") */
+/* Gold accent inside the cover headline ("missing.") */
 .coverAccent {
   font-family: var(--font-serif);
-  font-style: italic;
   font-weight: 400;
   font-size: 1.12em;
   letter-spacing: -0.01em;
@@ -50,7 +49,6 @@
 
 .coverLeadAccent {
   font-family: var(--font-serif);
-  font-style: italic;
   font-weight: 400;
   color: var(--gold);
 }
@@ -82,7 +80,7 @@
 /* -------------------------------------------------------------- Intro / spread */
 .intro {
   padding: clamp(84px, 10vw, 128px) 0;
-  background: var(--paper);
+  background: var(--ink-2);
   border-bottom: 1px solid var(--border-soft);
 }
 
@@ -90,12 +88,11 @@
 .introH2 {
   margin-top: 0;
   font-family: var(--font-serif);
-  font-style: italic;
   font-weight: 400;
   font-size: clamp(48px, 7vw, 72px);
   letter-spacing: -0.02em;
   line-height: 1.02;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .introH3 {
@@ -105,7 +102,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .introH4 {
@@ -128,7 +125,7 @@
   margin-top: 18px;
   font-size: 17px;
   line-height: 1.75;
-  color: var(--ink);
+  color: var(--paper);
   max-width: 68ch;
 }
 
@@ -142,28 +139,28 @@
   margin-top: clamp(42px, 5vw, 52px);
   font-size: clamp(21px, 2.4vw, 26px);
   letter-spacing: -0.022em;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .proseH4 {
   margin-top: 32px;
   font-size: 18.5px;
   letter-spacing: -0.015em;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .proseStrong {
   font-weight: 650;
-  color: var(--ink);
+  color: var(--paper);
 }
 
-/* The one place serif italics may appear in prose — markdown *em* */
+/* Prose emphasis — straight, gold-tinted */
 .proseEm {
   font-family: var(--font-serif);
-  font-style: italic;
   font-weight: 400;
   font-size: 1.08em;
   letter-spacing: 0;
+  color: var(--gold);
 }
 
 .proseBlockquote {
@@ -176,11 +173,10 @@
 .proseBlockquote > p {
   margin: 0;
   font-family: var(--font-serif);
-  font-style: italic;
   font-weight: 400;
   font-size: clamp(20px, 2.4vw, 26px);
   line-height: 1.42;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .proseBlockquote > p + p {
@@ -190,10 +186,9 @@
 .proseBlockquote h2,
 .proseBlockquote h3 {
   font-family: var(--font-serif);
-  font-style: italic;
   font-weight: 400;
   letter-spacing: -0.01em;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .proseBlockquote h2 {
@@ -230,7 +225,7 @@
   padding-left: 30px;
   font-size: 16.5px;
   line-height: 1.65;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .proseUl .proseLi::before {
@@ -240,7 +235,7 @@
   top: 0.68em;
   width: 7px;
   height: 7px;
-  background: var(--green);
+  background: var(--gold);
   border-radius: 1px;
 }
 
@@ -257,18 +252,18 @@
   font-family: var(--font-mono);
   font-size: 12.5px;
   font-variant-numeric: tabular-nums;
-  color: var(--green);
+  color: var(--gold);
   padding-top: 2px;
 }
 
 .proseCode {
   font-family: var(--font-mono);
   font-size: 0.86em;
-  background: var(--paper-2);
+  background: var(--ink-soft);
   border: 1px solid var(--border-soft);
   border-radius: 3px;
   padding: 0.15em 0.42em;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .prosePre {
@@ -291,14 +286,14 @@
 }
 
 .proseA {
-  color: var(--green);
+  color: var(--gold);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-color: var(--gold);
 }
 
 .proseA:hover {
-  color: var(--ink);
+  color: var(--paper);
 }
 
 /* The `---` rule that closes each chapter — a short centred hairline */
@@ -313,7 +308,7 @@
 /* ----------------------------------------------------------- Table of contents */
 .toc {
   padding: clamp(84px, 10vw, 128px) 0;
-  background: var(--paper-2);
+  background: var(--ink-soft);
   border-bottom: 1px solid var(--border-soft);
 }
 
@@ -355,7 +350,7 @@
   border-top: 1px solid var(--border-soft);
   border-radius: var(--r-sm);
   text-decoration: none;
-  color: var(--ink);
+  color: var(--paper);
   transition: background var(--snap);
 }
 
@@ -372,7 +367,7 @@
   font-size: 13px;
   letter-spacing: 0.1em;
   font-variant-numeric: tabular-nums;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .tocTitle {
@@ -400,14 +395,14 @@
 }
 
 .tocRow:hover .tocRead {
-  color: var(--green);
+  color: var(--gold);
   transform: translateX(2px);
 }
 
 /* ------------------------------------------------------------- Closing panels */
 .closing {
   padding: clamp(84px, 10vw, 128px) 0;
-  background: var(--paper);
+  background: var(--ink-2);
 }
 
 .closingHead {
@@ -430,19 +425,19 @@
 .closingCard {
   position: relative;
   display: block;
-  background: var(--paper-2);
+  background: var(--ink-soft);
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
   padding: clamp(26px, 3.6vw, 38px);
   text-decoration: none;
-  color: var(--ink);
+  color: var(--paper);
   transition: border-color var(--snap), transform var(--snap), box-shadow var(--snap);
 }
 
 .closingCard:hover {
-  border-color: var(--ink);
+  border-color: var(--paper);
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(16, 21, 18, 0.08);
+  box-shadow: 0 14px 30px rgba(167, 139, 113, 0.14);
 }
 
 .closingTag {
@@ -450,14 +445,13 @@
   font-size: 10.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .closingCardTitle {
   display: block;
   margin-top: 22px;
   font-family: var(--font-serif);
-  font-style: italic;
   font-weight: 400;
   font-size: clamp(26px, 3.2vw, 33px);
   line-height: 1.16;
@@ -481,7 +475,7 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .closingRead svg {
@@ -524,7 +518,7 @@
 /* ---------------------------------------------------------- Chapter detail page */
 .detail {
   padding: clamp(44px, 6vw, 64px) 0 clamp(96px, 10vw, 128px);
-  background: var(--paper);
+  background: var(--ink-2);
 }
 
 .detailInner {
@@ -545,7 +539,7 @@
 }
 
 .detailBack:hover {
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .backArrow {
@@ -564,7 +558,7 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-variant-numeric: tabular-nums;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .detailH1 {
@@ -581,7 +575,7 @@
 /* Prev / next chapter nav — a heavy opening rule, two cells */
 .nav {
   margin-top: clamp(56px, 7vw, 84px);
-  border-top: 3px solid var(--ink);
+  border-top: 3px solid var(--gold-bright);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
@@ -592,12 +586,12 @@
   padding: 30px 8px 4px;
   border-radius: var(--r-sm);
   text-decoration: none;
-  color: var(--ink);
+  color: var(--paper);
   transition: background var(--snap);
 }
 
 .navLinkBlock:hover {
-  background: var(--paper-2);
+  background: var(--ink-soft);
 }
 
 .navLinkBlockNext {
@@ -643,7 +637,7 @@
 }
 
 .navArrow {
-  color: var(--green);
+  color: var(--gold);
   transition: transform var(--snap);
 }
 
@@ -684,7 +678,7 @@
   min-height: 62svh;
   display: grid;
   place-items: center;
-  background: var(--paper);
+  background: var(--ink-2);
   padding: 64px var(--gutter);
 }
 

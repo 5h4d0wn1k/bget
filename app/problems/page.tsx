@@ -33,7 +33,7 @@ function delay(ms: number): CSSProperties {
 
 /**
  * Split the hero h1 into three masked lines with the accent word ("next?")
- * isolated on its own oversized serif-italic line.
+ * isolated on its own oversized accent line.
  */
 function splitHeroLines(): [string, string, string] {
   const accent = PROBLEMS.hero.h1Accent;
@@ -77,12 +77,12 @@ export default function ProblemsPage() {
               <span className={styles.h1mask}>
                 <span className={styles.h1maskInner}>{heroLine1}</span>
               </span>
-            </span>
+            </span>{" "}
             <span className={`reveal ${styles.h1line}`} style={delay(180)}>
               <span className={styles.h1mask}>
                 <span className={styles.h1maskInner}>{heroLine2}</span>
               </span>
-            </span>
+            </span>{" "}
             <span className={`reveal ${styles.h1line}`} style={delay(270)}>
               <span className={styles.h1mask}>
                 <span className={styles.h1maskInner}>
