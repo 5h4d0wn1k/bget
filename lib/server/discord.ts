@@ -37,6 +37,36 @@ function discordEnv(kind: BgetFormKind): string | undefined {
     : process.env.DISCORD_PROBLEMS_WEBHOOK;
 }
 
+/**
+ * Discord soft-caps a single embed at roughly 6000 combined characters
+ * (title + field names/values + timestamp + footer); anything over that gets
+ * a 400 from the webhook. A fully-answered apply form (12 essays + résumé)
+ * can exceed it, so we budget to 5500 and shrink field values to fit rather
+ * than let a legitimate submission bounce.
+ */
+const MAX_EMBED_CHARS = 5500;
+
+/** Keep every field name (≤256); shrink field values so the embed fits. */
+function fitEmbedWithinBudget(
+  title: string,
+  fields: { name: string; value: string }[],
+  timestamp: string,
+  footerText: string
+): { name: string; value: string }[] {
+  const fixed = title.length + timestamp.length + footerText.length;
+  const total = fixed + fields.reduce((sum, f) => sum + f.name.length + f.value.length, 0);
+  if (total <= MAX_EMBED_CHARS) return fields; // already within budget — send as-is.
+
+  let used = fixed;
+  return fields.map((f) => {
+    const name = f.name.slice(0, 256);
+    const valueBudget = Math.max(0, MAX_EMBED_CHARS - used - name.length);
+    const value = f.value.slice(0, Math.min(f.value.length, 1024, valueBudget));
+    used += name.length + value.length;
+    return { name, value };
+  });
+}
+
 /** POST a rendered embed to the right Discord webhook. Returns false if unconfigured. */
 export async function deliverToDiscord(
   kind: BgetFormKind,
@@ -46,14 +76,16 @@ export async function deliverToDiscord(
   const webhook = discordEnv(kind);
   if (!webhook) return false;
 
+  const timestamp = new Date().toISOString();
+
   const payload: DiscordWebhookPayload = {
     username: "BGET Formbot",
     embeds: [
       {
         title,
         color: kind === "apply" ? 0x1f7a4d : 0xe8b84b,
-        fields,
-        timestamp: new Date().toISOString(),
+        fields: fitEmbedWithinBudget(title, fields, timestamp, "BGET"),
+        timestamp,
         footer: { text: "BGET" },
       },
     ],

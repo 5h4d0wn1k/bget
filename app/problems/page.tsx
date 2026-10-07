@@ -15,6 +15,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: PROBLEMS.page.title,
     description: PROBLEMS.page.description,
+    url: `${SITE.url}/problems`,
+    images: [
+      {
+        url: SITE.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "BGET — Build. Grow. Evolve. Together.",
+      },
+    ],
   },
 };
 

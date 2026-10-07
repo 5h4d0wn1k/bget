@@ -481,7 +481,6 @@ export default function ProblemForm() {
               name="website"
               tabIndex={-1}
               autoComplete="off"
-              aria-hidden="true"
               className={styles.honeypot}
             />
             <label htmlFor="fax">Fax</label>
@@ -492,7 +491,6 @@ export default function ProblemForm() {
               name="fax"
               tabIndex={-1}
               autoComplete="off"
-              aria-hidden="true"
               className={styles.honeypot}
             />
           </div>

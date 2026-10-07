@@ -6,23 +6,26 @@ import { ArrowRight } from "lucide-react";
 import styles from "./Footer.module.css";
 import { NAV, SITE } from "@/lib/site";
 
+const COPYRIGHT_YEAR = 2026;
+
 export default function Footer() {
   const [email, setEmail] = useState("");
-  const [state, setState] = useState<"idle" | "loading" | "done">("idle");
+  const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
 
   async function subscribe(e: React.FormEvent) {
     e.preventDefault();
     if (!email.includes("@")) return;
     setState("loading");
     try {
-      await fetch("/api/newsletter", {
+      const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ email }),
       });
-      setState("done");
+      const data = (await res.json()) as { ok?: boolean };
+      setState(res.ok && data.ok ? "done" : "error");
     } catch {
-      setState("idle");
+      setState("error");
     }
   }
 
@@ -65,20 +68,30 @@ export default function Footer() {
             {state === "done" ? (
               <p className={styles.done}>You&apos;re on the list.</p>
             ) : (
-              <form className={styles.form} onSubmit={subscribe}>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  className={styles.input}
-                  aria-label="Email address"
-                />
-                <button type="submit" className={styles.formBtn} disabled={state === "loading"}>
-                  Join
-                </button>
-              </form>
+              <>
+                <form className={styles.form} onSubmit={subscribe}>
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    className={styles.input}
+                    aria-label="Email address"
+                  />
+                  <button type="submit" className={styles.formBtn} disabled={state === "loading"}>
+                    Join
+                  </button>
+                </form>
+                {state === "error" && (
+                  <p className={styles.formNote}>
+                    Couldn&apos;t save your email —{" "}
+                    <a className={styles.link} href={`mailto:${SITE.email}`}>
+                      try the inbox instead.
+                    </a>
+                  </p>
+                )}
+              </>
             )}
             <p className={styles.formNote}>Occasional letters. No noise, ever.</p>
             <a className={styles.link} href={`mailto:${SITE.email}`}>
@@ -89,7 +102,7 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <p>
-            © {new Date().getFullYear()} BGET · Built in the open on{" "}
+            © {COPYRIGHT_YEAR} BGET · Built in the open on{" "}
             <a className={styles.plain} href={SITE.github} rel="noreferrer" target="_blank">
               GitHub
             </a>

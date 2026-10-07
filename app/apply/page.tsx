@@ -9,6 +9,21 @@ export const metadata: Metadata = {
   title: "Apply to join BGET",
   description:
     "Applications are read personally within 14 days — most are declined by design. Character before capability.",
+  alternates: { canonical: "/apply" },
+  openGraph: {
+    title: "Apply to join BGET",
+    description:
+      "Applications are read personally within 14 days — most are declined by design. Character before capability.",
+    url: `${SITE.url}/apply`,
+    images: [
+      {
+        url: SITE.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "BGET — Build. Grow. Evolve. Together.",
+      },
+    ],
+  },
 };
 
 const HOW_IT_WORKS = [

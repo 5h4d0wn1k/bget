@@ -2,7 +2,7 @@
 # Set these with `wrangler secret put` (never commit values):
 #   DISCORD_APPLY_WEBHOOK     — Discord webhook for applications
 #   DISCORD_PROBLEMS_WEBHOOK  — Discord webhook for problem submissions
-# Bindings connect via `wrangler.jsonc` (see `wrangler.toml` below for helpers).
+# Bindings are declared in this file — see the commented D1 block below.
 
 name = "bget"
 main = ".open-next/worker.js"

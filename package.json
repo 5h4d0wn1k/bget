@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "BGET — Build. Grow. Evolve. Together. A global community of builders, scientists, makers and thinkers. Character before capability.",
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

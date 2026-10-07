@@ -1,5 +1,5 @@
 -- ============================================================================
--- BGET D1 schema — submissions (apply + problems)
+-- BGET D1 schema — submissions (apply + problems) + subscribers (newsletter)
 --
 -- Create the database (one-time, from the repo root):
 --
@@ -27,3 +27,12 @@ CREATE TABLE IF NOT EXISTS submissions (
 
 CREATE INDEX IF NOT EXISTS idx_submissions_kind ON submissions(kind);
 CREATE INDEX IF NOT EXISTS idx_submissions_status ON submissions(status);
+
+-- Mailing-list signups (see app/api/newsletter/route.ts). UNIQUE email makes
+-- duplicate signups a safe no-op via INSERT OR IGNORE.
+
+CREATE TABLE IF NOT EXISTS subscribers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT NOT NULL UNIQUE,         -- lowercased and validated by the route
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);

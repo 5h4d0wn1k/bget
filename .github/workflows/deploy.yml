@@ -17,6 +17,9 @@ concurrency:
 jobs:
   deploy:
     name: build + deploy
+    # Skip (not fail) until the owner sets the CF_API_TOKEN repo secret so the
+    # branch stays green; a notice explains what's missing (see README §10).
+    if: ${{ secrets.CF_API_TOKEN != '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     environment: production
@@ -87,3 +90,13 @@ jobs:
           }
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+  # Runs instead of `deploy` while credentials are missing, so a push to main
+  # reports green with guidance rather than a misleading red X.
+  deploy-skipped:
+    name: deploy skipped (no credentials yet)
+    if: ${{ secrets.CF_API_TOKEN == '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notice
+        run: echo "::notice::Deploy skipped — set the CF_API_TOKEN repo secret (plus DISCORD_*_WEBHOOK and ADMIN_TOKEN) as described in README §10, then re-run this workflow."

@@ -47,7 +47,19 @@ export async function generateMetadata({ params }: ChapterPageProps): Promise<Me
     title: { absolute: fullTitle },
     description,
     alternates: { canonical },
-    openGraph: { title: fullTitle, description, url: canonical },
+    openGraph: {
+      title: fullTitle,
+      description,
+      url: canonical,
+      images: [
+        {
+          url: SITE.ogImage,
+          width: 1200,
+          height: 630,
+          alt: "BGET — Build. Grow. Evolve. Together.",
+        },
+      ],
+    },
   };
 }
 
@@ -67,6 +79,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
     headline: title,
     description,
     url: canonical,
+    datePublished: "2026-10-07",
     articleSection: "BGET Manifesto",
     author: { "@type": "Organization", name: SITE.name, url: SITE.url },
     publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },

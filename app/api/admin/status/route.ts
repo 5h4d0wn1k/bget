@@ -13,11 +13,27 @@ import { getAdminToken, updateSubmissionStatus } from "@/lib/server/db";
  * open (see the "open mode" chip in the admin top bar) — that is a deliberate
  * v0 trade-off documented in the README.
  */
+/**
+ * Equalize work before comparing secrets: hash both sides (fixed-length
+ * SHA-256 digests) then XOR every byte of the digests with no early exit —
+ * a timing-safe comparison that also removes the length oracle.
+ */
+async function timingSafeTokenEquals(expected: string, provided: string): Promise<boolean> {
+  const digest = (value: string) => crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+  const [a, b] = await Promise.all([digest(expected), digest(provided)]);
+  const av = new Uint8Array(a);
+  const bv = new Uint8Array(b);
+  let diff = 0;
+  for (let i = 0; i < av.length; i++) diff |= av[i] ^ bv[i];
+  return diff === 0;
+}
+
 async function authorized(request: Request): Promise<boolean> {
   const token = getAdminToken();
   if (!token) return true; // open mode
   const header = request.headers.get("authorization") ?? "";
-  return header === `Bearer ${token}`;
+  const provided = header.startsWith("Bearer ") ? header.slice("Bearer ".length) : "";
+  return timingSafeTokenEquals(token, provided);
 }
 
 export async function POST(request: Request) {
