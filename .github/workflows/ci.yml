@@ -2,49 +2,45 @@ name: CI
 
 on:
   pull_request:
+  push:
+    branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  test:
-    name: test
+  verify:
+    name: typecheck · lint · build · smoke
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
+          node-version: 22
+          cache: npm
 
-      - name: Syntax-check JavaScript (node --check)
-        run: |
-          for f in js/*.js; do
-            echo "node --check $f"
-            node --check "$f"
-          done
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Static checks (HTML balance, ids, links, shared markers)
-        run: python3 tests/static_check.py
+      - name: Typecheck
+        run: npm run typecheck
 
-      - name: Install Playwright
-        run: pip install playwright
+      - name: Lint
+        run: npm run lint
 
-      - name: Install Chromium for Playwright
-        run: playwright install --with-deps chromium
+      # smoke.mjs shells `npm run build` itself (prebuild regenerates
+      # chapters.json, then next build runs) and asserts on the build log,
+      # .next/BUILD_ID, chapters.json (26) and problems.json (≥1).
+      - name: Build + smoke test
+        run: node tests/smoke.mjs
 
-      - name: Start local static server
-        run: |
-          nohup python3 -m http.server 8000 >/tmp/http-server.log 2>&1 &
-          for _ in $(seq 1 30); do
-            if curl -sf http://127.0.0.1:8000/ >/dev/null; then
-              echo "server ready"
-              break
-            fi
-            sleep 0.5
-          done
-
-      - name: Run smoke tests (Playwright)
-        run: python3 tests/smoke.py
-        env:
-          BASE_URL: http://127.0.0.1:8000
+      # Guarantees the committed chapters.json is exactly what the generator
+      # would produce — run after the smoke build rewrote/verified it.
+      - name: Manifesto chapters are committed fresh
+        run: node scripts/split-manifesto.mjs --check

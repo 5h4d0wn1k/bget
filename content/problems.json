@@ -1,0 +1,192 @@
+{
+  "page": {
+    "title": "The Problem Queue — propose a world problem | BGET",
+    "description": "Propose any world problem — climate, water, energy, education, civic tech. BGET reads every submission personally, publishes only what we might act on, and every problem gets an answer.",
+    "ogDescription": "A short, honest, public queue of world problems this community might work on next — proposed by anyone, read by a person, every one answered.",
+    "canonical": "https://5h4d0wn1k.github.io/bget/problems.html",
+    "image": "https://5h4d0wn1k.github.io/bget/assets/og-card.png"
+  },
+
+  "hero": {
+    "eyebrow": "BGET \u00b7 The Problem Queue",
+    "h1": "What world problem should we work on next?",
+    "h1Accent": "next?",
+    "lead": "BGET is a community of builders, scientists, makers and thinkers. Our door is simple: propose any problem you believe the world hasn't solved \u2014 from clean water to civic tech \u2014 and a person here will read it. Not everything gets published. Everything gets read. The strongest problems enter a public queue where you can watch their status and join the discussion.",
+    "trust": "No automation. No pay-to-play. Every submission is read by a person \u2014 and if we act on yours, you'll be told.",
+    "ctaPrimary": { "label": "Submit a problem", "href": "#submit" },
+    "ctaSecondary": { "label": "See the queue", "href": "#queue" }
+  },
+
+  "founderNote": {
+    "quote": "I read every problem that reaches the queue myself, usually within two weeks. Every submission gets an answer \u2014 shipped, routed, closed with a reason, or published \u2014 and silence is a broken promise here.",
+    "attribution": "\u2014 Nikhil, founder of BGET"
+  },
+
+  "stepsLabel": "How it works",
+  "steps": [
+    {
+      "num": "01",
+      "title": "Propose",
+      "text": "Five minutes, no account needed. Name the problem, say who it affects, and describe what \u201csolved\u201d would actually look like. One link as evidence is plenty."
+    },
+    {
+      "num": "02",
+      "title": "We read it",
+      "text": "A person on the BGET team reads every submission \u2014 usually within two weeks. You always receive an acknowledgment."
+    },
+    {
+      "num": "03",
+      "title": "It joins the queue",
+      "text": "If your problem is a strong candidate, it appears on our public queue as Under review \u2014 with your name if you want it, or anonymously. You're welcome to discuss it."
+    },
+    {
+      "num": "04",
+      "title": "It moves, or it closes",
+      "text": "If we pursue it, the status advances through Being scoped and In the labs, or we route it to a nonprofit partner already doing this work. Every problem ends with an answer: shipped, routed, or closed \u2014 with the reason."
+    }
+  ],
+
+  "earnsTitle": "What earns a place in the queue",
+  "earns": [
+    "It's real and specific. It happens to real people today \u2014 not a far-off hypothetical. You can say who it affects and roughly how many.",
+    "You can name \u201csolved.\u201d A clear finish line beats grand intent. \u201cEvery household outside the municipal line has tested-safe water within 18 months\u201d beats \u201cfix the water crisis.\u201d",
+    "It's under-worked. Already-solved problems are still welcome \u2014 we'll route you to the people doing it well. The problems we love most are the ones where a few more good people can still move the needle.",
+    "It fits what we can actually do. BGET is builders, scientists, makers and thinkers, with nonprofit partners. If there's a path where character and craft can help, it belongs here."
+  ],
+
+  "doesntTitle": "What doesn't, usually",
+  "doesnt": [
+    "Already-solved problems. If an organization is already doing exactly this well, the queue is the wrong home \u2014 we'll route you to them instead.",
+    "Promotions. \u201cWe built X, please fund us\u201d is a pitch. The queue is for problems, not announcements.",
+    "Blame. A good problem names a system, not a person. We won't publish anything that targets or shames individuals.",
+    "Trivia. \u201cWater is wet\u201d isn't a problem yet. Give it a shape \u2014 who, where, what \u201csolved\u201d \u2014 and we'll read it."
+  ],
+
+  "privacyNote": "Public display is a choice, never a default. Most submissions appear nowhere except a private reading pile \u2014 but \u201cnot published\u201d never means \u201cnot read.\u201d If you want your problem in the queue, it's published anonymized by default: no email, no full name, no handle. You choose whether your first name, city and role are shown. We never sell, share or scrape your details, and we never publish anything you asked us to keep private.",
+
+  "queueLabel": "The queue",
+  "queueSub": "A deliberately small, curated list. Status changes are made by a person, one row at a time \u2014 and every closed problem shows its reason.",
+  "queueLegendLabel": "What the statuses mean",
+  "categories": [
+    { "id": "all", "label": "All problems" },
+    { "id": "water", "label": "Water" },
+    { "id": "energy", "label": "Energy" },
+    { "id": "health", "label": "Health" },
+    { "id": "education", "label": "Education" }
+  ],
+  "statuses": [
+    { "id": "under-review", "label": "Under review", "blurb": "Received, read, and being considered. Every published problem starts here." },
+    { "id": "being-scoped", "label": "Being scoped", "blurb": "Worth pursuing. A small team is defining the first move: evidence, who's already working on it, and what one good push could be." },
+    { "id": "in-the-labs", "label": "In the labs", "blurb": "Active work \u2014 building, researching, prototyping, or convening with partners." },
+    { "id": "shipped", "label": "Shipped", "blurb": "It moved. A tool, a report, a prototype, or a handoff to a partner \u2014 with a note on what changed." },
+    { "id": "closed", "label": "Closed", "blurb": "We won't pursue it, and you get an honest reason: duplicate, out of scope, already solved elsewhere, or no path where we can help." }
+  ],
+  "problems": [
+    {
+      "id": "safe-water-periurban",
+      "index": "Q01",
+      "title": "Safe drinking water for households outside the municipal grid",
+      "category": "Water",
+      "categoryId": "water",
+      "champion": true,
+      "summary": "In many fast-growing cities, the formal water network stops at the municipal line. Households beyond it buy water by the jerrycan at 5\u201310\u00d7 the network price \u2014 often from trucks or kiosks nobody tests. It's a distribution and verification problem as much as a supply problem.",
+      "location": "Peri-urban Africa & South Asia",
+      "proposedBy": "BGET Labs \u00b7 championed",
+      "lastUpdated": "2026-10-07",
+      "status": "being-scoped",
+      "efforts": [
+        { "label": "WaterAid", "url": "https://www.wateraid.org/" },
+        { "label": "IRC WASH", "url": "https://www.ircwash.org/" }
+      ],
+      "discussion": "https://github.com/5h4d0wn1k/bget/issues?q=is%3Aissue"
+    },
+    {
+      "id": "urban-energy-waste",
+      "index": "Q02",
+      "title": "Wasted energy in dense cities \u2014 heat, idle buildings and the midnight grid",
+      "category": "Energy",
+      "categoryId": "energy",
+      "champion": true,
+      "summary": "Cities waste a shockingly large share of the energy they buy: buildings cooled and lit while empty, heat dumped from data centres and industry, and grid load that peaks while renewable supply idles. The pieces exist \u2014 measurement, controls, pricing \u2014 but almost nobody connects them across buildings the way we connect phones.",
+      "location": "Dense cities worldwide \u2014 start: one district",
+      "proposedBy": "BGET Labs \u00b7 championed",
+      "lastUpdated": "2026-10-07",
+      "status": "being-scoped",
+      "efforts": [
+        { "label": "SEforALL", "url": "https://www.seforall.org/" },
+        { "label": "EnAccess", "url": "https://enaccess.org/" }
+      ],
+      "discussion": "https://github.com/5h4d0wn1k/bget/issues?q=is%3Aissue"
+    },
+    {
+      "id": "healthcare-outreach",
+      "index": "Q03",
+      "title": "Primary care that reaches people who can't reach a clinic",
+      "category": "Health",
+      "categoryId": "health",
+      "champion": true,
+      "summary": "Millions live within a few hours' walk of a clinic but years away from a doctor who can act \u2014 diagnosis, prescriptions, and follow-up all break down at the last mile. The gap is less exotic medicine than boring logistics: training, protocols, supplies, and a feedback loop that keeps care honest.",
+      "location": "Low-resource settings, globally",
+      "proposedBy": "BGET Labs \u00b7 championed",
+      "lastUpdated": "2026-10-07",
+      "status": "being-scoped",
+      "efforts": [
+        { "label": "Last Mile Health", "url": "https://lastmilehealth.org/" },
+        { "label": "Possible Health", "url": "https://possiblehealth.org/" }
+      ],
+      "discussion": "https://github.com/5h4d0wn1k/bget/issues?q=is%3Aissue"
+    }
+  ],
+
+  "submitLabel": "Propose",
+  "submitTitle": "Put a problem in the queue",
+  "submitSub": "Five minutes, no account, read by a person. Private by default; public only if you choose.",
+  "submitButton": "Put it in the queue",
+  "submitNote": "You'll get an email the moment we read it.",
+
+  "partnerNote": {
+    "heading": "The honesty clause \u2014 partners, credit, and the nonprofit route",
+    "paragraphs": [
+      "BGET is a community, not a nonprofit \u2014 and there is no invented one here. Labs output is public-good by default: open tools, free education, research, and handoffs to organizations already doing the work. When a submission is really a nonprofit's job, we say so, route you there, and name the organization publicly.",
+      "When BGET Labs produces something a charity could sustain, the founding team will help form \u2014 or find \u2014 a real legal home for it before any money moves. Impact determines the path: some projects stay open source, some become companies, some become nonprofits, some simply help one community.",
+      "This queue and the community share one rule: character before capability. It is better to name a small problem accurately than a big one vaguely."
+    ],
+    "links": [
+      { "label": "Read how BGET Labs works", "url": "/#labs" },
+      { "label": "Apply to help build", "url": "/apply" }
+    ]
+  },
+
+  "faq": [
+    {
+      "q": "Will my problem be published?",
+      "a": "Only if you choose it. Public display is opt-in, anonymized by default. Either way your submission is read, and you always receive an answer."
+    },
+    {
+      "q": "What if you're already working on mine?",
+      "a": "We'll tell you where it sits in the queue and how it's progressing \u2014 or route you to an organization already doing the work, named publicly."
+    },
+    {
+      "q": "How long does review take?",
+      "a": "Usually within two weeks. The acknowledgment arrives the moment your submission lands; the answer arrives whether the problem is published or not."
+    },
+    {
+      "q": "Do I get credit if you act on my problem?",
+      "a": "Yes. Your name appears on the queue card and in the shipped note \u2014 unless you ask otherwise. The problem keeps your framing; we never take credit for your idea."
+    },
+    {
+      "q": "Can I submit on behalf of a community?",
+      "a": "Strongly encouraged. Say who you represent and roughly how many people it affects \u2014 community-anchored problems are exactly the ones a small team can actually move."
+    },
+    {
+      "q": "What happens right after I submit?",
+      "a": "You get an automatic receipt with a reference number, then a personal read, then a status that moves or closes with a reason. Every problem in this queue ends with an answer."
+    }
+  ],
+
+  "cta": {
+    "label": "The first problem almost never comes from a committee.",
+    "ctaPrimary": { "label": "Put a problem in the queue", "href": "#submit" },
+    "ctaSecondary": { "label": "Apply to join BGET", "href": "/apply" }
+  }
+}
