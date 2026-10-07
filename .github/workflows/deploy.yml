@@ -53,13 +53,15 @@ jobs:
         if: steps.creds.outputs.present == 'yes'
         run: npm ci
 
-      # opennextjs-cloudflare build runs `next build` internally and bundles
-      # the result into .open-next/worker.js (see wrangler.toml `main`).
+      # `npm run build:worker` runs the OpenNext build (which runs `next build`
+      # internally and bundles the result into .open-next/worker.js, see
+      # wrangler.toml `main`) and then applies scripts/patch-opennext-manifest.mjs —
+      # a TEMPORARY inliner for Next 16.4's preview-props.json manifest, which
+      # @opennextjs/cloudflare ≤ 1.20.9 omits (upstream fix pending:
+      # opennextjs/opennextjs-cloudflare#1356). Delete once that ships.
       - name: Build worker (OpenNext)
         if: steps.creds.outputs.present == 'yes'
-        run: npx opennextjs-cloudflare build
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: npm run build:worker
 
       - name: Deploy to Cloudflare Workers
         if: steps.creds.outputs.present == 'yes'

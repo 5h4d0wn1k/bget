@@ -7,7 +7,11 @@
 
 # cloudflare / opennext build output
 /.open-next/
+/.wrangler/
 /wrangler/
+
+# local-only credentials (never commit)
+cloudflaretoken.env
 
 # misc
 .DS_Store

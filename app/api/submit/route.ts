@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
+
 import { deliverToDiscord, field, type BgetFormKind } from "@/lib/server/discord";
+import { recordSubmission } from "@/lib/server/db";
 
 const MAX_SUBMITS = 6;
 const RATE_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
@@ -196,6 +198,11 @@ export async function POST(request: Request) {
   }
 
   const ref = `BGET-${kind === "apply" ? "A" : "P"}-${Date.now().toString(36).toUpperCase()}`;
+
+  // Persist for the admin panel (growth path). Fail-soft + never blocks: if D1
+  // is unbound or the write fails, the form was already delivered to Discord,
+  // so the applicant still gets their ref.
+  await recordSubmission(kind, fields, ref);
 
   return NextResponse.json({ ok: true, ref });
 }
