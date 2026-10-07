@@ -7,13 +7,19 @@
 name = "bget"
 main = ".open-next/worker.js"
 compatibility_date = "2026-10-01"
-compatibility_flags = ["nodejs_compat"]
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+
+# OpenNext static assets (CSS/JS/images from public/ and _next/static) are
+# served through the Workers Assets binding referenced by the generated worker.
+[assets]
+directory = "./.open-next/assets"
+binding = "ASSETS"
 
 # D1 (admin/queue records). Create with:
 #   wrangler d1 create bget-db
 # then copy the binding name + database_id here, and apply drizzle/schema.sql:
 #   wrangler d1 execute bget-db --file=drizzle/schema.sql --remote
-# [[d1_databases]]
-# binding = "DB"
-# database_name = "bget-db"
-# database_id = "REPLACE_WITH_DATABASE_ID"
+[[d1_databases]]
+binding = "DB"
+database_name = "bget-db"
+database_id = "b7a73cf2-862a-4030-b77a-366d7821bfca"

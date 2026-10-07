@@ -13,7 +13,9 @@
     "check": "npm run typecheck && npm run lint",
     "chapters": "node scripts/split-manifesto.mjs",
     "prebuild": "node scripts/split-manifesto.mjs",
-    "predev": "node scripts/split-manifesto.mjs"
+    "predev": "node scripts/split-manifesto.mjs",
+    "build:worker": "opennextjs-cloudflare build && node scripts/patch-opennext-manifest.mjs",
+    "postinstall": "node scripts/patch-opennext-manifest.mjs"
   },
   "dependencies": {
     "@cloudflare/d1": "^1.0.0",

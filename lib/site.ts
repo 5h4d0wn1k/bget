@@ -7,7 +7,7 @@
  * constant and rebuild; canonical/sitemap/robots/OG follow automatically.
  */
 /** The canonical production origin — set once; every URL on the site derives from it. */
-const SITE_URL = "https://5h4d0wn1k.github.io/bget";
+const SITE_URL = "https://bget.nikhilnagpure203.workers.dev";
 
 export const SITE = {
   name: "BGET",

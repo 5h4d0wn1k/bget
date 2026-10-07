@@ -240,26 +240,40 @@ panel shows "No D1 binding yet" empty states instead of crashing.
 
 ## 10. Owner checklist
 
-Current state (October 2026): marketing site ships, forms deliver to Discord,
-and D1 + the admin panel are wired at the data layer but not yet bound into
-`wrangler.toml` or called from the submit route. Ship list, in order:
+Current state (October 2026): the platform is **live on Cloudflare Workers**
+(`https://bget.nikhilnagpure203.workers.dev`, OpenNext + D1). Forms deliver to
+Discord and persist to D1, the admin panel is secured behind `ADMIN_TOKEN`, and
+deploys run automatically from `main` (the `CF_API_TOKEN` repo secret is set).
+Any push to `main` rebuilds, redeploys, re-applies the D1 schema and re-sets
+secrets via `.github/workflows/deploy.yml`.
 
-- [ ] **Create D1** — `npx wrangler d1 create bget-db`, then un-comment
-      `[[d1_databases]]` in `wrangler.toml` with the printed `database_id`.
-- [ ] **Apply the schema** — `npx wrangler d1 execute bget-db
-      --file=drizzle/schema.sql --remote`.
-- [ ] **Set worker secrets** — `DISCORD_APPLY_WEBHOOK`, `DISCORD_PROBLEMS_WEBHOOK`
-      (and `ADMIN_TOKEN` to lock the admin panel) with `wrangler secret put`
-      or GitHub secrets + the deploy workflow.
-- [ ] **Wire the submit route to D1** — add
-      `await recordSubmission(kind, fields, ref)` in `app/api/submit/route.ts`
-      (import from `lib/server/db`).
-- [ ] **Deploy** — push to `main` (deploy workflow) or locally:
-      `npx opennextjs-cloudflare build && npx wrangler deploy`.
-- [ ] **Buy a custom domain** — set it in the Cloudflare dashboard and change
-      `SITE.url` in `lib/site.ts`; rebuild + redeploy so canonical/sitemap/robots/OG
+- [x] **Create D1** — `npx wrangler d1 create bget-db`; the `database_id` is
+      committed in `wrangler.toml`.
+- [x] **Apply the schema** — `npx wrangler d1 execute bget-db
+      --file=drizzle/schema.sql --remote` (idempotent: `IF NOT EXISTS`).
+- [x] **Set worker secrets** — `ADMIN_TOKEN` (admin panel locked) is set on the
+      worker and as a GitHub secret. **Remaining:** provide the two Discord
+      webhook URLs (`DISCORD_APPLY_WEBHOOK`, `DISCORD_PROBLEMS_WEBHOOK`) — until
+      then `/api/submit` returns an honest 502. Set them with
+      `printf '%s' "$URL" | npx wrangler secret put <NAME>` and as GitHub
+      secrets, or the deploy workflow can't set them automatically.
+- [x] **Wire the submit route to D1** — `app/api/submit/route.ts` now calls
+      `recordSubmission(...)` after a successful Discord delivery (fail-soft).
+- [x] **Deploy** — live on Workers; push to `main` to redeploy.
+- [ ] **Buy a custom domain** — set it in the Cloudflare dashboard, change
+      `SITE.url` in `lib/site.ts`, rebuild + redeploy so canonical/sitemap/robots/OG
       follow.
 - [ ] **Submit the sitemap** — `/sitemap.xml` to Google Search Console and Bing
       Webmaster Tools once the canonical domain is live.
 - [ ] **Invite a collaborator** — add a maintainer and turn on branch protection
       (CI + deploy must stay green).
+- [ ] **Replace the superadmin token** — `CF_API_TOKEN` currently holds a
+      full-account token. Rotate to a scoped "Workers Scripts + D1 Edit" token
+      (API tokens → create) once the site is stable.
+
+Build notes: `.github/workflows/deploy.yml` runs `npm run build:worker`
+(`opennextjs-cloudflare build` + `scripts/patch-opennext-manifest.mjs`). That
+script is a **temporary fix** for Next.js 16.4's `preview-props.json` manifest,
+which `@opennextjs/cloudflare` ≤ 1.20.9 did not inline (every route 500ed);
+upstream fix pending at opennextjs/opennextjs-cloudflare#1356. Delete the script
+once a release ships it.
