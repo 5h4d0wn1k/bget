@@ -3,10 +3,12 @@
 import { useEffect } from "react";
 
 /**
- * Motion bootstrap: adds `html.js` once (mount-only, guards all reveal CSS),
- * then observes `.reveal` elements and flips them to `.is-in` when they enter
- * the viewport. Fully inert when JS never runs or user prefers reduced motion
- * (CSS handles those cases — content stays visible).
+ * Motion bootstrap: observes `.reveal` elements and flips them to `.is-in`
+ * when they enter the viewport. The `html.js` gate is normally added by an
+ * inline `<script>` in the root layout before first paint (no flash); this
+ * effect also adds it idempotently as a harmless fallback. Fully inert when
+ * JS never runs or the user prefers reduced motion — the CSS keeps content
+ * visible in both cases.
  */
 export default function RevealInit() {
   useEffect(() => {

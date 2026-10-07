@@ -6,14 +6,17 @@
  * fully indexable. When you deploy to Cloudflare + buy a domain, change this one
  * constant and rebuild; canonical/sitemap/robots/OG follow automatically.
  */
+/** The canonical production origin — set once; every URL on the site derives from it. */
+const SITE_URL = "https://5h4d0wn1k.github.io/bget";
+
 export const SITE = {
   name: "BGET",
   tagline: "Build. Grow. Evolve. Together.",
   description:
     "BGET is a global community of builders, scientists, makers and thinkers — every country, every discipline. Character before capability.",
-  url: "https://5h4d0wn1k.github.io/bget", // <-- set once
+  url: SITE_URL, // <-- set once
   email: "nikhilnagpure1111@gmail.com",
-  ogImage: "/assets/og-card.png",
+  ogImage: `${SITE_URL}/assets/og-card.png`,
   github: "https://github.com/5h4d0wn1k/bget",
   founder: "Nikhil",
 } as const;

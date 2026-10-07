@@ -117,6 +117,11 @@ html.js .h1line:global(.is-in) .h1maskInner {
   background: var(--paper);
 }
 
+/* Pairs with the global .container-narrow — grid/column-safe min-width */
+.founderInner {
+  min-width: 0;
+}
+
 .founderRow {
   display: flex;
   gap: clamp(20px, 3vw, 30px);
@@ -181,6 +186,11 @@ html.js .h1line:global(.is-in) .h1maskInner {
   background: var(--paper);
 }
 
+/* Pairs with the global .container-narrow — grid/column-safe min-width */
+.stepsInner {
+  min-width: 0;
+}
+
 .stepsHead {
   margin-bottom: 40px;
 }
@@ -210,6 +220,11 @@ html.js .h1line:global(.is-in) .h1maskInner {
   font-variant-numeric: tabular-nums;
   color: var(--green);
   padding-top: 6px;
+}
+
+/* Content cell of the .step grid row — grid/column-safe min-width */
+.stepBody {
+  min-width: 0;
 }
 
 .stepTitle {
@@ -255,6 +270,11 @@ html.js .h1line:global(.is-in) .h1maskInner {
     grid-template-columns: 1fr;
     gap: 56px;
   }
+}
+
+/* Column inside .columnsInner — grid/column-safe min-width */
+.col {
+  min-width: 0;
 }
 
 .colTitle {
@@ -326,6 +346,11 @@ html.js .h1line:global(.is-in) .h1maskInner {
   padding: clamp(72px, 9vw, 108px) 0;
   border-top: 3px solid var(--ink);
   background: var(--paper);
+}
+
+/* Pairs with the global .container-narrow — grid/column-safe min-width */
+.queueInner {
+  min-width: 0;
 }
 
 .queueHead {
@@ -683,6 +708,11 @@ html.js .h1line:global(.is-in) .h1maskInner {
   padding: clamp(72px, 9vw, 108px) 0;
   border-top: 3px solid var(--ink);
   background: var(--paper);
+}
+
+/* Pairs with the global .container-narrow — grid/column-safe min-width */
+.submitInner {
+  min-width: 0;
 }
 
 .submitHead {
@@ -1107,6 +1137,11 @@ html.js .h1line:global(.is-in) .h1maskInner {
   background: var(--paper-2);
 }
 
+/* Pairs with the global .container-narrow — grid/column-safe min-width */
+.partnerInner {
+  min-width: 0;
+}
+
 .partnerHeading {
   font-size: clamp(26px, 3.6vw, 38px);
   max-width: 20ch;
@@ -1141,6 +1176,11 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .faq {
   padding: clamp(72px, 9vw, 104px) 0;
   background: var(--paper);
+}
+
+/* Pairs with the global .container-narrow — grid/column-safe min-width */
+.faqInner {
+  min-width: 0;
 }
 
 .faqTitle {
@@ -1238,6 +1278,11 @@ html.js .h1line:global(.is-in) .h1maskInner {
 .detail {
   padding: clamp(48px, 6vw, 72px) 0 104px;
   background: var(--paper);
+}
+
+/* Pairs with the global .container-narrow — grid/column-safe min-width */
+.detailInner {
+  min-width: 0;
 }
 
 .detailBack {

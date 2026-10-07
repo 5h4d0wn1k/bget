@@ -144,3 +144,20 @@ export async function updateSubmissionStatus(id: number, status: string): Promis
     return false;
   }
 }
+
+/**
+ * Save a mailing-list subscriber. INSERT OR IGNORE makes duplicate emails a
+ * no-op (the column is UNIQUE). Returns false when D1 is unbound or the write
+ * fails, so callers can surface an honest error instead of a false ok.
+ */
+export async function recordSubscriber(email: string): Promise<boolean> {
+  const db = getDb();
+  if (!db) return false;
+  try {
+    await db.prepare("INSERT OR IGNORE INTO subscribers (email) VALUES (?);").bind(email).run();
+    return true;
+  } catch (error) {
+    console.error("[db] recordSubscriber failed:", error);
+    return false;
+  }
+}

@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "@/components/manifesto/manifesto.module.css";
+
+export const metadata: Metadata = {
+  title: "Page not found",
+  description: "That page doesn't exist.",
+  robots: { index: false, follow: false },
+};
 
 /**
  * Branded 404 — ink cover, one headline, two ways home.

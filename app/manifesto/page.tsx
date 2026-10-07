@@ -19,6 +19,14 @@ export const metadata: Metadata = {
     description:
       "What BGET believes about capability, character and the compounding of human potential — twenty-six chapters, one north star.",
     url: `${SITE.url}/manifesto`,
+    images: [
+      {
+        url: SITE.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "BGET — Build. Grow. Evolve. Together.",
+      },
+    ],
   },
 };
 

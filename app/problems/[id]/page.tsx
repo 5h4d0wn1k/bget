@@ -31,6 +31,19 @@ export async function generateMetadata({
     title: { absolute: `${problem.title} — BGET` },
     description: clampText(problem.summary, 155),
     alternates: { canonical: `${SITE.url}/problems/${problem.id}` },
+    openGraph: {
+      title: `${problem.title} — BGET`,
+      description: clampText(problem.summary, 155),
+      url: `${SITE.url}/problems/${problem.id}`,
+      images: [
+        {
+          url: SITE.ogImage,
+          width: 1200,
+          height: 630,
+          alt: "BGET — Build. Grow. Evolve. Together.",
+        },
+      ],
+    },
   };
 }
 

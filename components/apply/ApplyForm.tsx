@@ -30,7 +30,7 @@ type ResumeMode = "upload" | "paste" | "none";
 
 const MIN_FILL_MS = 8000;
 const MAX_RESUME_BYTES = 10 * 1024 * 1024;
-const MAX_PASTE_CHARS = 9000;
+const MAX_PASTE_CHARS = 3000;
 
 /**
  * The twelve questions of the BGET application — the real template.
@@ -478,7 +478,7 @@ export default function ApplyForm() {
 
             <p className={styles.resumeHelp}>
               {resumeMode === "paste"
-                ? `Pasted as text — up to ${MAX_PASTE_CHARS.toLocaleString()} characters.`
+                ? `Keep it under ~${MAX_PASTE_CHARS.toLocaleString()} characters — the reader sees the full text; the alert shows only the opening.`
                 : "PDF, DOC, DOCX, TXT, MD, RTF, PNG or JPG — under 10 MB."}{" "}
               Docs are read as part of your application and never shared.
             </p>

@@ -77,6 +77,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`}>
       <body>
+        {/* Add the `js` gate before first paint so `.reveal` never flashes visible→hidden. */}
+        <script
+          dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js');" }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
