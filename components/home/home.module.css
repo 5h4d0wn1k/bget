@@ -1,0 +1,757 @@
+/* ==========================================================================
+   BGET HOMEPAGE — component styles. Tokens come from app/globals.css.
+   Editorial language: ink #101512 cover · paper #F7F5F0 below ·
+   sharp 4px radii · monospaced ledger numerals · masked line reveals.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   THE COVER — light-on-dark hero band
+   -------------------------------------------------------------------------- */
+.cover {
+  position: relative;
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+}
+
+.coverInner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  padding-block: clamp(72px, 11svh, 132px) clamp(64px, 9svh, 112px);
+  min-height: calc(100svh - var(--nav-h));
+}
+
+@media (min-width: 960px) {
+  .coverInner {
+    grid-template-columns: minmax(0, 7.5fr) minmax(0, 4.5fr);
+    gap: 40px;
+  }
+}
+
+.heroText {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.heroTitle {
+  margin-top: clamp(24px, 3.4vw, 36px);
+  font-size: clamp(2.7rem, 5.6vw, 4.9rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+/* Masked line reveal — each line is clipped, text slides up from below.
+   The .reveal class (globals) fades/rises the wrapper in sync via
+   --reveal-delay; the inner mask does the editorial slide. */
+.h1line {
+  display: block;
+}
+
+.h1mask {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+
+.h1maskInner {
+  display: inline-block;
+  will-change: transform;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.js .h1maskInner {
+  transform: translateY(112%);
+}
+
+html.js .h1line:global(.is-in) .h1maskInner {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .h1maskInner {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* The oversized serif-italic accent word inside the h1 lockup */
+.becoming {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.16em;
+  letter-spacing: -0.01em;
+  color: var(--gold);
+}
+
+.heroSupport {
+  margin-top: clamp(24px, 3vw, 32px);
+  max-width: 46ch;
+  font-size: clamp(16px, 1.4vw, 18px);
+  line-height: 1.7;
+  color: rgba(244, 243, 238, 0.78);
+}
+
+.heroCtas {
+  margin-top: clamp(28px, 3.6vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Inverted ghost on dark — transparent, hairline paper border */
+.btnGhostInvert {
+  border-color: rgba(244, 243, 238, 0.34);
+  color: var(--paper);
+  background: transparent;
+}
+
+.btnGhostInvert:hover {
+  border-color: var(--paper);
+  color: var(--paper);
+  background: rgba(244, 243, 238, 0.06);
+}
+
+.heroTrust {
+  margin-top: clamp(26px, 3vw, 34px);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: rgba(244, 243, 238, 0.42);
+}
+
+/* Wireframe globe — absolute ambient accent on mobile, grid column on desktop */
+.globe {
+  position: absolute;
+  top: 54%;
+  right: clamp(-80px, -3vw, -16px);
+  transform: translateY(-50%);
+  width: clamp(230px, 40vw, 340px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (min-width: 960px) {
+  .globe {
+    position: static;
+    transform: none;
+    width: min(100%, 430px);
+    justify-self: end;
+    opacity: 1;
+  }
+}
+
+.globeSvg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.globeStars {
+  fill: rgba(244, 243, 238, 0.28);
+}
+
+.globeHalo {
+  fill: none;
+  stroke: rgba(232, 184, 75, 0.5);
+  stroke-width: 1.1;
+  stroke-dasharray: 2 11;
+  stroke-linecap: round;
+}
+
+.globeRing {
+  fill: none;
+  stroke: rgba(244, 243, 238, 0.38);
+  stroke-width: 1.4;
+}
+
+.globeLine {
+  fill: none;
+  stroke: rgba(244, 243, 238, 0.24);
+  stroke-width: 1;
+}
+
+.dotBase {
+  fill: rgba(244, 243, 238, 0.6);
+}
+
+.dotGold {
+  fill: var(--gold);
+}
+
+.dotGreen {
+  fill: var(--green);
+}
+
+.globeGlint {
+  fill: var(--gold);
+  animation: globePulse 2.6s ease-in-out infinite;
+}
+
+@keyframes globePulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   THE LEDGER — four monospaced rows on paper, sitting on the dark→light edge
+   -------------------------------------------------------------------------- */
+.ledger {
+  background: var(--paper);
+  border-top: 1px solid var(--ink);
+}
+
+.ledgerInner {
+  padding-block: clamp(56px, 8vw, 104px);
+}
+
+.ledgerLabel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.ledgerLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.ledgerList {
+  list-style: none;
+  margin: 0;
+}
+
+.ledgerRow {
+  border-top: 1px solid var(--border);
+}
+
+.ledgerRow:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.ledgerLink {
+  display: grid;
+  grid-template-columns: clamp(44px, 6vw, 64px) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(12px, 2vw, 20px);
+  padding: clamp(18px, 2.6vw, 26px) 10px;
+  text-decoration: none;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  transition: background var(--snap), padding var(--snap);
+}
+
+.ledgerLink:hover {
+  background: var(--green-soft);
+  padding-inline: clamp(16px, 2.4vw, 24px);
+}
+
+.ledgerNum {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--green);
+}
+
+.ledgerText {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 14px;
+  min-width: 0;
+}
+
+.ledgerWord {
+  font-size: clamp(18px, 2.4vw, 24px);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.ledgerDash {
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+}
+
+.ledgerRest {
+  color: var(--text-muted);
+  font-size: 14.5px;
+}
+
+.ledgerArrow {
+  color: var(--green);
+  opacity: 0;
+  transform: translate(-6px, 6px);
+  transition: opacity var(--snap), transform var(--snap);
+}
+
+.ledgerLink:hover .ledgerArrow {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .ledgerArrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   MARQUEE — slow ticker band, pauses on hover (pure CSS)
+   -------------------------------------------------------------------------- */
+.marquee {
+  background: var(--ink);
+  color: var(--paper);
+  border-block: 1px solid var(--border-dark);
+  overflow: hidden;
+  padding-block: 17px 19px;
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 46s linear infinite;
+}
+
+.marquee:hover .marqueeTrack,
+.marquee:focus-within .marqueeTrack {
+  animation-play-state: paused;
+}
+
+.marqueeWord {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(244, 243, 238, 0.72);
+  white-space: nowrap;
+}
+
+.marqueeDot {
+  color: var(--gold);
+  margin-inline: 3.2em;
+}
+
+@keyframes marqueeScroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+    width: min-content;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   BODY SECTIONS — paper, generous whitespace
+   -------------------------------------------------------------------------- */
+.section {
+  padding-block: clamp(76px, 10vw, 140px);
+  scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+
+.sectionTitle {
+  margin-top: 18px;
+  font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+  letter-spacing: -0.03em;
+  max-width: 24ch;
+}
+
+.serifAccent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--green);
+}
+
+/* Vision */
+.visionGrid {
+  display: grid;
+  gap: 28px;
+  margin-top: clamp(28px, 4vw, 46px);
+}
+
+@media (min-width: 860px) {
+  .visionGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+.visionLead {
+  font-size: clamp(19px, 2vw, 23px);
+  line-height: 1.5;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+}
+
+.visionBody {
+  color: var(--text-muted);
+  font-size: 16.5px;
+  line-height: 1.7;
+}
+
+.pullQuote {
+  margin-top: clamp(48px, 7vw, 88px);
+  padding: clamp(24px, 3vw, 32px) 0 4px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+}
+
+.pullQuote em {
+  color: var(--green);
+}
+
+.pullAttribution {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  text-decoration: none;
+}
+
+.pullAttribution:hover {
+  color: var(--green);
+}
+
+/* Disciplines */
+.disciplineGrid {
+  display: grid;
+  gap: 14px;
+  margin-top: clamp(32px, 4.4vw, 48px);
+}
+
+@media (min-width: 640px) {
+  .disciplineGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1020px) {
+  .disciplineGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.disciplineCard {
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  padding: 26px 22px;
+  transition: background var(--snap), border-color var(--snap), transform var(--snap);
+}
+
+.disciplineCard:hover {
+  background: var(--paper-2);
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.disciplineIcon {
+  width: 22px;
+  height: 22px;
+  color: var(--green);
+}
+
+.disciplineName {
+  margin-top: 16px;
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.disciplineBlurb {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* The BGET loop */
+.loopSub {
+  margin-top: 14px;
+  max-width: 60ch;
+  color: var(--text-muted);
+  font-size: 16.5px;
+}
+
+.loopRows {
+  list-style: none;
+  margin-top: clamp(32px, 4.4vw, 48px);
+  border-top: 1px solid var(--border);
+}
+
+.loopRow {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  column-gap: 16px;
+  row-gap: 6px;
+  align-items: baseline;
+  padding: 22px 10px;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--snap);
+}
+
+.loopRow:hover {
+  background: var(--paper-2);
+}
+
+.loopNum {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--green);
+}
+
+.loopTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(17px, 2vw, 20px);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.loopRepeat {
+  color: var(--gold);
+}
+
+.loopDesc {
+  grid-column: 1 / -1;
+  padding-left: 68px;
+  color: var(--text-muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+@media (min-width: 720px) {
+  .loopRow {
+    grid-template-columns: 64px 280px minmax(0, 1fr);
+    row-gap: 0;
+  }
+
+  .loopDesc {
+    grid-column: 3;
+    padding-left: 0;
+  }
+}
+
+/* The Problem Queue teaser — stark ink band */
+.problems {
+  position: relative;
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+  padding-block: clamp(88px, 12vw, 160px);
+  scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+
+.problemsInner {
+  position: relative;
+  z-index: 1;
+}
+
+.problemsTitle {
+  margin-top: 20px;
+  font-size: clamp(2.3rem, 5vw, 4.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  max-width: 22ch;
+}
+
+.serifAccentGold {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+.problemsLead {
+  margin-top: 26px;
+  max-width: 62ch;
+  color: rgba(244, 243, 238, 0.78);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.problemsCtas {
+  margin-top: 38px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.problemsTrust {
+  margin-top: 30px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: rgba(244, 243, 238, 0.42);
+}
+
+/* North Star — centered serif quote + mono compulsions */
+.northStar {
+  padding-block: clamp(88px, 12vw, 160px);
+  text-align: center;
+  scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+
+.nsTitle {
+  margin-top: 22px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.1rem, 4.8vw, 3.7rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  max-width: 20ch;
+  margin-inline: auto;
+}
+
+.nsSub {
+  margin-top: 28px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.nsList {
+  list-style: none;
+  margin: clamp(44px, 6vw, 68px) auto 0;
+  max-width: 780px;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .nsList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.nsItem {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 15px 8px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+}
+
+@media (min-width: 640px) {
+  .nsItem:nth-child(odd) {
+    border-right: 1px solid var(--border);
+    padding-right: 18px;
+  }
+
+  .nsItem:nth-child(even) {
+    padding-left: 18px;
+  }
+}
+
+.nsIndex {
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Closing CTA — gold band */
+.closing {
+  background: var(--gold);
+  color: var(--ink);
+  padding-block: clamp(88px, 12vw, 150px);
+  text-align: center;
+  scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+
+.closingKicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(16, 21, 18, 0.6);
+}
+
+.closingTitle {
+  margin-top: 18px;
+  font-size: clamp(2.1rem, 4.8vw, 3.9rem);
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+}
+
+.closingHi {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.12em;
+}
+
+.closingBody {
+  margin: 22px auto 0;
+  max-width: 46ch;
+  color: rgba(16, 21, 18, 0.72);
+  font-size: 16.5px;
+  line-height: 1.7;
+}
+
+.closingCtas {
+  margin-top: 38px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Ghost button on gold — ink hairline */
+.btnInkGhost {
+  border-color: rgba(16, 21, 18, 0.4);
+  color: var(--ink);
+  background: transparent;
+}
+
+.btnInkGhost:hover {
+  border-color: var(--ink);
+  background: transparent;
+}

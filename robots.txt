@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-# The BGET site is fully public and indexable.
-# Sitemap for search engines:
-Sitemap: https://5h4d0wn1k.github.io/bget/sitemap.xml

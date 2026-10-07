@@ -1,0 +1,161 @@
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--paper);
+  margin-top: 96px;
+}
+
+.inner {
+  width: min(100% - calc(var(--gutter) * 2), var(--w-page));
+  margin-inline: auto;
+  padding: 56px 0 28px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+}
+
+@media (min-width: 760px) {
+  .top {
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 40px;
+  }
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--green);
+  margin-top: 2px;
+}
+
+.blurb {
+  margin-top: 14px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 320px;
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1em;
+  color: var(--ink);
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.colTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-faint);
+  margin-bottom: 4px;
+}
+
+.link {
+  font-size: 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--snap);
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+.northStar {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.form {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--white);
+  font-size: 14px;
+}
+
+.input:focus {
+  outline: 2px solid var(--green);
+  outline-offset: 1px;
+}
+
+.formBtn {
+  padding: 11px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--r-sm);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.formBtn:hover {
+  background: #000;
+}
+
+.formNote {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.done {
+  font-size: 14px;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.bottom {
+  margin-top: 48px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-faint);
+}
+
+.plain {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rule {
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

@@ -1,22 +1,21 @@
-# Third-party / work-in-progress directories — not part of the published site
-reference/
-drafts/
+# dependencies
+/node_modules
 
-# Python
-__pycache__/
-*.pyc
+# next.js
+/.next/
+/out/
 
-# OS / editor noise
+# cloudflare / opennext build output
+/.open-next/
+/wrangler/
+
+# misc
 .DS_Store
+*.pem
+.env
+.env*.local
+npm-debug.log*
 
-# Dependencies
-node_modules/
-
-# Logs & caches
-*.log
-.cache/
-
-# Playwright artifacts
-.playwright/
-playwright-report/
-test-results/
+# typescript
+*.tsbuildinfo
+next-env.d.ts

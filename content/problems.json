@@ -152,8 +152,8 @@
       "This queue and the community share one rule: character before capability. It is better to name a small problem accurately than a big one vaguely."
     ],
     "links": [
-      { "label": "Read how BGET Labs works", "url": "index.html#labs" },
-      { "label": "Apply to help build", "url": "apply.html" }
+      { "label": "Read how BGET Labs works", "url": "/#labs" },
+      { "label": "Apply to help build", "url": "/apply" }
     ]
   },
 
@@ -187,6 +187,6 @@
   "cta": {
     "label": "The first problem almost never comes from a committee.",
     "ctaPrimary": { "label": "Put a problem in the queue", "href": "#submit" },
-    "ctaSecondary": { "label": "Apply to join BGET", "href": "apply.html" }
+    "ctaSecondary": { "label": "Apply to join BGET", "href": "/apply" }
   }
 }

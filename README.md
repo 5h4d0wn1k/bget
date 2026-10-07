@@ -2,177 +2,264 @@
 
 **Build. Grow. Evolve. Together.**
 
-[![CI](https://github.com/5h4d0wn1k/bget/actions/workflows/ci.yml/badge.svg)](https://github.com/5h4d0wn1k/bget/actions/workflows/ci.yml)
-[![Deploy Pages](https://github.com/5h4d0wn1k/bget/actions/workflows/pages.yml/badge.svg)](https://github.com/5h4d0wn1k/bget/actions/workflows/pages.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+A global community of builders, scientists, makers and thinkers — every
+country, every discipline. _Character before capability._ This repository is
+the public website: a Next.js 16 App Router site that runs on **Cloudflare
+Workers via OpenNext**, with forms, Discord delivery, a D1-backed admin panel,
+and programmatic SEO built in.
 
-The public website of **BGET** — a global multidisciplinary community — served
-from GitHub Pages at <https://5h4d0wn1k.github.io/bget/>.
+Production lives on Cloudflare Workers (GitHub Pages is retired). The admin
+panel is an internal tool — `/admin` is `noindex`.
 
-> **Screenshots:** none yet. It's a plain static site — clone it and run the
-> local server below (takes about ten seconds) to see it.
+---
 
-## The vision
+## 1. Stack
 
-BGET is a community of capable, curious and compassionate people from every
-country and discipline, building real solutions together — where human
-capability compounds without losing humanity. *Character before capability* is
-the filter; quality over quantity is the rule. The full reasoning lives in the
-[manifesto](https://5h4d0wn1k.github.io/bget/manifesto.html) (source:
-[`content/philosophy.md`](content/philosophy.md)).
-
-## What's on the site
-
-| Page | What it is |
+| Layer | Choice |
 | --- | --- |
-| [`index.html`](index.html) | Homepage — vision, disciplines, the compounding loop, BGET Labs, North Star |
-| [`manifesto.html`](manifesto.html) | The BGET manifesto, generated from `content/philosophy.md` |
-| [`apply.html`](apply.html) | The membership application form |
+| Framework | Next.js 16 (App Router), statically generated marketing pages + dynamic admin |
+| Language | TypeScript (strict) |
+| UI | React 19, CSS modules + design tokens (`app/globals.css`), lucide-react icons |
+| Content | `content/philosophy.md` → generated `content/chapters.json`, plus `content/problems.json` |
+| Database | Cloudflare D1 (raw SQL; schema in `drizzle/schema.sql`, read via `lib/server/db.ts`) |
+| Delivery | Discord webhooks, server-side only (`lib/server/discord.ts`, `app/api/submit`) |
+| Runtime | Cloudflare Workers via OpenNext (`open-next.config.ts`, `wrangler.toml`) |
 
-## The application process
+No Tailwind, no external UI kit, no ORM magic — drizzle-orm is installed but the
+D1 layer uses prepared statements on purpose (dependency-light, easy to read).
 
-Joining is **quality over quantity**: every application is read and reviewed
-personally — no automated rejection, no growth-hacking. The form lives at
-<https://5h4d0wn1k.github.io/bget/apply.html> and submissions are reviewed at
-**nikhilnagpure1111@gmail.com**. If you'd rather just ask a question, that
-address works for that too.
+## 2. Quick start
 
-## Tech stack
-
-- **Vanilla HTML / CSS / JavaScript** — no framework, no bundler, **no build
-  step** for the site itself
-- **Tailwind CSS via CDN** (`cdn.tailwindcss.com`) with the `brand.*` design
-  tokens inlined in each page's `<head>`
-- **Inter** from Google Fonts, **Lucide** for icons (both CDN)
-- Design tokens and shared components in `css/theme.css` and
-  `css/components.css`; page-specific styles in `css/bget.css`, `css/apply.css`
-- The only build-like script is `build-manifesto.py`, which renders
-  `manifesto.html` from Markdown (see below)
-
-## Local development
+Requires Node ≥ 20 (this repo is developed on Node 26; CI uses Node 22).
 
 ```bash
-git clone https://github.com/5h4d0wn1k/bget.git
-cd bget
-python3 -m http.server 8000
-# → http://127.0.0.1:8000
+npm ci
+npm run dev        # http://localhost:3000 — `predev` regenerates chapters.json
 ```
 
-Any static file server works; `python3 -m http.server` is the simplest. Open
-`index.html` directly in a browser also works, but serving over HTTP makes the
-tests below behave exactly like production.
+Other scripts:
 
-## Project structure
+```bash
+npm run typecheck      # tsc --noEmit
+npm run lint           # eslint .
+npm run check          # typecheck + lint
+npm run chapters       # node scripts/split-manifesto.mjs (regenerates chapters.json)
+npm run build          # next build (prebuild regenerates chapters.json)
+node tests/smoke.mjs   # build + verify: routes compile, 26 chapters, queue populated
+```
+
+To run with Cloudflare bindings (D1, secrets) locally:
+
+```bash
+npm run build
+npx wrangler dev       # serves .open-next/worker.js with wrangler.toml bindings
+```
+
+## 3. Project structure
 
 ```text
-bget/
-├── index.html               # Homepage: vision, people, labs, North Star
-├── apply.html               # Membership application form
-├── manifesto.html           # Generated from content/philosophy.md
-├── css/
-│   ├── theme.css            # Design tokens: Inter type scale, #111 palette, hairlines
-│   ├── components.css       # Shared chrome: header, mobile drawer, footer, buttons
-│   ├── bget.css             # Homepage styles: marquee, globe, labs, scroll reveal
-│   ├── apply.css            # Apply page styles
-│   └── manifesto.css        # Manifesto reading styles + TOC
-├── js/
-│   ├── bget.js              # Drawer, marquee, world clocks, labs tabs, globe, reveal
-│   ├── apply.js             # Form validation, honeypot/timing, submission
-│   └── manifesto.js         # TOC scroll-spy, mobile TOC, reading progress
-├── assets/                  # Logo + favicon
-├── content/
-│   └── philosophy.md        # Source of truth for the manifesto
-├── build-manifesto.py       # philosophy.md → manifesto.html
-├── tools/
-│   └── sync_chrome.py       # Sync shared header/footer across pages
-├── tests/
-│   ├── static_check.py      # Static checks (stdlib only)
-│   └── smoke.py             # Playwright smoke test
-├── .github/
-│   ├── workflows/ci.yml     # Tests on every pull request
-│   ├── workflows/pages.yml  # Test, then deploy to GitHub Pages on main
-│   ├── ISSUE_TEMPLATE/      # Bug report + feature request forms
-│   └── PULL_REQUEST_TEMPLATE.md
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── SECURITY.md
-├── LICENSE                  # MIT
-└── README.md
+app/
+├── layout.tsx            # Public root layout: fonts, OG/JSON-LD, Header/Footer
+├── page.tsx              # Home
+├── problems/             # Problem queue + /problems/[id] detail pages
+├── manifesto/            # Manifesto index + /manifesto/[slug] chapters
+├── apply/                # Application form page
+├── admin/                # Internal admin panel (separate layout, noindex)
+├── api/
+│   ├── submit/           # Form delivery → Discord (works today)
+│   └── admin/status/     # Admin status updates (POST { id, status })
+├── sitemap.ts · robots.ts · globals.css
+components/               # public chrome + page components (CSS modules)
+content/
+├── philosophy.md         # Manifesto source of truth
+├── chapters.json         # Generated — commit it fresh (prebuild + CI check)
+└── problems.json         # Curated problem queue
+lib/
+├── site.ts               # ONE constant for the site URL (SEO canonical)
+├── manifesto.ts · problems.ts · *-utils.ts
+└── server/
+    ├── discord.ts        # Discord webhook delivery (untouched — owned elsewhere)
+    └── db.ts             # D1 access layer (getDb / record / list / update status)
+scripts/split-manifesto.mjs   # philosophy.md → chapters.json
+drizzle/schema.sql            # D1 schema (applied via wrangler d1 execute)
+tests/smoke.mjs               # build smoke test (Node-only)
+workers/bget-forms/           # LEGACY relay worker — retired, kept for reference
 ```
 
-`reference/` and `drafts/` are working directories excluded from the published
-repository via `.gitignore`.
+## 4. Forms & delivery
 
-## Regenerating the manifesto
+Two public forms — **Apply** (`/apply`) and **Problems** (`/problems`) — share
+one endpoint, `POST /api/submit`:
 
-`manifesto.html` is rendered from Markdown so prose edits happen in one place:
+1. The client form (`components/apply/ApplyForm.tsx`, `components/problems/ProblemForm.tsx`)
+   validates, enforces a minimum fill time, and posts JSON (or multipart when a
+   résumé is attached) to `/api/submit`.
+2. The route (`app/api/submit/route.ts`) runs **server-side on the Worker**,
+   flushes honeypot fields, renders a Discord embed, and calls
+   `deliverToDiscord(...)` from `lib/server/discord.ts`. The browser never sees
+   a webhook URL.
+3. It returns a receipt ref (`BGET-A-…` / `BGET-P-…`) for the success UI.
+
+Secrets (never in the repo, never on the client):
 
 ```bash
-python3 build-manifesto.py
+# local dev
+echo "https://discord.com/api/webhooks/…" >> .env   # DISCORD_APPLY_WEBHOOK
+echo "https://discord.com/api/webhooks/…" >> .env   # DISCORD_PROBLEMS_WEBHOOK
+
+# Cloudflare (also done automatically by the deploy workflow)
+printf '%s' "https://discord.com/api/webhooks/…" | npx wrangler secret put DISCORD_APPLY_WEBHOOK
+printf '%s' "https://discord.com/api/webhooks/…" | npx wrangler secret put DISCORD_PROBLEMS_WEBHOOK
 ```
 
-The generator also extracts the shared chrome (header, drawer, footer) from
-`index.html`, so run it after editing the homepage's shared chrome. If you edit
-the chrome outside the generator, run `python3 tools/sync_chrome.py` to push the
-change to `apply.html` too.
+If a webhook is unset, delivery is a silent no-op — the forms never fail loudly.
 
-Always regenerate and commit **both** `content/philosophy.md` and the resulting
-`manifesto.html` together, so the rendered page never drifts from its source.
+## 5. D1 setup
 
-## Testing
-
-Two layers, both run locally and in CI:
+The admin panel reads from D1. One-time setup:
 
 ```bash
-# 1) Static checks — HTML tag balance, duplicate ids, exactly one <h1> per page,
-#    anchor + relative link resolution, no root-absolute paths, shared-chrome
-#    markers. Standard library only.
-python3 tests/static_check.py
+npx wrangler d1 create bget-db
+# → copy the printed database_id and un-comment [[d1_databases]] in wrangler.toml:
+#     binding = "DB"
+#     database_name = "bget-db"
+#     database_id = "<paste>"
 
-# 2) JavaScript syntax
-for f in js/*.js; do node --check "$f"; done
-
-# 3) Browser smoke test — Playwright/Chromium: loads each page, asserts zero
-#    console errors, zero failed same-origin requests, no horizontal overflow
-#    at 1440x900 and 390x844, one <h1>, lang set, mobile drawer opens/closes,
-#    and no scroll-reveal element stuck invisible. Never contacts formsubmit.co.
-pip install playwright            # one-time
-playwright install --with-deps chromium   # one-time
-
-python3 -m http.server 8000 &
-BASE_URL=http://127.0.0.1:8000 python3 tests/smoke.py
+# apply the schema — idempotent, safe to re-run
+npx wrangler d1 execute bget-db --file=drizzle/schema.sql --remote   # production
+npx wrangler d1 execute bget-db --file=drizzle/schema.sql --local    # local dev
 ```
 
-Both scripts exit non-zero on failure and print a summary. `BASE_URL` defaults
-to `http://127.0.0.1:8000` if unset.
+Once the binding exists, `lib/server/db.ts` resolves it through
+`getCloudflareContext({ async: false }).env.DB` (falling back to
+`process.env.DB` locally) and never crashes when it is absent — admin pages
+render an empty state instead.
 
-## Deployment
+**Current production flow:** v0 delivers to Discord; `app/api/submit` does not
+record to D1 yet. The data layer (`recordSubmission` in `lib/server/db.ts`) and
+the admin panel that reads it are ready. When D1 is live, the submit route adds
+one call:
 
-GitHub Pages, via GitHub Actions — no manual publishing:
+```ts
+// in app/api/submit/route.ts, before returning the ref:
+await recordSubmission(kind, fields, ref);
+```
 
-- **Pull requests** run `.github/workflows/ci.yml` (job name: `test`):
-  `node --check`, `tests/static_check.py`, then the Playwright smoke test.
-- **Pushes to `main`** run `.github/workflows/pages.yml`: the same `test` job
-  runs first, and only if it passes does the `deploy` job publish the site to
-  GitHub Pages (`actions/deploy-pages`).
+So the sequence is: create D1 → bind in `wrangler.toml` → deploy → wire
+`recordSubmission` into the submit route. Until then the queue rows simply stay
+empty.
 
-A broken check therefore blocks the deploy. The live site ends up at
-<https://5h4d0wn1k.github.io/bget/>.
+## 6. Deployment (production = Cloudflare)
 
-First time on a fresh repo: set **Settings → Pages → Source** to *GitHub
-Actions*, and make `test` a required status check under branch protection if
-you want PRs blocked on it.
+**GitHub Pages is retired.** The only deploy path is `.github/workflows/deploy.yml`
+(push to `main` or `workflow_dispatch`), which mirrors the GitHub Pages job
+that used to exist but now targets Workers:
 
-## Contributing
+1. `npm ci`, then `npx opennextjs-cloudflare build` — runs `next build` and
+   bundles the app into `.open-next/worker.js` (the `main` in `wrangler.toml`).
+2. `npx wrangler deploy` — publishes the worker.
+3. Idempotently re-applies the D1 schema and (re)sets worker secrets
+   `DISCORD_APPLY_WEBHOOK`, `DISCORD_PROBLEMS_WEBHOOK`, `ADMIN_TOKEN` from GitHub
+   secrets; missing secrets warn instead of failing, so first-time deploys work.
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) — fork, branch, keep tests green,
-respect the design system (Inter / `#111` / hairline borders, relative paths,
-shared-chrome markers), and follow the
-[Code of Conduct](CODE_OF_CONDUCT.md). Quality over quantity, in patches too.
+Required GitHub secrets:
 
-Security reports go to [SECURITY.md](SECURITY.md) — please keep those private.
+| Secret | Purpose |
+| --- | --- |
+| `CF_API_TOKEN` | Cloudflare API token (deploy, secrets, D1) — has Workers + D1 edit permissions |
+| `DISCORD_APPLY_WEBHOOK` | Apply-form Discord webhook URL |
+| `DISCORD_PROBLEMS_WEBHOOK` | Problems-form Discord webhook URL |
+| `ADMIN_TOKEN` | Optional — locks the admin panel's status endpoint |
 
-## License
+Pull requests only run CI (`.github/workflows/ci.yml`): `npm ci`, typecheck,
+lint, then `node tests/smoke.mjs` (which shells `npm run build` and asserts the
+route table + content), plus a fresh-chapters check
+(`node scripts/split-manifesto.mjs --check`). CI needs no secrets.
 
-[MIT](LICENSE) © 2026 Nikhil Nagpure.
+Manual deploy from a laptop:
+
+```bash
+npm ci
+npx opennextjs-cloudflare build
+npx wrangler deploy
+```
+
+**Domain:** the site serves on `<worker>.workers.dev` by default. When you buy
+a domain, change **one constant** — `SITE.url` in `lib/site.ts` — and
+rebuild: canonical, sitemap, robots, and OG all derive from it. Then point the
+domain at the worker in the Cloudflare dashboard (Workers → bget → Settings →
+Domains).
+
+## 7. Admin panel
+
+`/admin` is the internal review tool — `noindex` (its own layout sets
+`robots: { index: false, follow: false }`), no public Header/Footer, minimal
+top bar (Dashboard / Applications / Problems).
+
+- **Dashboard** — new-vs-total counts for applications and problems plus a
+  short roadmap (v1 triage → login → per-application threads → moderation).
+- **Applications** — apply rows (kind `apply`): ref, received date, name,
+  status, expandable fields JSON.
+- **Problems** — problem rows (kind `problems`): ref, date, `problem_what`
+  (clamped), where/credit, status.
+- **Status updates** — the per-row `StatusSelect` posts to
+  `POST /api/admin/status` (`{ id, status }`), which calls
+  `updateSubmissionStatus` in `lib/server/db.ts`. Statuses:
+  `new → reviewing → accepted / declined`, plus `archived`.
+
+Security is deliberately v0: when the `ADMIN_TOKEN` secret is set, the status
+endpoint requires `Authorization: Bearer <token>` (keep it in browser
+localStorage under `bget.adminToken`, e.g. via DevTools); when it is unset, the
+panel runs in **open mode** — the top bar shows an "open mode" chip to make
+that obvious. Set `ADMIN_TOKEN` before sharing `/admin` with anyone.
+
+D1 requirements: the database + schema from section 5. Without a binding the
+panel shows "No D1 binding yet" empty states instead of crashing.
+
+## 8. SEO & content architecture
+
+- **Manifesto chapters** — `scripts/split-manifesto.mjs` derives
+  `content/chapters.json` from `content/philosophy.md`. Exactly **26 chapters**,
+  each a URL `/manifesto/<slug>`. `prebuild`/`predev` regenerate it; CI checks
+  it is committed fresh.
+- **Problem pages** — each entry in `content/problems.json` is a
+  `/problems/<id>` URL.
+- **Sitemap** — `app/sitemap.ts` emits ~30+ URLs (roots + every problem +
+  every chapter). **Robots** — `app/robots.ts` blocks `/api/` and `/admin/`.
+- **Structured data** — `Organization` (root layout), `FAQPage` (problems
+  queue), `Article` (manifesto chapters), Q&A markup (problem detail).
+- **Open Graph** — `public/assets/og-card.png` referenced from the root layout.
+- **SEO constant** — all canonicals flow from `SITE.url` (see section 6).
+
+## 9. Code of conduct / contributing / license
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) — how to fork, branch, and keep the bar high.
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — the community standard.
+- [SECURITY.md](SECURITY.md) — private reporting for vulnerabilities.
+- License: MIT — see [LICENSE](LICENSE).
+
+## 10. Owner checklist
+
+Current state (October 2026): marketing site ships, forms deliver to Discord,
+and D1 + the admin panel are wired at the data layer but not yet bound into
+`wrangler.toml` or called from the submit route. Ship list, in order:
+
+- [ ] **Create D1** — `npx wrangler d1 create bget-db`, then un-comment
+      `[[d1_databases]]` in `wrangler.toml` with the printed `database_id`.
+- [ ] **Apply the schema** — `npx wrangler d1 execute bget-db
+      --file=drizzle/schema.sql --remote`.
+- [ ] **Set worker secrets** — `DISCORD_APPLY_WEBHOOK`, `DISCORD_PROBLEMS_WEBHOOK`
+      (and `ADMIN_TOKEN` to lock the admin panel) with `wrangler secret put`
+      or GitHub secrets + the deploy workflow.
+- [ ] **Wire the submit route to D1** — add
+      `await recordSubmission(kind, fields, ref)` in `app/api/submit/route.ts`
+      (import from `lib/server/db`).
+- [ ] **Deploy** — push to `main` (deploy workflow) or locally:
+      `npx opennextjs-cloudflare build && npx wrangler deploy`.
+- [ ] **Buy a custom domain** — set it in the Cloudflare dashboard and change
+      `SITE.url` in `lib/site.ts`; rebuild + redeploy so canonical/sitemap/robots/OG
+      follow.
+- [ ] **Submit the sitemap** — `/sitemap.xml` to Google Search Console and Bing
+      Webmaster Tools once the canonical domain is live.
+- [ ] **Invite a collaborator** — add a maintainer and turn on branch protection
+      (CI + deploy must stay green).
