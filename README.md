@@ -12,7 +12,7 @@ Production lives on Cloudflare Workers (GitHub Pages is retired). The admin
 panel is an internal tool — `/admin` is `noindex`.
 
 ---
-
+Will be updating it soon
 ## 1. Stack
 
 | Layer | Choice |
