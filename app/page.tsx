@@ -1,31 +1,33 @@
-import Hero from "@/components/home/Hero";
-import Ledger from "@/components/home/Ledger";
-import Marquee from "@/components/home/Marquee";
-import {
-  ClosingCta,
-  DisciplinesSection,
-  LoopSection,
-  NorthStarSection,
-  ProblemsTeaser,
-  VisionSection,
-} from "@/components/home/Sections";
+import { Navigation } from "@/components/landing/navigation";
+import { HeroSection } from "@/components/landing/hero-section";
+import { FeaturesSection } from "@/components/landing/features-section";
+import { HowItWorksSection } from "@/components/landing/how-it-works-section";
+import { InfrastructureSection } from "@/components/landing/infrastructure-section";
+import { MetricsSection } from "@/components/landing/metrics-section";
+import { IntegrationsSection } from "@/components/landing/integrations-section";
+import { SecuritySection } from "@/components/landing/security-section";
+import { DevelopersSection } from "@/components/landing/developers-section";
+import { TestimonialsSection } from "@/components/landing/testimonials-section";
+import { PricingSection } from "@/components/landing/pricing-section";
+import { CtaSection } from "@/components/landing/cta-section";
+import { FooterSection } from "@/components/landing/footer-section";
 
-/**
- * BGET home — The Cover & The Ledger.
- * Inherits root metadata (default brand title); deliberately exports none.
- */
-export default function HomePage() {
+export default function Home() {
   return (
-    <>
-      <Hero />
-      <Ledger />
-      <Marquee />
-      <VisionSection />
-      <DisciplinesSection />
-      <LoopSection />
-      <ProblemsTeaser />
-      <NorthStarSection />
-      <ClosingCta />
-    </>
+    <main className="relative min-h-screen overflow-x-hidden">
+      <Navigation />
+      <HeroSection />
+      <FeaturesSection />
+      <HowItWorksSection />
+      <InfrastructureSection />
+      <MetricsSection />
+      <IntegrationsSection />
+      <SecuritySection />
+      <DevelopersSection />
+      <TestimonialsSection />
+      <PricingSection />
+      <CtaSection />
+      <FooterSection />
+    </main>
   );
 }

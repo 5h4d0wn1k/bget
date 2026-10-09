@@ -1,25 +1,14 @@
-# BGET — Cloudflare Workers deployment (OpenNext)
-# Set these with `wrangler secret put` (never commit values):
-#   DISCORD_APPLY_WEBHOOK     — Discord webhook for applications
-#   DISCORD_PROBLEMS_WEBHOOK  — Discord webhook for problem submissions
-# Bindings are declared in this file — see the commented D1 block below.
+# BGET — Cloudflare Workers deployment (static assets)
+#
+# The Next.js site is exported to plain static files in `out/` (see
+# next.config.mjs `output: 'export'`) and served by the existing `bget` Worker
+# through Cloudflare's static assets binding. There is no server code today;
+# add a `main` script here if/when the site needs dynamic routes (forms, D1,
+# etc.) — the assets binding continues to work alongside a script.
 
 name = "bget"
-main = ".open-next/worker.js"
 compatibility_date = "2026-10-01"
-compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 
-# OpenNext static assets (CSS/JS/images from public/ and _next/static) are
-# served through the Workers Assets binding referenced by the generated worker.
 [assets]
-directory = "./.open-next/assets"
-binding = "ASSETS"
-
-# D1 (admin/queue records). Create with:
-#   wrangler d1 create bget-db
-# then copy the binding name + database_id here, and apply drizzle/schema.sql:
-#   wrangler d1 execute bget-db --file=drizzle/schema.sql --remote
-[[d1_databases]]
-binding = "DB"
-database_name = "bget-db"
-database_id = "b7a73cf2-862a-4030-b77a-366d7821bfca"
+directory = "./out"
+not_found_handling = "404-page"

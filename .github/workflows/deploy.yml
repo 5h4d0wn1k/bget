@@ -1,14 +1,13 @@
 name: Deploy to Cloudflare Workers
 
-# Production deploy: builds the Next.js app into a Workers bundle with OpenNext
-# and publishes it with wrangler. GitHub Pages is retired — this is the only
-# deploy path. D1 schema is (re)applied idempotently, and worker secrets are
-# (re)set, so an environment converges on every push to main.
+# Production deploy: builds the Next.js site as a static export (`out/`) and
+# publishes it to the existing `bget` Worker with wrangler. Cloudflare Workers
+# is the only deploy path (GitHub Pages is retired).
 #
 # Before the owner sets the CF_API_TOKEN repo secret, the workflow skips the
-# deploy steps and reports green with a notice (so main never shows a
-# misleading red X). Secrets are only ever referenced in STEP-level env/if —
-# the job-level `if` context cannot evaluate secrets in Actions.
+# deploy and reports green with a notice, so main never shows a misleading red
+# X. Secrets are only referenced in step-level env/if — the job-level `if`
+# context cannot evaluate secrets in Actions.
 
 on:
   push:
@@ -34,7 +33,7 @@ jobs:
           if [ -n "$CF_API_TOKEN" ]; then
             echo "present=yes" >> "$GITHUB_OUTPUT"
           else
-            echo "::notice::Deploy skipped — set the CF_API_TOKEN repo secret (plus DISCORD_*_WEBHOOK and ADMIN_TOKEN) as described in README §10, then re-run this workflow."
+            echo "::notice::Deploy skipped — set the CF_API_TOKEN repo secret, then re-run this workflow."
             echo "present=no" >> "$GITHUB_OUTPUT"
           fi
 
@@ -53,63 +52,12 @@ jobs:
         if: steps.creds.outputs.present == 'yes'
         run: npm ci
 
-      # `npm run build:worker` runs the OpenNext build (which runs `next build`
-      # internally and bundles the result into .open-next/worker.js, see
-      # wrangler.toml `main`) and then applies scripts/patch-opennext-manifest.mjs —
-      # a TEMPORARY inliner for Next 16.4's preview-props.json manifest, which
-      # @opennextjs/cloudflare ≤ 1.20.9 omits (upstream fix pending:
-      # opennextjs/opennextjs-cloudflare#1356). Delete once that ships.
-      - name: Build worker (OpenNext)
+      - name: Build (static export)
         if: steps.creds.outputs.present == 'yes'
-        run: npm run build:worker
+        run: npm run build
 
       - name: Deploy to Cloudflare Workers
         if: steps.creds.outputs.present == 'yes'
         run: npx wrangler deploy
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-
-      # Secrets go after the first deploy so the worker exists. Idempotent;
-      # missing secrets warn instead of failing (the admin panel falls back to
-      # "open mode" and Discord delivery is a no-op until webhooks are set).
-      - name: Set worker secrets (idempotent)
-        if: steps.creds.outputs.present == 'yes'
-        run: |
-          set -euo pipefail
-          if [ -n "$DISCORD_APPLY_WEBHOOK" ]; then
-            printf '%s' "$DISCORD_APPLY_WEBHOOK" | npx wrangler secret put DISCORD_APPLY_WEBHOOK \
-              || echo "::warning::failed to set DISCORD_APPLY_WEBHOOK"
-          else
-            echo "::warning::DISCORD_APPLY_WEBHOOK secret not set — skipping"
-          fi
-
-          if [ -n "$DISCORD_PROBLEMS_WEBHOOK" ]; then
-            printf '%s' "$DISCORD_PROBLEMS_WEBHOOK" | npx wrangler secret put DISCORD_PROBLEMS_WEBHOOK \
-              || echo "::warning::failed to set DISCORD_PROBLEMS_WEBHOOK"
-          else
-            echo "::warning::DISCORD_PROBLEMS_WEBHOOK secret not set — skipping"
-          fi
-
-          if [ -n "$ADMIN_TOKEN" ]; then
-            printf '%s' "$ADMIN_TOKEN" | npx wrangler secret put ADMIN_TOKEN \
-              || echo "::warning::failed to set ADMIN_TOKEN"
-          else
-            echo "::warning::ADMIN_TOKEN secret not set — the admin panel runs in open mode"
-          fi
-        env:
-          DISCORD_APPLY_WEBHOOK: ${{ secrets.DISCORD_APPLY_WEBHOOK }}
-          DISCORD_PROBLEMS_WEBHOOK: ${{ secrets.DISCORD_PROBLEMS_WEBHOOK }}
-          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-
-      # Idempotent (IF NOT EXISTS). Fails softly on first runs before the D1
-      # database exists; the owner then runs `wrangler d1 create bget-db` once
-      # and pastes the database_id into wrangler.toml.
-      - name: Apply D1 schema (idempotent)
-        if: steps.creds.outputs.present == 'yes'
-        run: |
-          npx wrangler d1 execute bget-db --file=drizzle/schema.sql --remote || {
-            echo "::warning::D1 schema apply failed — create the database first: \`wrangler d1 create bget-db\`, then un-comment [[d1_databases]] in wrangler.toml with the printed database_id. The worker deploy is unaffected."
-          }
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
