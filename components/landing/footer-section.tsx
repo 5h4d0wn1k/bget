@@ -5,34 +5,34 @@ import { useEffect, useRef } from "react";
 
 const footerLinks = {
   Community: [
-    { name: "What we do", href: "#features" },
-    { name: "How it works", href: "#how-it-works" },
-    { name: "Disciplines", href: "#integrations" },
-    { name: "The standard", href: "#security" },
+    { name: "What we do", href: "/#features" },
+    { name: "How it works", href: "/#how-it-works" },
+    { name: "Disciplines", href: "/#integrations" },
+    { name: "The standard", href: "/#security" },
   ],
   Belong: [
-    { name: "The manifesto", href: "#" },
-    { name: "Values", href: "#" },
-    { name: "Membership", href: "#" },
-    { name: "Activities", href: "#" },
+    { name: "The manifesto", href: "/manifesto" },
+    { name: "Values", href: "/values" },
+    { name: "Membership", href: "/membership" },
+    { name: "Activities", href: "/activities" },
   ],
   Build: [
-    { name: "BGET Labs", href: "#" },
-    { name: "Problem Commons", href: "#" },
-    { name: "Impact", href: "#" },
-    { name: "Showcase", href: "#" },
+    { name: "Problem Commons", href: "/problems" },
+    { name: "BGET Labs", href: "/problems" },
+    { name: "Impact", href: "/activities" },
+    { name: "About", href: "/about" },
   ],
   Connect: [
-    { name: "Apply to join", href: "#", badge: "Open" },
-    { name: "Bring a problem", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Apply to join", href: "/membership", badge: "Open" },
+    { name: "Bring a problem", href: "/problems" },
+    { name: "Contact", href: "/about" },
     { name: "Discord", href: "#" },
   ],
 };
 
 const socialLinks = [
   { name: "Discord", href: "#" },
-  { name: "GitHub", href: "#" },
+  { name: "GitHub", href: "https://github.com/5h4d0wn1k/bget" },
   { name: "LinkedIn", href: "#" },
 ];
 
@@ -115,7 +115,7 @@ export function FooterSection() {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-12 lg:gap-8">
             {/* Brand Column */}
             <div className="col-span-2">
-              <a href="#" className="inline-flex items-center gap-2 mb-6">
+              <a href="/" className="inline-flex items-center gap-2 mb-6">
                 <span className="text-2xl font-display text-white">BGET</span>
                 <span className="text-xs text-white/40 font-mono">TM</span>
               </a>

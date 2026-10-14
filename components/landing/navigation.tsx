@@ -1,15 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { name: "What we do",   href: "#features"      },
-  { name: "How it works", href: "#how-it-works"  },
-  { name: "Community",    href: "#infra"          },
-  { name: "Disciplines",  href: "#integrations"  },
-  { name: "The standard", href: "#security"      },
+  { name: "What we do",   href: "/#features"      },
+  { name: "How it works", href: "/#how-it-works"  },
+  { name: "Community",    href: "/#infra"          },
+  { name: "Disciplines",  href: "/#integrations"  },
+  { name: "The standard", href: "/#security"      },
 ];
 
 export function Navigation() {
@@ -45,35 +46,36 @@ export function Navigation() {
           }`}
         >
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-2 group">
             <span className={`font-display tracking-tight transition-all duration-500 ${isScrolled ? "text-xl text-foreground" : "text-2xl text-white"}`}>BGET</span>
             <span className={`font-mono transition-all duration-500 ${isScrolled ? "text-[10px] mt-0.5 text-muted-foreground" : "text-xs mt-1 text-white/60"}`}>TM</span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-12">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 className={`text-sm transition-colors duration-300 relative group ${isScrolled ? "text-foreground/70 hover:text-foreground" : "text-white/70 hover:text-white"}`}
               >
                 {link.name}
                 <span className={`absolute -bottom-1 left-0 w-0 h-px transition-all duration-300 group-hover:w-full ${isScrolled ? "bg-foreground" : "bg-white"}`} />
-              </a>
+              </Link>
             ))}
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="#" className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}>
+            <Link href="/manifesto" className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}>
               The manifesto
-            </a>
+            </Link>
             <Button
+              asChild
               size="sm"
               className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}
             >
-              Join BGET
+              <Link href="/membership">Join BGET</Link>
             </Button>
           </div>
 
@@ -106,7 +108,7 @@ export function Navigation() {
           {/* Navigation Links */}
           <div className="flex-1 flex flex-col justify-center gap-8">
             {navLinks.map((link, i) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -118,7 +120,7 @@ export function Navigation() {
                 style={{ transitionDelay: isMobileMenuOpen ? `${i * 75}ms` : "0ms" }}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
           
@@ -131,17 +133,17 @@ export function Navigation() {
           style={{ transitionDelay: isMobileMenuOpen ? "300ms" : "0ms" }}
           >
             <Button 
+              asChild
               variant="outline" 
               className="flex-1 rounded-full h-14 text-base"
-              onClick={() => setIsMobileMenuOpen(false)}
             >
-              The manifesto
+              <Link href="/manifesto" onClick={() => setIsMobileMenuOpen(false)}>The manifesto</Link>
             </Button>
             <Button 
+              asChild
               className="flex-1 bg-foreground text-background rounded-full h-14 text-base"
-              onClick={() => setIsMobileMenuOpen(false)}
             >
-              Join BGET
+              <Link href="/membership" onClick={() => setIsMobileMenuOpen(false)}>Join BGET</Link>
             </Button>
           </div>
         </div>

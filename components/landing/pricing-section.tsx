@@ -16,6 +16,7 @@ const plans = [
       "Never shared unless you allow it",
     ],
     cta: "Submit a problem",
+    href: "/problems#submit",
     highlight: false,
   },
   {
@@ -30,6 +31,7 @@ const plans = [
       "One referral slot per quarter",
     ],
     cta: "Apply to join",
+    href: "/membership#apply",
     highlight: true,
   },
   {
@@ -44,6 +46,7 @@ const plans = [
       "Impact measured and shared",
     ],
     cta: "See how Labs work",
+    href: "/problems",
     highlight: false,
   },
 ];
@@ -162,7 +165,8 @@ export function PricingSection() {
                   </ul>
 
                   {/* CTA */}
-                  <button
+                  <a
+                    href={plan.href}
                     className={`w-full py-4 flex items-center justify-center gap-2 text-sm font-medium transition-all group ${
                       plan.highlight
                         ? "bg-foreground text-background hover:bg-foreground/90"
@@ -171,7 +175,7 @@ export function PricingSection() {
                   >
                     {plan.cta}
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}
@@ -196,7 +200,7 @@ export function PricingSection() {
               Leave it better than you found it
             </span>
           </div>
-          <a href="#" className="text-sm underline underline-offset-4 hover:text-foreground transition-colors">
+          <a href="/manifesto" className="text-sm underline underline-offset-4 hover:text-foreground transition-colors">
             Read the full manifesto
           </a>
         </div>

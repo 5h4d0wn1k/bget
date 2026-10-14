@@ -1,14 +1,25 @@
-# BGET — Cloudflare Workers deployment (static assets)
+# BGET — Cloudflare Workers deployment
 #
 # The Next.js site is exported to plain static files in `out/` (see
-# next.config.mjs `output: 'export'`) and served by the existing `bget` Worker
-# through Cloudflare's static assets binding. There is no server code today;
-# add a `main` script here if/when the site needs dynamic routes (forms, D1,
-# etc.) — the assets binding continues to work alongside a script.
+# next.config.mjs `output: 'export'`) and served by the `bget` Worker through
+# Cloudflare's static-assets binding. `worker/index.js` adds a small JSON API
+# used by the public forms (membership application + problem submission) and
+# stores submissions in D1.
 
 name = "bget"
+main = "worker/index.js"
 compatibility_date = "2026-10-01"
+account_id = "87fd5601199078add1a9f9f88d3608d6"
 
 [assets]
 directory = "./out"
+binding = "ASSETS"
 not_found_handling = "404-page"
+# Only the API is handled by the Worker first; every other path is served
+# straight from the static export.
+run_worker_first = ["/api/*"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bget-forms"
+database_id = "952b04a8-3139-468a-b02e-4af38fed7751"

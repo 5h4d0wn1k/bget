@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
@@ -62,18 +63,22 @@ export function CtaSection() {
 
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <Button
+                    asChild
                     size="lg"
                     className="bg-foreground hover:bg-foreground/90 text-background px-8 h-14 text-base rounded-full group"
                   >
-                    Apply to join BGET
-                    <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    <Link href="/membership">
+                      Apply to join BGET
+                      <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    </Link>
                   </Button>
                   <Button
+                    asChild
                     size="lg"
                     variant="outline"
                     className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
                   >
-                    Read the manifesto
+                    <Link href="/manifesto">Read the manifesto</Link>
                   </Button>
                 </div>
 

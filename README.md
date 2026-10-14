@@ -1,279 +1,142 @@
-# BGET
+# BGET — Build. Grow. Evolve. Together.
 
-**Build. Grow. Evolve. Together.**
+The public website for **BGET**, a global, multidisciplinary community for
+turning meaningful problems into collective action.
 
-A global community of builders, scientists, makers and thinkers — every
-country, every discipline. _Character before capability._ This repository is
-the public website: a Next.js 16 App Router site that runs on **Cloudflare
-Workers via OpenNext**, with forms, Discord delivery, a D1-backed admin panel,
-and programmatic SEO built in.
+> Bring us a problem. We'll bring together the people who can help.
 
-Production lives on Cloudflare Workers (GitHub Pages is retired). The admin
-panel is an internal tool — `/admin` is `noindex`.
+Production: **Cloudflare Workers** — <https://bget.nikhilnagpure203.workers.dev>
+(The old GitHub Pages site is retired.)
 
 ---
-Will be updating it soon
+
 ## 1. Stack
 
 | Layer | Choice |
 | --- | --- |
-| Framework | Next.js 16 (App Router), statically generated marketing pages + dynamic admin |
-| Language | TypeScript (strict) |
-| UI | React 19, CSS modules + design tokens (`app/globals.css`), lucide-react icons |
-| Content | `content/philosophy.md` → generated `content/chapters.json`, plus `content/problems.json` |
-| Database | Cloudflare D1 (raw SQL; schema in `drizzle/schema.sql`, read via `lib/server/db.ts`) |
-| Delivery | Discord webhooks, server-side only (`lib/server/discord.ts`, `app/api/submit`) |
-| Runtime | Cloudflare Workers via OpenNext (`open-next.config.ts`, `wrangler.toml`) |
+| Framework | Next.js 16 (App Router), **static export** (`output: 'export'`) |
+| Language | TypeScript |
+| UI | React 19, Tailwind v4 + design tokens (`app/globals.css`), lucide-react |
+| Hosting | Cloudflare Workers static assets (`wrangler.toml` → `[assets]`) |
+| API | `worker/index.js` — a tiny JSON API for the public forms |
+| Database | Cloudflare D1 (`bget-forms`), schema in `migrations/` |
 
-No Tailwind, no external UI kit, no ORM magic — drizzle-orm is installed but the
-D1 layer uses prepared statements on purpose (dependency-light, easy to read).
+The Next app is fully static. The only server code is `worker/index.js`, which
+serves the export through the `ASSETS` binding and handles `/api/*`.
 
-## 2. Quick start
+## 2. Pages
 
-Requires Node ≥ 20 (this repo is developed on Node 26; CI uses Node 22).
-
-```bash
-npm ci
-npm run dev        # http://localhost:3000 — `predev` regenerates chapters.json
-```
-
-Other scripts:
-
-```bash
-npm run typecheck      # tsc --noEmit
-npm run lint           # eslint .
-npm run check          # typecheck + lint
-npm run chapters       # node scripts/split-manifesto.mjs (regenerates chapters.json)
-npm run build          # next build (prebuild regenerates chapters.json)
-node tests/smoke.mjs   # build + verify: routes compile, 26 chapters, queue populated
-```
-
-To run with Cloudflare bindings (D1, secrets) locally:
-
-```bash
-npm run build
-npx wrangler dev       # serves .open-next/worker.js with wrangler.toml bindings
-```
+| Route | What it is |
+| --- | --- |
+| `/` | Landing page (hero, what we do, how it works, disciplines, standard, three doors) |
+| `/manifesto` | The BGET manifesto and the twelve dimensions |
+| `/values` | The values, written as behaviour we reward vs. behaviour we correct |
+| `/membership` | The filter, the process, and the **application form** |
+| `/problems` | The Problem Commons loop and criteria, and the **problem-submission form** |
+| `/activities` | The five recurring rituals |
+| `/about` | What BGET is, the founder, and how we present people |
 
 ## 3. Project structure
 
 ```text
 app/
-├── layout.tsx            # Public root layout: fonts, OG/JSON-LD, Header/Footer
-├── page.tsx              # Home
-├── problems/             # Problem queue + /problems/[id] detail pages
-├── manifesto/            # Manifesto index + /manifesto/[slug] chapters
-├── apply/                # Application form page
-├── admin/                # Internal admin panel (separate layout, noindex)
-├── api/
-│   ├── submit/           # Form delivery → Discord (works today)
-│   └── admin/status/     # Admin status updates (POST { id, status })
-├── sitemap.ts · robots.ts · globals.css
-components/               # public chrome + page components (CSS modules)
-content/
-├── philosophy.md         # Manifesto source of truth
-├── chapters.json         # Generated — commit it fresh (prebuild + CI check)
-└── problems.json         # Curated problem queue
-lib/
-├── site.ts               # ONE constant for the site URL (SEO canonical)
-├── manifesto.ts · problems.ts · *-utils.ts
-└── server/
-    ├── discord.ts        # Discord webhook delivery (untouched — owned elsewhere)
-    └── db.ts             # D1 access layer (getDb / record / list / update status)
-scripts/split-manifesto.mjs   # philosophy.md → chapters.json
-drizzle/schema.sql            # D1 schema (applied via wrangler d1 execute)
-tests/smoke.mjs               # build smoke test (Node-only)
-workers/bget-forms/           # LEGACY relay worker — retired, kept for reference
+├── layout.tsx             # Fonts + metadata
+├── page.tsx               # Landing page
+├── manifesto|values|membership|problems|activities|about/page.tsx
+├── globals.css
+components/
+├── landing/               # Landing-page sections (design language + animations)
+├── site/                  # Shared page shell + form UI + forms
+│   ├── page-shell.tsx     # PageShell / Section / Eyebrow
+│   ├── form-ui.tsx        # Field / TextInput / TextArea / Select / status
+│   ├── apply-form.tsx     # → POST /api/apply
+│   └── problem-form.tsx   # → POST /api/problems
+└── ui/                    # shadcn-style primitives
+worker/index.js            # Worker: static assets + /api/*
+migrations/0001_init.sql   # D1 schema
+wrangler.toml              # Worker name, assets binding, D1 binding
 ```
 
-## 4. Forms & delivery
+## 4. API
 
-Two public forms — **Apply** (`/apply`) and **Problems** (`/problems`) — share
-one endpoint, `POST /api/submit`:
+| Method | Route | Body | Stores in |
+| --- | --- | --- | --- |
+| `GET` | `/api/health` | — | — |
+| `POST` | `/api/apply` | name, email, building, … | `applications` |
+| `POST` | `/api/problems` | title, description, visibility, … | `problems` |
 
-1. The client form (`components/apply/ApplyForm.tsx`, `components/problems/ProblemForm.tsx`)
-   validates, enforces a minimum fill time, and posts JSON (or multipart when a
-   résumé is attached) to `/api/submit`.
-2. The route (`app/api/submit/route.ts`) runs **server-side on the Worker**,
-   flushes honeypot fields, renders a Discord embed, and calls
-   `deliverToDiscord(...)` from `lib/server/discord.ts`. The browser never sees
-   a webhook URL.
-3. It returns a receipt ref (`BGET-A-…` / `BGET-P-…`) for the success UI.
+Both POST routes validate input, ignore a hidden honeypot field, and return
+`{ ok: true, id }`. Non-POST requests to them return `405`.
 
-Secrets (never in the repo, never on the client):
+## 5. Forms & data
+
+Submissions are stored in the D1 database `bget-forms` (binding `DB`):
+
+- `applications` — membership applications (private; never published).
+- `problems` — Problem-Commons submissions, with a `visibility` flag
+  (`public` / `bget` / `private`).
+
+Schema: [`migrations/0001_init.sql`](migrations/0001_init.sql).
 
 ```bash
-# local dev
-echo "https://discord.com/api/webhooks/…" >> .env   # DISCORD_APPLY_WEBHOOK
-echo "https://discord.com/api/webhooks/…" >> .env   # DISCORD_PROBLEMS_WEBHOOK
+# create (already done)
+npx wrangler d1 create bget-forms
 
-# Cloudflare (also done automatically by the deploy workflow)
-printf '%s' "https://discord.com/api/webhooks/…" | npx wrangler secret put DISCORD_APPLY_WEBHOOK
-printf '%s' "https://discord.com/api/webhooks/…" | npx wrangler secret put DISCORD_PROBLEMS_WEBHOOK
+# apply the schema
+npx wrangler d1 execute bget-forms --remote --file=migrations/0001_init.sql
+npx wrangler d1 execute bget-forms --local  --file=migrations/0001_init.sql
+
+# read submissions
+npx wrangler d1 execute bget-forms --remote --command "SELECT id, name, email, created_at FROM applications ORDER BY id DESC LIMIT 20;"
 ```
 
-If a webhook is unset, delivery is a silent no-op — the forms never fail loudly.
+## 6. Local development
 
-## 5. D1 setup
-
-The admin panel reads from D1. One-time setup:
-
-```bash
-npx wrangler d1 create bget-db
-# → copy the printed database_id and un-comment [[d1_databases]] in wrangler.toml:
-#     binding = "DB"
-#     database_name = "bget-db"
-#     database_id = "<paste>"
-
-# apply the schema — idempotent, safe to re-run
-npx wrangler d1 execute bget-db --file=drizzle/schema.sql --remote   # production
-npx wrangler d1 execute bget-db --file=drizzle/schema.sql --local    # local dev
-```
-
-Once the binding exists, `lib/server/db.ts` resolves it through
-`getCloudflareContext({ async: false }).env.DB` (falling back to
-`process.env.DB` locally) and never crashes when it is absent — admin pages
-render an empty state instead.
-
-**Current production flow:** v0 delivers to Discord; `app/api/submit` does not
-record to D1 yet. The data layer (`recordSubmission` in `lib/server/db.ts`) and
-the admin panel that reads it are ready. When D1 is live, the submit route adds
-one call:
-
-```ts
-// in app/api/submit/route.ts, before returning the ref:
-await recordSubmission(kind, fields, ref);
-```
-
-So the sequence is: create D1 → bind in `wrangler.toml` → deploy → wire
-`recordSubmission` into the submit route. Until then the queue rows simply stay
-empty.
-
-## 6. Deployment (production = Cloudflare)
-
-**GitHub Pages is retired.** The only deploy path is `.github/workflows/deploy.yml`
-(push to `main` or `workflow_dispatch`), which mirrors the GitHub Pages job
-that used to exist but now targets Workers:
-
-1. `npm ci`, then `npx opennextjs-cloudflare build` — runs `next build` and
-   bundles the app into `.open-next/worker.js` (the `main` in `wrangler.toml`).
-2. `npx wrangler deploy` — publishes the worker.
-3. Idempotently re-applies the D1 schema and (re)sets worker secrets
-   `DISCORD_APPLY_WEBHOOK`, `DISCORD_PROBLEMS_WEBHOOK`, `ADMIN_TOKEN` from GitHub
-   secrets; missing secrets warn instead of failing, so first-time deploys work.
-
-Required GitHub secrets:
-
-| Secret | Purpose |
-| --- | --- |
-| `CF_API_TOKEN` | Cloudflare API token (deploy, secrets, D1) — has Workers + D1 edit permissions |
-| `DISCORD_APPLY_WEBHOOK` | Apply-form Discord webhook URL |
-| `DISCORD_PROBLEMS_WEBHOOK` | Problems-form Discord webhook URL |
-| `ADMIN_TOKEN` | Optional — locks the admin panel's status endpoint |
-
-Pull requests only run CI (`.github/workflows/ci.yml`): `npm ci`, typecheck,
-lint, then `node tests/smoke.mjs` (which shells `npm run build` and asserts the
-route table + content), plus a fresh-chapters check
-(`node scripts/split-manifesto.mjs --check`). CI needs no secrets.
-
-Manual deploy from a laptop:
+Requires Node ≥ 20 and a Cloudflare login (`npx wrangler login`).
 
 ```bash
 npm ci
-npx opennextjs-cloudflare build
-npx wrangler deploy
+npm run build          # static export → out/
+npm run preview        # wrangler dev — serves out/ + /api/* with a local D1
+# → http://127.0.0.1:8787
 ```
 
-**Domain:** the site serves on `<worker>.workers.dev` by default. When you buy
-a domain, change **one constant** — `SITE.url` in `lib/site.ts` — and
-rebuild: canonical, sitemap, robots, and OG all derive from it. Then point the
-domain at the worker in the Cloudflare dashboard (Workers → bget → Settings →
-Domains).
+`npm run dev` (plain `next dev`) renders the pages but has **no** `/api/*` —
+that lives in the Worker. Use `npm run preview` to exercise forms.
 
-## 7. Admin panel
+Account selection (there are multiple accounts on this machine):
 
-`/admin` is the internal review tool — `noindex` (its own layout sets
-`robots: { index: false, follow: false }`), no public Header/Footer, minimal
-top bar (Dashboard / Applications / Problems).
+```bash
+export CLOUDFLARE_ACCOUNT_ID=87fd5601199078add1a9f9f88d3608d6
+```
 
-- **Dashboard** — new-vs-total counts for applications and problems plus a
-  short roadmap (v1 triage → login → per-application threads → moderation).
-- **Applications** — apply rows (kind `apply`): ref, received date, name,
-  status, expandable fields JSON.
-- **Problems** — problem rows (kind `problems`): ref, date, `problem_what`
-  (clamped), where/credit, status.
-- **Status updates** — the per-row `StatusSelect` posts to
-  `POST /api/admin/status` (`{ id, status }`), which calls
-  `updateSubmissionStatus` in `lib/server/db.ts`. Statuses:
-  `new → reviewing → accepted / declined`, plus `archived`.
+## 7. Deployment
 
-Security is deliberately v0: when the `ADMIN_TOKEN` secret is set, the status
-endpoint requires `Authorization: Bearer <token>` (keep it in browser
-localStorage under `bget.adminToken`, e.g. via DevTools); when it is unset, the
-panel runs in **open mode** — the top bar shows an "open mode" chip to make
-that obvious. Set `ADMIN_TOKEN` before sharing `/admin` with anyone.
+Push to `main` → GitHub Actions:
 
-D1 requirements: the database + schema from section 5. Without a binding the
-panel shows "No D1 binding yet" empty states instead of crashing.
+1. `.github/workflows/ci.yml` (job **`test`**) — `npm ci` + `npm run build`.
+2. `.github/workflows/deploy.yml` — rebuilds the static export and runs
+   `npx wrangler deploy` (uploads `out/` assets + `worker/index.js`).
 
-## 8. SEO & content architecture
+Branch protection requires the status check literally named **`test`**.
 
-- **Manifesto chapters** — `scripts/split-manifesto.mjs` derives
-  `content/chapters.json` from `content/philosophy.md`. Exactly **26 chapters**,
-  each a URL `/manifesto/<slug>`. `prebuild`/`predev` regenerate it; CI checks
-  it is committed fresh.
-- **Problem pages** — each entry in `content/problems.json` is a
-  `/problems/<id>` URL.
-- **Sitemap** — `app/sitemap.ts` emits ~30+ URLs (roots + every problem +
-  every chapter). **Robots** — `app/robots.ts` blocks `/api/` and `/admin/`.
-- **Structured data** — `Organization` (root layout), `FAQPage` (problems
-  queue), `Article` (manifesto chapters), Q&A markup (problem detail).
-- **Open Graph** — `public/assets/og-card.png` referenced from the root layout.
-- **SEO constant** — all canonicals flow from `SITE.url` (see section 6).
+Manual deploy:
 
-## 9. Code of conduct / contributing / license
+```bash
+export CLOUDFLARE_ACCOUNT_ID=87fd5601199078add1a9f9f88d3608d6
+npm run build
+npm run deploy         # wrangler deploy
+```
 
-- [CONTRIBUTING.md](CONTRIBUTING.md) — how to fork, branch, and keep the bar high.
-- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — the community standard.
-- [SECURITY.md](SECURITY.md) — private reporting for vulnerabilities.
-- License: MIT — see [LICENSE](LICENSE).
+Required GitHub secret: `CF_API_TOKEN` (Workers Scripts + D1 edit).
 
-## 10. Owner checklist
+## 8. Community docs
 
-Current state (October 2026): the platform is **live on Cloudflare Workers**
-(`https://bget.nikhilnagpure203.workers.dev`, OpenNext + D1). Forms deliver to
-Discord and persist to D1, the admin panel is secured behind `ADMIN_TOKEN`, and
-deploys run automatically from `main` (the `CF_API_TOKEN` repo secret is set).
-Any push to `main` rebuilds, redeploys, re-applies the D1 schema and re-sets
-secrets via `.github/workflows/deploy.yml`.
+The full BGET canon — manifesto, values, membership, problem commons,
+activities, governance, branding — lives in the separate **`BGET/`** folder
+outside this repo. This site is the public-facing expression of it.
 
-- [x] **Create D1** — `npx wrangler d1 create bget-db`; the `database_id` is
-      committed in `wrangler.toml`.
-- [x] **Apply the schema** — `npx wrangler d1 execute bget-db
-      --file=drizzle/schema.sql --remote` (idempotent: `IF NOT EXISTS`).
-- [x] **Set worker secrets** — `ADMIN_TOKEN` (admin panel locked) is set on the
-      worker and as a GitHub secret. **Remaining:** provide the two Discord
-      webhook URLs (`DISCORD_APPLY_WEBHOOK`, `DISCORD_PROBLEMS_WEBHOOK`) — until
-      then `/api/submit` returns an honest 502. Set them with
-      `printf '%s' "$URL" | npx wrangler secret put <NAME>` and as GitHub
-      secrets, or the deploy workflow can't set them automatically.
-- [x] **Wire the submit route to D1** — `app/api/submit/route.ts` now calls
-      `recordSubmission(...)` after a successful Discord delivery (fail-soft).
-- [x] **Deploy** — live on Workers; push to `main` to redeploy.
-- [ ] **Buy a custom domain** — set it in the Cloudflare dashboard, change
-      `SITE.url` in `lib/site.ts`, rebuild + redeploy so canonical/sitemap/robots/OG
-      follow.
-- [ ] **Submit the sitemap** — `/sitemap.xml` to Google Search Console and Bing
-      Webmaster Tools once the canonical domain is live.
-- [ ] **Invite a collaborator** — add a maintainer and turn on branch protection
-      (CI + deploy must stay green).
-- [ ] **Replace the superadmin token** — `CF_API_TOKEN` currently holds a
-      full-account token. Rotate to a scoped "Workers Scripts + D1 Edit" token
-      (API tokens → create) once the site is stable.
+## 9. License
 
-Build notes: `.github/workflows/deploy.yml` runs `npm run build:worker`
-(`opennextjs-cloudflare build` + `scripts/patch-opennext-manifest.mjs`). That
-script is a **temporary fix** for Next.js 16.4's `preview-props.json` manifest,
-which `@opennextjs/cloudflare` ≤ 1.20.9 did not inline (every route 500ed);
-upstream fix pending at opennextjs/opennextjs-cloudflare#1356. Delete the script
-once a release ships it.
+MIT — see [LICENSE](LICENSE). See also [CONTRIBUTING.md](CONTRIBUTING.md),
+[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and [SECURITY.md](SECURITY.md).
