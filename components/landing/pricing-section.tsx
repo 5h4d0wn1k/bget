@@ -5,50 +5,45 @@ import { ArrowRight, Check, Zap } from "lucide-react";
 
 const plans = [
   {
-    name: "Explorer",
-    description: "For tinkering and small automations",
+    name: "Bring a problem",
+    description: "Open to anyone, anywhere, in any field",
     price: { monthly: 0, annual: 0 },
     features: [
-      "3 concurrent agents",
-      "1,000 tasks/month",
-      "Community support",
-      "Basic logging",
-      "Public integrations",
+      "Any problem, any sector",
+      "A human answer within 72 hours",
+      "Framed honestly, with a reason",
+      "Reviewed against public criteria",
+      "Never shared unless you allow it",
     ],
-    cta: "Start free",
+    cta: "Submit a problem",
     highlight: false,
   },
   {
-    name: "Builder",
-    description: "For teams shipping with agents",
-    price: { monthly: 79, annual: 65 },
+    name: "Join BGET",
+    description: "For exceptional people who want to build together",
+    price: { monthly: 0, annual: 0 },
     features: [
-      "25 concurrent agents",
-      "50,000 tasks/month",
-      "Priority support",
-      "Full audit trails",
-      "Private integrations",
-      "Team workspaces",
-      "Custom agent roles",
+      "Application → conversation → 30-day trial",
+      "Character is the gate, not your CV",
+      "Weekly rituals and real projects",
+      "Mentorship and genuine help",
+      "One referral slot per quarter",
     ],
-    cta: "Start trial",
+    cta: "Apply to join",
     highlight: true,
   },
   {
-    name: "Scale",
-    description: "For agent-first organizations",
+    name: "BGET Labs",
+    description: "For the teams that form around a problem",
     price: { monthly: null, annual: null },
     features: [
-      "Unlimited agents",
-      "Unlimited tasks",
-      "24/7 dedicated support",
-      "On-premise deployment",
-      "SLA guarantee",
-      "Custom LLM routing",
-      "Advanced security",
-      "Dedicated compute",
+      "Multidisciplinary project teams",
+      "Research, prototype, test, deploy",
+      "Open source, nonprofit, or startup",
+      "Credit recorded, permanently",
+      "Impact measured and shared",
     ],
-    cta: "Contact sales",
+    cta: "See how Labs work",
     highlight: false,
   },
 ];
@@ -78,14 +73,14 @@ export function PricingSection() {
           <div className="lg:col-span-7">
             <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-8">
               <span className="w-12 h-px bg-foreground/30" />
-              Pricing
+              Three doors
             </span>
             <h2 className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.9] transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}>
-              Pay for
+              Where would
               <br />
-              <span className="text-stroke">results.</span>
+              <span className="text-stroke">you start?</span>
             </h2>
           </div>
           
@@ -122,7 +117,7 @@ export function PricingSection() {
                   <div className="absolute -top-4 left-8 right-8 flex justify-center">
                     <span className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background text-xs font-mono uppercase tracking-widest">
                       <Zap className="w-3 h-3" />
-                      Most Popular
+                      Start here
                     </span>
                   </div>
                 )}
@@ -190,19 +185,19 @@ export function PricingSection() {
           <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <Check className="w-4 h-4 text-[#eca8d6]" />
-              Encrypted execution
+              Character before capability
             </span>
             <span className="flex items-center gap-2">
               <Check className="w-4 h-4 text-[#eca8d6]" />
-              Full audit logs
+              Contribute more than you take
             </span>
             <span className="flex items-center gap-2">
               <Check className="w-4 h-4 text-[#eca8d6]" />
-              Multi-model routing
+              Leave it better than you found it
             </span>
           </div>
           <a href="#" className="text-sm underline underline-offset-4 hover:text-foreground transition-colors">
-            Compare all features
+            Read the full manifesto
           </a>
         </div>
       </div>

@@ -9,32 +9,32 @@ const asciiPattern = Array.from({ length: 60 }, () =>
 
 const testimonials = [
   {
-    quote: "Our agents handle 80% of our customer support tickets autonomously. The ROI was immediate.",
-    author: "Sarah Chen",
-    role: "CTO",
-    company: "Meridian Labs",
-    metric: { value: "80%", label: "Ticket resolution" },
+    quote: "Capability without character is not enough.",
+    author: "BGET",
+    role: "Values",
+    company: "Character",
+    metric: { value: "1st", label: "Character is the gate" },
   },
   {
-    quote: "We deployed research agents that work 24/7. They surface insights we'd never find manually.",
-    author: "Marcus Webb",
-    role: "Head of Research",
-    company: "Flux Systems",
-    metric: { value: "10x", label: "Research output" },
+    quote: "We would rather stay small and excellent than grow fast and become ordinary.",
+    author: "BGET",
+    role: "Values",
+    company: "Quality",
+    metric: { value: "Quality", label: "over quantity" },
   },
   {
-    quote: "The multi-agent orchestration is incredible. Complex workflows that took weeks now run in hours.",
-    author: "Elena Rodriguez",
-    role: "VP Engineering",
-    company: "Beacon AI",
-    metric: { value: "40x", label: "Faster workflows" },
+    quote: "Become more capable without becoming less human.",
+    author: "BGET",
+    role: "Values",
+    company: "Humanity",
+    metric: { value: "Human", label: "before everything else" },
   },
   {
-    quote: "Security was our biggest concern. The sandboxing and audit trails gave us full confidence.",
-    author: "James Liu",
-    role: "CISO",
-    company: "Prism Analytics",
-    metric: { value: "0", label: "Security incidents" },
+    quote: "Don't just point at the problem. Be part of the solution.",
+    author: "BGET",
+    role: "Values",
+    company: "Action",
+    metric: { value: "Build", label: "not just talk" },
   },
 ];
 
@@ -99,13 +99,13 @@ export function TestimonialsSection() {
           <div>
             <span className="inline-flex items-center gap-3 text-sm font-mono text-background/40 mb-4">
               <span className="w-12 h-px bg-background/20" />
-              Testimonials
+              Our philosophy
             </span>
             <h2 className={`text-4xl lg:text-5xl font-display transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}>
-              Trusted by teams
-              <span className="text-background/40"> worldwide.</span>
+              Words we live by
+              <span className="text-background/40"> — and mean.</span>
             </h2>
           </div>
           
@@ -196,7 +196,7 @@ export function TestimonialsSection() {
             {/* Company list */}
             <div className="mt-4 pt-6 border-t border-background/10">
               <span className="text-xs font-mono text-background/30 uppercase tracking-widest block mb-4">
-                Featured companies
+                Living principles
               </span>
               <div className="flex flex-wrap gap-3">
                 {testimonials.map((t, idx) => (

@@ -4,20 +4,20 @@ import { useState, useEffect, useRef } from "react";
 
 const features = [
   { 
-    title: "TypeScript native", 
-    description: "Full type safety for agent configs and responses."
+    title: "Genuine", 
+    description: "No performing. Show up as the real version of yourself."
   },
   { 
-    title: "Streaming results", 
-    description: "Watch your agents think and act in real-time."
+    title: "Humble", 
+    description: "Extremely capable, without believing you're superior."
   },
   { 
-    title: "Multi-model support", 
-    description: "OpenAI, Anthropic, Mistral, or bring your own."
+    title: "Proactive", 
+    description: "Don't just point at the problem. Be part of the solution."
   },
   { 
-    title: "Local debugging", 
-    description: "Test agents locally before deploying to cloud."
+    title: "Kind", 
+    description: "Help people even when there's nothing in it for you."
   },
 ];
 
@@ -68,12 +68,12 @@ export function DevelopersSection() {
         >
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
             <span className="w-8 h-px bg-foreground/30" />
-            Developer SDK
+            Who belongs here
           </span>
           <h2 className="text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.9]">
-            Code your agents.
+            These are
             <br />
-            <span className="text-muted-foreground">Or let them code.</span>
+            <span className="text-muted-foreground">my people.</span>
           </h2>
         </div>
 
@@ -84,8 +84,7 @@ export function DevelopersSection() {
           }`}
         >
           <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-md">
-            A powerful SDK for building, deploying, and orchestrating AI agents. 
-            Define behaviors in code or natural language.
+            Builders, doctors, researchers, artists, engineers, founders, strategists, teachers. If you are genuine, curious, and kind — and you want to become more capable without becoming less human — you belong here.
           </p>
           <div className="grid grid-cols-2 gap-6">
             {features.map((feature, index) => (

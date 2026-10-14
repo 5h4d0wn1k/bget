@@ -6,31 +6,31 @@ import { Shield, Lock, Eye, FileCheck } from "lucide-react";
 const securityFeatures = [
   {
     icon: Shield,
-    title: "Isolated execution",
-    description: "Each agent runs in its own secure sandbox.",
+    title: "Character before capability",
+    description: "We keep promises and do the right thing when it costs us.",
     image: "/images/isolated.jpg",
   },
   {
     icon: Lock,
-    title: "Encrypted memory",
-    description: "Data encrypted at rest and in transit.",
+    title: "Intellectual humility",
+    description: "We admit what we don't know and change our minds when evidence demands it.",
     image: "/images/encrypted.jpg",
   },
   {
     icon: Eye,
-    title: "Full audit trails",
-    description: "Every action logged and inspectable.",
+    title: "Generosity by default",
+    description: "We help without keeping score and give credit freely.",
     image: "/images/audit.jpg",
   },
   {
     icon: FileCheck,
-    title: "Permission boundaries",
-    description: "Principle of least privilege by design.",
+    title: "Follow-through",
+    description: "We finish what we start and own what we take on.",
     image: "/images/permissions.jpg",
   },
 ];
 
-const certifications = ["SOC 2", "ISO 27001", "HIPAA", "GDPR"];
+const certifications = ["Honesty", "Humility", "Kindness", "Ownership"];
 
 export function SecuritySection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -67,16 +67,16 @@ export function SecuritySection() {
             isVisible ? "opacity-100" : "opacity-0"
           }`}>
             <span className="w-12 h-px bg-foreground/20" />
-            Security
+            The BGET standard
           </span>
           
           {/* Title — full width */}
           <h2 className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.9] mb-12 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}>
-            Autonomous,
+            Brilliant is
             <br />
-            <span className="text-muted-foreground">not uncontrolled.</span>
+            <span className="text-muted-foreground">not enough.</span>
           </h2>
           
           {/* Description — below title */}
@@ -84,7 +84,7 @@ export function SecuritySection() {
             isVisible ? "opacity-100" : "opacity-0"
           }`}>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-              Your agents are powerful but constrained. Enterprise-grade security ensures they only do what you allow.
+              We judge each other on character first. A brilliant person who manipulates, humiliates, or exploits others does not belong here — no matter how capable.
             </p>
           </div>
         </div>
@@ -109,10 +109,10 @@ export function SecuritySection() {
             </div>
             
             <div className="relative z-10">
-              <span className="font-mono text-sm text-muted-foreground">Active protection</span>
+              <span className="font-mono text-sm text-muted-foreground">What we actually measure</span>
               <div className="mt-8">
-                <span className="text-7xl lg:text-8xl font-display">0</span>
-                <span className="block text-muted-foreground mt-2">Security incidents this year</span>
+                <span className="text-7xl lg:text-8xl font-display">12</span>
+                <span className="block text-muted-foreground mt-2">Dimensions we hold each other to</span>
               </div>
             </div>
             

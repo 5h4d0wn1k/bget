@@ -21,8 +21,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'BGET - AI Agents for Distributed Computing',
-  description: 'Deploy autonomous AI agents on distributed infrastructure. Offload complex tasks to intelligent workers that run 24/7.',
+  title: 'BGET — Build. Grow. Evolve. Together.',
+  description: 'A global, multidisciplinary community for turning meaningful problems into collective action. Exceptional people, across every field, building things that matter — together.',
   generator: 'v0.app',
 }
 

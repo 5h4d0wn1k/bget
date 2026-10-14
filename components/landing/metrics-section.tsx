@@ -4,25 +4,25 @@ import { useEffect, useState, useRef } from "react";
 
 const metrics = [
   { 
-    value: 12847392, 
+    value: 12, 
     suffix: "", 
     prefix: "",
-    label: "Tasks completed today",
-    sublabel: "by 23,847 active agents",
+    label: "Dimensions we hold each other to",
+    sublabel: "character is the gate, not a bonus",
   },
   { 
-    value: 99, 
-    suffix: ".99%", 
+    value: 5, 
+    suffix: "", 
     prefix: "",
-    label: "Availability",
-    sublabel: "across all regions",
+    label: "Rituals that keep us alive",
+    sublabel: "every week, without fail",
   },
   { 
-    value: 340, 
-    suffix: "ms", 
+    value: 72, 
+    suffix: "h", 
     prefix: "<",
-    label: "Average execution",
-    sublabel: "p99 latency",
+    label: "To a human answer on every problem",
+    sublabel: "no submission left unanswered",
   },
 ];
 
@@ -259,9 +259,9 @@ export function MetricsSection() {
             <h2 className={`text-6xl md:text-7xl lg:text-[140px] font-display tracking-tight leading-[0.95] transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}>
-              Real-time
+              Numbers
               <br />
-              <span className="text-muted-foreground">agent metrics.</span>
+              <span className="text-muted-foreground">that matter.</span>
             </h2>
           </div>
         </div>
@@ -328,11 +328,14 @@ export function MetricsSection() {
         <div className={`mt-16 pt-8 border-t border-foreground/10 flex flex-wrap items-center gap-x-12 gap-y-4 text-sm font-mono text-muted-foreground transition-all duration-1000 delay-500 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}>
-          <span>OpenAI GPT-4 Turbo</span>
-          <span>Anthropic Claude 3</span>
-          <span>Mistral Large</span>
-          <span>Llama 3</span>
-          <span className="text-foreground">+12 more models</span>
+          <span>Science</span>
+          <span>Medicine and health</span>
+          <span>Engineering</span>
+          <span>Technology</span>
+          <span>Business and entrepreneurship</span>
+          <span>Strategy and thought</span>
+          <span>Arts and design</span>
+          <span className="text-foreground">+ every field that can help</span>
         </div>
       </div>
     </section>

@@ -3,10 +3,10 @@
 import { useEffect, useState, useRef } from "react";
 
 const regions = [
-  { name: "North America", nodes: 12, status: "operational" },
-  { name: "Europe", nodes: 8, status: "operational" },
-  { name: "Asia Pacific", nodes: 6, status: "operational" },
-  { name: "South America", nodes: 3, status: "operational" },
+  { name: "The Americas", note: "Builders · researchers · founders", status: "growing" },
+  { name: "Europe", note: "Engineers · scientists · artists", status: "growing" },
+  { name: "Asia & Pacific", note: "Doctors · developers · strategists", status: "growing" },
+  { name: "Africa & Middle East", note: "Educators · builders · problem-solvers", status: "growing" },
 ];
 
 export function InfrastructureSection() {
@@ -44,7 +44,7 @@ export function InfrastructureSection() {
             isVisible ? "opacity-100" : "opacity-0"
           }`}>
             <span className="w-12 h-px bg-foreground/20" />
-            Global infrastructure
+            A global community
           </span>
           
           <div className="grid lg:grid-cols-[auto_1fr] gap-8 lg:gap-16 items-stretch">
@@ -64,16 +64,16 @@ export function InfrastructureSection() {
               <h2 className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.9] transition-all duration-1000 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}>
-                Global by
+                Open to
                 <br />
-                <span className="text-muted-foreground">default.</span>
+                <span className="text-muted-foreground">the whole world.</span>
               </h2>
 
               <p className={`mt-8 text-xl text-muted-foreground leading-relaxed max-w-lg transition-all duration-1000 delay-100 ${
                 isVisible ? "opacity-100" : "opacity-0"
               }`}>
-                Your agents run on distributed infrastructure across 29 regions.
-                Sub-50ms latency to 99% of the world.
+                Different countries, cultures, and disciplines — one shared standard.
+                BGET is built across borders from day one.
               </p>
             </div>
           </div>
@@ -144,11 +144,11 @@ export function InfrastructureSection() {
             
             <div className="relative z-10">
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-8xl lg:text-[10rem] font-display leading-none">29</span>
-                <span className="text-2xl text-muted-foreground">regions</span>
+                <span className="text-8xl lg:text-[10rem] font-display leading-none">∞</span>
+                <span className="text-2xl text-muted-foreground">disciplines</span>
               </div>
               <p className="text-muted-foreground max-w-md">
-                Compute nodes distributed globally for maximum redundancy and minimum latency.
+                Not just software. Science, medicine, engineering, art, law, agriculture — every field that can help a problem get solved, in one room.
               </p>
             </div>
           </div>
@@ -158,15 +158,15 @@ export function InfrastructureSection() {
             <div className={`p-8 border border-foreground/10 bg-foreground/[0.02] transition-all duration-700 delay-100 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}>
-              <span className="text-5xl lg:text-6xl font-display">99.99%</span>
-              <span className="block text-sm text-muted-foreground mt-2">Uptime SLA</span>
+              <span className="text-5xl lg:text-6xl font-display">0</span>
+              <span className="block text-sm text-muted-foreground mt-2">Barriers to bringing a problem</span>
             </div>
             
             <div className={`p-8 border border-foreground/10 bg-foreground/[0.02] transition-all duration-700 delay-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}>
-              <span className="text-5xl lg:text-6xl font-display">&lt;50ms</span>
-              <span className="block text-sm text-muted-foreground mt-2">Global latency</span>
+              <span className="text-5xl lg:text-6xl font-display">&lt;72h</span>
+              <span className="block text-sm text-muted-foreground mt-2">To a human answer, always</span>
             </div>
           </div>
         </div>
@@ -193,7 +193,7 @@ export function InfrastructureSection() {
                 </span>
               </div>
               <span className="font-medium block mb-1">{region.name}</span>
-              <span className="text-sm text-muted-foreground">{region.nodes} nodes</span>
+              <span className="text-sm text-muted-foreground">{region.note}</span>
             </div>
           ))}
         </div>

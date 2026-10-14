@@ -4,33 +4,34 @@ import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 const footerLinks = {
-  Product: [
-    { name: "Agent capabilities", href: "#features" },
+  Community: [
+    { name: "What we do", href: "#features" },
     { name: "How it works", href: "#how-it-works" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Integrations", href: "#integrations" },
+    { name: "Disciplines", href: "#integrations" },
+    { name: "The standard", href: "#security" },
   ],
-  Developers: [
-    { name: "Documentation", href: "#developers" },
-    { name: "Agent SDK", href: "#" },
-    { name: "API Reference", href: "#developers" },
-    { name: "Status", href: "#" },
+  Belong: [
+    { name: "The manifesto", href: "#" },
+    { name: "Values", href: "#" },
+    { name: "Membership", href: "#" },
+    { name: "Activities", href: "#" },
   ],
-  Company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Careers", href: "#", badge: "Hiring" },
+  Build: [
+    { name: "BGET Labs", href: "#" },
+    { name: "Problem Commons", href: "#" },
+    { name: "Impact", href: "#" },
+    { name: "Showcase", href: "#" },
+  ],
+  Connect: [
+    { name: "Apply to join", href: "#", badge: "Open" },
+    { name: "Bring a problem", href: "#" },
     { name: "Contact", href: "#" },
-  ],
-  Legal: [
-    { name: "Privacy", href: "#" },
-    { name: "Terms", href: "#" },
-    { name: "Security", href: "#security" },
+    { name: "Discord", href: "#" },
   ],
 };
 
 const socialLinks = [
-  { name: "Twitter", href: "#" },
+  { name: "Discord", href: "#" },
   { name: "GitHub", href: "#" },
   { name: "LinkedIn", href: "#" },
 ];
@@ -120,7 +121,7 @@ export function FooterSection() {
               </a>
 
               <p className="text-white/50 leading-relaxed mb-8 max-w-xs text-sm">
-                Autonomous AI agents for distributed computing. Delegate complex tasks to intelligent workers.
+                A global community for turning meaningful problems into collective action. Build. Grow. Evolve. Together.
               </p>
 
               {/* Social Links */}
@@ -167,13 +168,13 @@ export function FooterSection() {
         {/* Bottom Bar */}
         <div className="py-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/30">
-            &copy; 2025 BGET. All rights reserved.
+            &copy; 2026 BGET. All rights reserved.
           </p>
 
           <div className="flex items-center gap-4 text-sm text-white/30">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#eca8d6]" />
-              All agents operational
+              Built together. Better every week.
             </span>
           </div>
         </div>

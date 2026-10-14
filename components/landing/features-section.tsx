@@ -5,27 +5,27 @@ import { useEffect, useRef, useState } from "react";
 const features = [
   {
     number: "01",
-    title: "Autonomous Execution",
-    description: "Deploy AI agents that work independently. They analyze, decide, and execute complex multi-step tasks without human intervention.",
-    stats: { value: "99.7%", label: "task completion" },
+    title: "Multidisciplinary by design",
+    description: "A mathematician, a doctor, a civil engineer, and a security researcher see a problem in ways no single discipline can. We put them in the same room — and build.",
+    stats: { value: "∞", label: "fields, one room" },
   },
   {
     number: "02",
-    title: "Distributed Computing",
-    description: "Offload compute-heavy tasks to our global network. Your agents run on optimized infrastructure across 50+ regions worldwide.",
-    stats: { value: "50+", label: "global regions" },
+    title: "Character before capability",
+    description: "Brilliance is not enough. We select for people who keep promises, stay humble, and can be trusted with what they can do.",
+    stats: { value: "1st", label: "the person, not the résumé" },
   },
   {
     number: "03",
-    title: "Multi-Agent Orchestration",
-    description: "Coordinate teams of specialized agents. They communicate, delegate, and collaborate to solve complex problems together.",
-    stats: { value: "1000x", label: "parallel execution" },
+    title: "Real things, not talk",
+    description: "From software and research to clean water, energy, and education. We measure success by what actually changes.",
+    stats: { value: "Every", label: "sector that needs solving" },
   },
   {
     number: "04",
-    title: "Secure Sandboxing",
-    description: "Each agent runs in isolated environments. Full audit trails, encrypted execution, and zero data leakage between tasks.",
-    stats: { value: "0", label: "data breaches" },
+    title: "Together, or not at all",
+    description: "Someone else's win is information, not a threat. We grow by helping each other become better.",
+    stats: { value: "1", label: "community, worldwide" },
   },
 ];
 
@@ -158,23 +158,23 @@ export function FeaturesSection() {
             <div className="lg:col-span-7">
               <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
                 <span className="w-12 h-px bg-foreground/30" />
-                Capabilities
+                What we do
               </span>
               <h2
                 className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.9] transition-all duration-1000 ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
               >
-                Intelligent
+                Build. Grow.
                 <br />
-                <span className="text-muted-foreground">workers.</span>
+                <span className="text-muted-foreground">Evolve. Together.</span>
               </h2>
             </div>
             <div className="lg:col-span-5 lg:pb-4">
               <p className={`text-xl text-muted-foreground leading-relaxed transition-all duration-1000 delay-200 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}>
-                Deploy autonomous AI agents that execute complex tasks across distributed infrastructure. No supervision required.
+                Exceptional people across every field — science, medicine, engineering, art, law, agriculture — turning meaningful problems into real, working solutions.
               </p>
             </div>
           </div>

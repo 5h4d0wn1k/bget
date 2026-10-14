@@ -51,14 +51,13 @@ export function CtaSection() {
               {/* Left content */}
               <div className="flex-1">
                 <h2 className="text-6xl md:text-7xl lg:text-[72px] font-display tracking-tight mb-8 leading-[0.95]">
-                  Ready to delegate
+                  Ready to build
                   <br />
-                  to AI agents?
+                  something together?
                 </h2>
 
                 <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-xl">
-                  Join teams automating complex workflows with BGET agents. 
-                  Deploy your first agent in minutes.
+                  Bring a problem, a skill, or simply curiosity. If you are genuine, kind, and want to become more capable without becoming less human — we would love to meet you.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-start gap-4">
@@ -66,7 +65,7 @@ export function CtaSection() {
                     size="lg"
                     className="bg-foreground hover:bg-foreground/90 text-background px-8 h-14 text-base rounded-full group"
                   >
-                    Deploy your first agent
+                    Apply to join BGET
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
                   <Button
@@ -74,12 +73,12 @@ export function CtaSection() {
                     variant="outline"
                     className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
                   >
-                    Book a demo
+                    Read the manifesto
                   </Button>
                 </div>
 
                 <p className="text-sm text-muted-foreground mt-8 font-mono">
-                  1,000 free tasks with BGET
+                  Bring us a problem. We will bring the people who can help.
                 </p>
               </div>
 
