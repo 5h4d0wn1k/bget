@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 /**
  * Single source of truth for site-wide metadata and links.
  * Import this anywhere instead of hard-coding the name/URL.
@@ -33,3 +35,46 @@ export const SITE = {
 } as const;
 
 export type SiteConfig = typeof SITE;
+
+/**
+ * Build per-page metadata from the shared site config so titles, canonicals,
+ * and social cards stay consistent across every route. `title` is the
+ * page-level title only — the root layout template appends the brand name.
+ * `path` is a root-relative path (e.g. "/manifesto"); `metadataBase` in the
+ * root layout resolves it to an absolute URL.
+ */
+export function pageMetadata({
+  title,
+  description,
+  path,
+  type = "website",
+}: {
+  title: string;
+  description: string;
+  path: string;
+  type?: "website" | "article";
+}): Metadata {
+  const fullTitle = `${title} — ${SITE.name}`;
+  return {
+    title,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type,
+      url: path,
+      siteName: SITE.name,
+      title: fullTitle,
+      description,
+      locale: SITE.locale,
+      images: [
+        { url: "/og.png", width: 1200, height: 630, alt: `${SITE.name} — ${SITE.tagline}` },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+      images: ["/og.png"],
+    },
+  };
+}

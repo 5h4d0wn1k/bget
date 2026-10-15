@@ -1,3 +1,4 @@
+import { Reveal, RevealText } from "@/components/motion/reveal";
 import { Navigation } from "@/components/landing/navigation";
 import { FooterSection } from "@/components/landing/footer-section";
 
@@ -24,16 +25,23 @@ export function PageShell({
   return (
     <main className="relative min-h-screen overflow-x-hidden">
       <Navigation />
-      <header className="relative pt-40 pb-20 lg:pt-52 lg:pb-28 border-b border-foreground/10">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <Eyebrow>{eyebrow}</Eyebrow>
-          <h1 className="mt-8 text-5xl md:text-7xl lg:text-[104px] font-display tracking-tight leading-[0.92] max-w-5xl">
-            {title}
-          </h1>
+      <header className="relative pt-40 pb-20 lg:pt-52 lg:pb-28 border-b border-foreground/10 overflow-hidden">
+        <div className="aurora pointer-events-none absolute inset-0" aria-hidden="true" />
+        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
+          <Reveal y={14} duration={650}>
+            <Eyebrow>{eyebrow}</Eyebrow>
+          </Reveal>
+          <Reveal delay={90} y={24} duration={850}>
+            <h1 className="mt-8 text-5xl md:text-7xl lg:text-[104px] font-display tracking-tight leading-[0.92] max-w-5xl">
+              {title}
+            </h1>
+          </Reveal>
           {lead ? (
-            <p className="mt-10 text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
-              {lead}
-            </p>
+            <Reveal delay={190} y={24}>
+              <p className="mt-10 text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
+                {lead}
+              </p>
+            </Reveal>
           ) : null}
         </div>
       </header>
@@ -66,20 +74,39 @@ export function Section({
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-20 lg:py-28">
         {eyebrow || title || intro ? (
           <div className="mb-14">
-            {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-            {title ? (
-              <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-display tracking-tight leading-[0.98] max-w-3xl">
-                {title}
-              </h2>
+            {eyebrow ? (
+              <Reveal y={12} duration={600}>
+                <Eyebrow>{eyebrow}</Eyebrow>
+              </Reveal>
+            ) : null}
+            {typeof title === "string" ? (
+              <RevealText
+                as="h2"
+                text={title}
+                delay={60}
+                className="mt-6 text-4xl md:text-5xl lg:text-6xl font-display tracking-tight leading-[0.98] max-w-3xl"
+              />
+            ) : title ? (
+              <Reveal delay={60} y={20}>
+                <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-display tracking-tight leading-[0.98] max-w-3xl">
+                  {title}
+                </h2>
+              </Reveal>
             ) : null}
             {intro ? (
-              <p className="mt-8 text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                {intro}
-              </p>
+              <Reveal delay={130} y={20}>
+                <p className="mt-8 text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                  {intro}
+                </p>
+              </Reveal>
             ) : null}
           </div>
         ) : null}
-        {children}
+        {children ? (
+          <Reveal delay={80} y={26}>
+            {children}
+          </Reveal>
+        ) : null}
       </div>
     </section>
   );

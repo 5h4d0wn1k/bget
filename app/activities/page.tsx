@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageShell, Section } from "@/components/site/page-shell";
+import { JsonLd, webPageLd } from "@/components/seo/json-ld";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Activities — Build For Good",
+export const metadata: Metadata = pageMetadata({
+  title: "Activities",
   description:
     "A manifesto doesn't make people stay. Something happening does. The five recurring Build For Good rituals.",
-};
+  path: "/activities",
+});
 
 const core = [
   {
@@ -56,64 +59,82 @@ const quarterly = [
 
 export default function ActivitiesPage() {
   return (
-    <PageShell
-      eyebrow="Activities"
-      title={<>A manifesto doesn't make<br />people stay.</>}
-      lead="Something happening does. Five recurring formats, run like rituals rather than one-offs. Consistency is what turns a chat server into a community."
-    >
-      <Section eyebrow="The core five" title="Our weekly and monthly rhythm.">
-        <div className="grid gap-px bg-foreground/10 border border-foreground/10">
-          {core.map((a) => (
-            <div key={a.name} className="bg-background p-8 lg:p-12 grid lg:grid-cols-12 gap-8 items-start">
-              <div className="lg:col-span-4">
-                <div className="text-4xl">{a.icon}</div>
-                <h3 className="mt-4 text-3xl font-display">{a.name}</h3>
-                <p className="mt-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                  {a.cadence}
-                </p>
+    <>
+      <JsonLd
+        data={webPageLd({
+          path: "/activities",
+          name: "Activities — Build For Good",
+          description:
+            "The five recurring Build For Good rituals: Build Night, Deep Dive, Challenge, Think, and Impact.",
+        })}
+      />
+      <PageShell
+        eyebrow="Activities"
+        title={<>A manifesto doesn't make<br />people stay.</>}
+        lead="Something happening does. Five recurring formats, run like rituals rather than one-offs. Consistency is what turns a chat server into a community."
+      >
+        <Section eyebrow="The core five" title="Our weekly and monthly rhythm.">
+          <div className="grid gap-px bg-foreground/10 border border-foreground/10">
+            {core.map((a) => (
+              <div key={a.name} className="card-glow bg-background p-8 lg:p-12 grid lg:grid-cols-12 gap-8 items-start">
+                <div className="lg:col-span-4">
+                  <div className="text-4xl">{a.icon}</div>
+                  <h3 className="mt-4 text-3xl font-display">{a.name}</h3>
+                  <p className="mt-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                    {a.cadence}
+                  </p>
+                </div>
+                <div className="lg:col-span-8">
+                  <p className="text-xl font-display text-muted-foreground">“{a.quote}”</p>
+                  <p className="mt-4 text-muted-foreground leading-relaxed">{a.body}</p>
+                </div>
               </div>
-              <div className="lg:col-span-8">
-                <p className="text-xl font-display text-muted-foreground">“{a.quote}”</p>
-                <p className="mt-4 text-muted-foreground leading-relaxed">{a.body}</p>
+            ))}
+          </div>
+          <p className="mt-10 text-lg text-muted-foreground max-w-3xl">
+            Each ritual exists to produce something real: a shipped project, a shared
+            question, a measured result. That is the{" "}
+            <Link href="/manifesto" className="link-underline text-foreground">
+              philosophy
+            </Link>{" "}
+            made concrete rather than aspirational.
+          </p>
+        </Section>
+
+        <Section eyebrow="Quarterly & milestones" title="The slower rhythms." muted>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10">
+            {quarterly.map(([k, cadence, v]) => (
+              <div key={k} className="card-glow bg-background p-8">
+                <h3 className="text-xl font-medium">{k}</h3>
+                <p className="mt-1 font-mono text-xs uppercase tracking-widest text-[#eca8d6]">{cadence}</p>
+                <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{v}</p>
               </div>
-            </div>
-          ))}
-        </div>
-      </Section>
+            ))}
+          </div>
+        </Section>
 
-      <Section eyebrow="Quarterly & milestones" title="The slower rhythms." muted>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10">
-          {quarterly.map(([k, cadence, v]) => (
-            <div key={k} className="bg-background p-8">
-              <h3 className="text-xl font-medium">{k}</h3>
-              <p className="mt-1 font-mono text-xs uppercase tracking-widest text-[#eca8d6]">{cadence}</p>
-              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{v}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="If you can only keep one alive" title="Keep Build Night.">
-        <p className="text-lg text-muted-foreground max-w-3xl">
-          Shared work builds relationships faster than any amount of conversation.
-          We launch the rituals gradually — Build Night first, then Think, then Deep
-          Dive, then Challenge, then Impact — so that participation stays real.
-        </p>
-        <div className="mt-12 flex flex-wrap gap-4">
-          <Link
-            href="/membership"
-            className="inline-flex items-center justify-center rounded-full bg-foreground px-8 h-14 text-base font-medium text-background hover:bg-foreground/90 transition-all"
-          >
-            Join Build For Good
-          </Link>
-          <Link
-            href="/problems"
-            className="inline-flex items-center justify-center rounded-full border border-foreground/20 px-8 h-14 text-base hover:bg-foreground/5 transition-all"
-          >
-            Bring a problem
-          </Link>
-        </div>
-      </Section>
-    </PageShell>
+        <Section eyebrow="If you can only keep one alive" title="Keep Build Night.">
+          <p className="text-lg text-muted-foreground max-w-3xl">
+            Shared work builds relationships faster than any amount of conversation.
+            We launch the rituals gradually — Build Night first, then Think, then Deep
+            Dive, then Challenge, then Impact — so that participation stays real.
+          </p>
+          <div className="mt-12 flex flex-wrap gap-4">
+            <Link
+              href="/membership"
+              className="hover-lift inline-flex items-center justify-center rounded-full bg-foreground px-8 h-14 text-base font-medium text-background hover:bg-foreground/90"
+            >
+              Join Build For Good
+            </Link>
+            <Link
+              href="/problems"
+              className="hover-lift inline-flex items-center justify-center rounded-full border border-foreground/20 px-8 h-14 text-base hover:bg-foreground/5"
+            >
+              Bring a problem
+            </Link>
+          </div>
+        </Section>
+      </PageShell>
+    </>
   );
 }
