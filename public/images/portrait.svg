@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" fill="none" role="img" aria-label="Abstract portrait frame with monogram">
+  <defs>
+    <linearGradient id="pbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eca8d6" stop-opacity="0.28"/>
+      <stop offset="0.55" stop-color="#a78bfa" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#67e8f9" stop-opacity="0.16"/>
+    </linearGradient>
+    <linearGradient id="pline" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eca8d6" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0.45"/>
+    </linearGradient>
+    <clipPath id="pclip">
+      <rect x="24" y="24" width="432" height="432" rx="28"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#pclip)">
+    <rect x="24" y="24" width="432" height="432" rx="28" fill="#0a0910"/>
+    <rect x="24" y="24" width="432" height="432" rx="28" fill="url(#pbg)"/>
+    <g stroke="#ffffff" stroke-opacity="0.05">
+      <path d="M24 132 H456 M24 240 H456 M24 348 H456"/>
+      <path d="M132 24 V456 M240 24 V456 M348 24 V456"/>
+    </g>
+    <circle cx="240" cy="212" r="74" stroke="url(#pline)" stroke-width="1.4" fill="none" stroke-opacity="0.7"/>
+    <circle cx="240" cy="212" r="52" fill="#eca8d6" fill-opacity="0.07"/>
+    <text x="240" y="236" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="76" fill="#f3eef2" letter-spacing="2">NN</text>
+    <path d="M120 344 C160 316 200 336 240 336 C280 336 320 316 360 344" stroke="url(#pline)" stroke-width="1.2" fill="none" stroke-opacity="0.5"/>
+    <circle cx="120" cy="344" r="3" fill="#eca8d6"/>
+    <circle cx="240" cy="336" r="3.5" fill="#a78bfa"/>
+    <circle cx="360" cy="344" r="3" fill="#67e8f9"/>
+  </g>
+  <rect x="24" y="24" width="432" height="432" rx="28" stroke="#ffffff" stroke-opacity="0.12"/>
+</svg>

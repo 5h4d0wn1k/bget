@@ -269,6 +269,183 @@
     mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
   }
+
+  /* ------------------------------------------------------------------ */
+  /* Extended design system — surfaces, type, motion + interactions      */
+  /* ------------------------------------------------------------------ */
+
+  /* Balanced ragging for large display + body copy */
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Frosted translucent panel */
+  .glass {
+    background: color-mix(in oklab, var(--background) 72%, transparent);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+
+  /* Accent-tinted gradient copy */
+  .text-accent-gradient {
+    background: linear-gradient(100deg, #eca8d6, #a78bfa 55%, #67e8f9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Faint dot matrix */
+  .dot-grid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Grid that dissolves toward the edges */
+  .grid-fade {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 30%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 30%, transparent 100%);
+  }
+
+  /* Scroll-driven drift for decorative art (kept subtle) */
+  .drift-slow {
+    animation: drift 22s ease-in-out infinite;
+  }
+  .drift-slower {
+    animation: drift 34s ease-in-out infinite reverse;
+  }
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(0, -2.2%, 0) scale(1.03);
+    }
+  }
+
+  .float-slow {
+    animation: float 9s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Slow spinning dashed ring used in decorative marks */
+  .spin-slow {
+    animation: spin-slow 46s linear infinite;
+  }
+  .spin-slow-reverse {
+    animation: spin-slow 64s linear infinite reverse;
+  }
+  @keyframes spin-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Animated hairline / sweep on hover */
+  .sweep {
+    position: relative;
+    overflow: hidden;
+  }
+  .sweep::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.14) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .sweep:hover::after {
+    transform: translateX(120%);
+  }
+
+  /* Gradient ring that orbits a hovered card */
+  .card-halo {
+    position: relative;
+  }
+  .card-halo::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: radial-gradient(220px circle at var(--halo-x, 50%) var(--halo-y, 0%), rgba(236, 168, 214, 0.22), transparent 65%);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .card-halo:hover::after {
+    opacity: 1;
+  }
+
+  /* Lift + glow combined for interactive cards */
+  .interactive {
+    transition:
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.45s ease,
+      background-color 0.45s ease,
+      box-shadow 0.45s ease;
+  }
+  .interactive:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.9);
+  }
+
+  /* Accent rule with soft fade at both ends */
+  .rule-accent {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(236, 168, 214, 0.55),
+      rgba(167, 139, 250, 0.35),
+      transparent
+    );
+  }
+
+  /* Numbered index badge */
+  .index-badge {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer base {
+  ::selection {
+    background: rgba(236, 168, 214, 0.28);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    outline: none;
+  }
+
+  /* Consistent, visible keyboard focus everywhere */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid rgba(236, 168, 214, 0.75);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 /* Respect users who ask for less motion. */

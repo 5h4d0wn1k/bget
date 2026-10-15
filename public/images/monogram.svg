@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-label="Build For Good monogram">
+  <defs>
+    <linearGradient id="mg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eca8d6"/>
+      <stop offset="0.5" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#67e8f9"/>
+    </linearGradient>
+  </defs>
+  <rect x="14" y="14" width="172" height="172" rx="40" stroke="url(#mg)" stroke-width="2" stroke-opacity="0.7"/>
+  <path d="M62 132 V68 h26 a18 18 0 0 1 0 36 h-26" stroke="url(#mg)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M108 68 V132 M108 100 h30 M138 68 V132" stroke="url(#mg)" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <circle cx="62" cy="68" r="5" fill="#eca8d6"/>
+  <circle cx="138" cy="132" r="5" fill="#67e8f9"/>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" fill="none" role="img" aria-label="Many disciplines converging into one team">
+  <defs>
+    <linearGradient id="fgl" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#eca8d6" stop-opacity="0.8"/>
+      <stop offset="0.5" stop-color="#a78bfa" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#67e8f9" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="fbar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eca8d6" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#eca8d6" stop-opacity="0.12"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#fgl)" stroke-width="1.1" fill="none" stroke-opacity="0.5">
+    <path d="M80 60 C220 60 280 160 480 160"/>
+    <path d="M80 120 C220 120 280 160 480 160"/>
+    <path d="M80 200 C220 200 280 160 480 160"/>
+    <path d="M80 260 C220 260 280 160 480 160"/>
+    <path d="M480 160 C540 160 560 90 640 90"/>
+    <path d="M480 160 C540 160 560 230 640 230"/>
+  </g>
+  <g fill="url(#fbar)">
+    <rect x="60" y="48" width="20" height="24" rx="4"/>
+    <rect x="60" y="108" width="20" height="24" rx="4"/>
+    <rect x="60" y="188" width="20" height="24" rx="4"/>
+    <rect x="60" y="248" width="20" height="24" rx="4"/>
+  </g>
+  <circle cx="480" cy="160" r="10" fill="#eca8d6"/>
+  <circle cx="480" cy="160" r="24" stroke="#eca8d6" stroke-opacity="0.45" stroke-width="1"/>
+  <g fill="#a78bfa">
+    <circle cx="640" cy="90" r="6"/>
+    <circle cx="640" cy="230" r="6"/>
+  </g>
+</svg>

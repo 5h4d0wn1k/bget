@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" fill="none" role="img" aria-label="Signal arcs reaching a shared point">
+  <defs>
+    <linearGradient id="sg1" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#eca8d6" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0.35"/>
+    </linearGradient>
+    <radialGradient id="sglow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#eca8d6" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#eca8d6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="280" cy="300" r="60" fill="url(#sglow)"/>
+  <g stroke="url(#sg1)" stroke-width="1.4" fill="none">
+    <path d="M40 320 C120 320 140 200 220 200 C300 200 260 120 320 120" stroke-opacity="0.7"/>
+    <path d="M40 340 C160 340 200 240 280 240 C360 240 340 150 420 150" stroke-opacity="0.5"/>
+    <path d="M100 340 C200 340 240 280 320 280 C400 280 420 200 520 200" stroke-opacity="0.35"/>
+  </g>
+  <g>
+    <circle cx="280" cy="300" r="8" fill="#eca8d6"/>
+    <circle cx="280" cy="300" r="20" stroke="#eca8d6" stroke-opacity="0.4" stroke-width="1"/>
+    <circle cx="420" cy="150" r="5" fill="#a78bfa"/>
+    <circle cx="520" cy="200" r="4" fill="#67e8f9"/>
+  </g>
+</svg>

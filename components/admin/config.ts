@@ -18,18 +18,22 @@ export type AdminRecord = {
   [key: string]: unknown;
 };
 
+/** One collection's totals from GET /api/admin/summary. */
+export type SummaryEntry = {
+  total?: number;
+  byStatus?: Record<string, number>;
+  status?: Record<string, number>;
+  statusCounts?: Record<string, number>;
+  counts?: Record<string, number>;
+};
+
 /** Shape of GET /api/admin/summary -> { summary: { <collection>: { total, byStatus } } }. */
-export type Summary = Record<
-  string,
-  | {
-      total?: number;
-      byStatus?: Record<string, number>;
-      status?: Record<string, number>;
-      statusCounts?: Record<string, number>;
-      counts?: Record<string, number>;
-    }
-  | undefined
->;
+export type Summary = Record<string, SummaryEntry | undefined>;
+
+/** Pull a per-status count map out of a summary entry, tolerating key variants. */
+export function statusCountsFor(entry?: SummaryEntry): Record<string, number> {
+  return entry?.byStatus ?? entry?.status ?? entry?.statusCounts ?? entry?.counts ?? {};
+}
 
 export type QuickAction = {
   label: string;
@@ -288,11 +292,38 @@ export function statusTone(status?: string | null): string {
     case "reviewing":
     case "considering":
       return "border-amber-300/40 bg-amber-300/10 text-amber-200";
+    case "new":
+      return "border-cyan-300/40 bg-cyan-300/10 text-cyan-200";
     case "archived":
     case "parked":
       return "border-foreground/15 bg-foreground/5 text-muted-foreground";
     default:
       return "border-foreground/15 bg-foreground/5 text-muted-foreground";
+  }
+}
+
+/** Accent colour for the leading dot inside a status pill (matches `statusTone`). */
+export function statusDot(status?: string | null): string {
+  switch ((status ?? "").toLowerCase()) {
+    case "accepted":
+    case "approved":
+    case "active":
+    case "done":
+    case "actioned":
+    case "replied":
+    case "framed":
+    case "planned":
+      return "bg-[#eca8d6]";
+    case "declined":
+    case "rejected":
+      return "bg-red-400";
+    case "reviewing":
+    case "considering":
+      return "bg-amber-300";
+    case "new":
+      return "bg-cyan-300";
+    default:
+      return "bg-muted-foreground/60";
   }
 }
 

@@ -23,3 +23,15 @@ run_worker_first = ["/api/*", "/projects", "/projects/*"]
 binding = "DB"
 database_name = "buildforgood-forms"
 database_id = "e06265a9-0b99-41d2-82fc-09c0d54d1328"
+
+[env.production]
+# Production binding – serves the static export to Cloudflare Workers
+# with the ASSETS binding for the built site.
+
+binding = "ASSETS"
+
+[env.staging]
+# Staging binding – same as production but can be customized for staging
+# (e.g., different D1 database, different worker name, etc.)
+
+binding = "ASSETS"

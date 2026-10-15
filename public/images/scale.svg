@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" fill="none" role="img" aria-label="Balanced scales with a seed">
+  <defs>
+    <linearGradient id="blg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eca8d6" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#blg)" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <path d="M240 96 V372"/>
+    <path d="M156 372 H324"/>
+    <path d="M240 132 H120 M240 132 H360"/>
+    <path d="M120 132 L92 214 A46 46 0 0 0 148 214 Z"/>
+    <path d="M360 132 L332 214 A46 46 0 0 0 388 214 Z"/>
+  </g>
+  <circle cx="240" cy="96" r="7" fill="#eca8d6"/>
+  <circle cx="120" cy="132" r="3.5" fill="#a78bfa"/>
+  <circle cx="360" cy="132" r="3.5" fill="#67e8f9"/>
+  <path d="M240 300 C240 268 262 250 288 244 C286 274 266 296 240 300 Z" fill="#eca8d6" fill-opacity="0.16" stroke="url(#blg)" stroke-width="1.2"/>
+  <path d="M240 300 C240 276 226 262 208 258 C210 280 222 296 240 300 Z" fill="#a78bfa" fill-opacity="0.14" stroke="url(#blg)" stroke-width="1.2"/>
+</svg>

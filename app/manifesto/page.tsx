@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageShell, Section } from "@/components/site/page-shell";
+import { Reveal } from "@/components/motion/reveal";
+import { Marquee } from "@/components/motion/marquee";
 import { JsonLd, articleLd } from "@/components/seo/json-ld";
 import { pageMetadata } from "@/lib/site";
 
@@ -52,6 +54,14 @@ const dimensions = [
   ["Positive intent", "Wants their capability to create, not destroy"],
 ];
 
+function NumberBadge({ n }: { n: number }) {
+  return (
+    <span className="index-badge inline-flex h-8 min-w-8 items-center justify-center rounded-full border border-foreground/15 px-2 font-mono text-[11px] tracking-[0.1em] text-muted-foreground transition-colors duration-500 group-hover:border-[#eca8d6]/50 group-hover:text-[#eca8d6]">
+      {String(n).padStart(2, "0")}
+    </span>
+  );
+}
+
 export default function ManifestoPage() {
   return (
     <>
@@ -67,30 +77,57 @@ export default function ManifestoPage() {
         eyebrow="Manifesto"
         title={<>Capability without character<br />is not enough.</>}
         lead="We are a community of ambitious, capable people across every discipline who believe the engineer cannot be separated from the human. Anyone can learn to code. Fewer learn to think clearly. Fewest combine skill with humility, ambition with kindness."
+        image={{ src: "/images/orbit.svg", alt: "" }}
+        meta={["Character first", "Multidisciplinary", "Global by design"]}
       >
+        <Marquee duration={46} className="border-b border-foreground/10 py-8">
+          {["Build", "Grow", "Evolve", "Together", "Build", "Grow", "Evolve", "Together"].map(
+            (word, i) => (
+              <span key={`${word}-${i}`} className="flex items-center">
+                <span className="font-display text-4xl md:text-6xl lg:text-7xl tracking-tight text-foreground/80">
+                  {word}
+                </span>
+                <span className="mx-8 text-2xl text-[#eca8d6]">✳</span>
+              </span>
+            ),
+          )}
+        </Marquee>
+
         <Section eyebrow="What we do" title="Build. Grow. Evolve. Together.">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10">
-            {whatWeDo.map((item) => (
-              <div key={item.k} className="card-glow hover-lift bg-background p-8 lg:p-10">
-                <h3 className="text-3xl font-display">{item.k}</h3>
+            {whatWeDo.map((item, i) => (
+              <div
+                key={item.k}
+                className="card-glow interactive group bg-background p-8 lg:p-10"
+              >
+                <NumberBadge n={i + 1} />
+                <h3 className="mt-6 text-3xl font-display">{item.k}</h3>
                 <p className="mt-4 text-muted-foreground leading-relaxed">{item.v}</p>
               </div>
             ))}
           </div>
-          <p className="mt-10 text-lg text-muted-foreground max-w-3xl">
-            These are not slogans — they show up as a weekly rhythm of{" "}
-            <Link href="/activities" className="link-underline text-foreground">
-              Build Nights, Deep Dives, and Challenges
-            </Link>
-            .
-          </p>
+          <Reveal y={16}>
+            <p className="mt-10 text-lg text-muted-foreground max-w-3xl">
+              These are not slogans — they show up as a weekly rhythm of{" "}
+              <Link href="/activities" className="link-underline text-foreground">
+                Build Nights, Deep Dives, and Challenges
+              </Link>
+              .
+            </p>
+          </Reveal>
         </Section>
 
         <Section eyebrow="What we believe" title="Five things we actually act on." muted>
           <ul className="grid gap-px bg-foreground/10 border border-foreground/10">
-            {beliefs.map((b) => (
-              <li key={b} className="card-glow bg-background px-8 py-7 text-lg leading-relaxed">
-                {b}
+            {beliefs.map((b, i) => (
+              <li
+                key={b}
+                className="card-glow group flex gap-6 bg-background px-8 py-7 transition-colors duration-500 hover:bg-foreground/[0.03] lg:px-10"
+              >
+                <span className="hidden font-mono text-sm text-muted-foreground/60 pt-1 sm:block">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="text-lg leading-relaxed text-pretty">{b}</span>
               </li>
             ))}
           </ul>
@@ -104,19 +141,24 @@ export default function ManifestoPage() {
             {nots.map((n) => (
               <li
                 key={n}
-                className="card-glow hover-lift border border-foreground/10 p-6 text-muted-foreground leading-relaxed"
+                className="card-glow interactive group relative border border-foreground/10 p-6 text-muted-foreground leading-relaxed"
               >
-                {n}
+                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#eca8d6]/70">
+                  Not
+                </span>
+                <p className="mt-3 text-foreground/90">{n.replace(/^Not /, "")}</p>
               </li>
             ))}
           </ul>
-          <p className="mt-10 text-lg text-muted-foreground max-w-3xl">
-            Everything we do reward is written down as an explicit behaviour in our{" "}
-            <Link href="/values" className="link-underline text-foreground">
-              values
-            </Link>
-            .
-          </p>
+          <Reveal y={16}>
+            <p className="mt-10 text-lg text-muted-foreground max-w-3xl">
+              Everything we do reward is written down as an explicit behaviour in our{" "}
+              <Link href="/values" className="link-underline text-foreground">
+                values
+              </Link>
+              .
+            </p>
+          </Reveal>
         </Section>
 
         <Section
@@ -124,12 +166,13 @@ export default function ManifestoPage() {
           title="What you get, and what we ask."
           muted
         >
-          <div className="grid lg:grid-cols-2 gap-16">
-            <div>
-              <h3 className="font-mono text-sm uppercase tracking-widest text-muted-foreground mb-6">
+          <div className="grid gap-px border border-foreground/10 bg-foreground/10 lg:grid-cols-2">
+            <div className="bg-background p-8 lg:p-12">
+              <h3 className="flex items-center gap-3 font-mono text-sm uppercase tracking-widest text-[#eca8d6]">
+                <span className="h-px w-8 bg-[#eca8d6]/50" />
                 We promise you
               </h3>
-              <ol className="space-y-4 text-lg">
+              <ol className="mt-8 space-y-5 text-lg">
                 {[
                   "You will be surrounded by people who make you better.",
                   "You will be judged by your conduct, not your credentials.",
@@ -137,30 +180,31 @@ export default function ManifestoPage() {
                   "You will be told the truth, kindly.",
                   "Your work and your words are safe here.",
                 ].map((p, i) => (
-                  <li key={p} className="flex gap-4">
-                    <span className="font-mono text-sm text-muted-foreground pt-1">
+                  <li key={p} className="group flex gap-4">
+                    <span className="font-mono text-sm text-muted-foreground pt-1 transition-colors group-hover:text-[#eca8d6]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span>{p}</span>
+                    <span className="text-pretty">{p}</span>
                   </li>
                 ))}
               </ol>
             </div>
-            <div>
-              <h3 className="font-mono text-sm uppercase tracking-widest text-muted-foreground mb-6">
+            <div className="bg-background p-8 lg:p-12">
+              <h3 className="flex items-center gap-3 font-mono text-sm uppercase tracking-widest text-muted-foreground">
+                <span className="h-px w-8 bg-foreground/20" />
                 We ask of you
               </h3>
-              <ol className="space-y-4 text-lg">
+              <ol className="mt-8 space-y-5 text-lg">
                 {[
                   "Show up. Contribute more than you extract.",
                   "Stay humble. Nobody here is finished.",
                   "Leave it better. Every project, every channel, every relationship you touch.",
                 ].map((p, i) => (
-                  <li key={p} className="flex gap-4">
-                    <span className="font-mono text-sm text-muted-foreground pt-1">
+                  <li key={p} className="group flex gap-4">
+                    <span className="font-mono text-sm text-muted-foreground pt-1 transition-colors group-hover:text-[#eca8d6]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span>{p}</span>
+                    <span className="text-pretty">{p}</span>
                   </li>
                 ))}
               </ol>
@@ -174,28 +218,38 @@ export default function ManifestoPage() {
           title="Twelve dimensions. Character is the gate."
         >
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10">
-            {dimensions.map(([name, desc]) => (
-              <div key={name} className="card-glow bg-background p-6">
-                <h3 className="font-medium">{name}</h3>
+            {dimensions.map(([name, desc], i) => (
+              <div
+                key={name}
+                className="card-glow interactive group bg-background p-6"
+              >
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="font-medium">{name}</h3>
+                  <span className="font-mono text-[11px] text-muted-foreground/50 transition-colors group-hover:text-[#eca8d6]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
-          <p className="mt-10 text-xl font-display">
-            Character is the gate. Everything else is built on top of it.
-          </p>
+          <Reveal y={16}>
+            <p className="mt-10 text-xl font-display">
+              Character is the gate. Everything else is built on top of it.
+            </p>
+          </Reveal>
         </Section>
 
         <Section muted>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
-            <p className="text-3xl md:text-4xl font-display max-w-2xl leading-tight">
+            <p className="text-3xl md:text-4xl font-display max-w-2xl leading-tight text-balance">
               Build boldly. Grow continuously. Evolve consciously. Help others rise.
               Leave the world better than you found it.
             </p>
             <div className="flex flex-wrap gap-4 shrink-0">
               <Link
                 href="/membership"
-                className="hover-lift inline-flex items-center justify-center rounded-full bg-foreground px-8 h-14 text-base font-medium text-background hover:bg-foreground/90"
+                className="sweep hover-lift inline-flex items-center justify-center rounded-full bg-foreground px-8 h-14 text-base font-medium text-background hover:bg-foreground/90"
               >
                 Apply to join
               </Link>

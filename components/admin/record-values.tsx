@@ -2,9 +2,9 @@
 
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { formatValue, isUrl, labelize, statusTone } from "./config";
+import { formatValue, isUrl, labelize, statusDot, statusTone } from "./config";
 
-/** A status pill. Renders nothing when status is empty. */
+/** A status pill with a tone-coloured dot. Renders a dash when status is empty. */
 export function StatusBadge({
   status,
   className,
@@ -16,7 +16,18 @@ export function StatusBadge({
     return <span className="text-muted-foreground/40">—</span>;
   }
   return (
-    <Badge variant="outline" className={cn(statusTone(status), className)}>
+    <Badge
+      variant="outline"
+      className={cn(
+        "gap-1.5 rounded-full px-2.5 py-0.5 font-medium",
+        statusTone(status),
+        className,
+      )}
+    >
+      <span
+        aria-hidden="true"
+        className={cn("size-1.5 shrink-0 rounded-full", statusDot(status))}
+      />
       {labelize(status)}
     </Badge>
   );
@@ -47,7 +58,7 @@ export function Value({
         {value.map((item, i) => (
           <span
             key={i}
-            className="rounded border border-foreground/10 bg-foreground/[0.03] px-1.5 py-0.5 text-xs"
+            className="rounded-md border border-foreground/10 bg-foreground/[0.04] px-2 py-0.5 text-xs text-foreground/90"
           >
             {formatValue(item) || "—"}
           </span>
@@ -60,7 +71,7 @@ export function Value({
     return (
       <pre
         className={cn(
-          "max-w-full overflow-x-auto whitespace-pre-wrap break-words rounded border border-foreground/10 bg-foreground/[0.03] p-2 font-mono text-xs text-muted-foreground",
+          "max-w-full overflow-x-auto whitespace-pre-wrap break-words rounded-lg border border-foreground/10 bg-foreground/[0.03] p-3 font-mono text-xs leading-relaxed text-muted-foreground",
           className,
         )}
       >
