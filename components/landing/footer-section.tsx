@@ -1,32 +1,33 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 const footerLinks = {
   Community: [
     { name: "What we do", href: "/#features" },
-    { name: "How it works", href: "/#how-it-works" },
-    { name: "Disciplines", href: "/#integrations" },
-    { name: "The standard", href: "/#security" },
+    { name: "Projects", href: "/projects" },
+    { name: "Activities", href: "/activities" },
+    { name: "Problem Commons", href: "/problems" },
   ],
   Belong: [
-    { name: "The manifesto", href: "/manifesto" },
+    { name: "Manifesto", href: "/manifesto" },
     { name: "Values", href: "/values" },
     { name: "Membership", href: "/membership" },
-    { name: "Activities", href: "/activities" },
+    { name: "Founders", href: "/founders" },
   ],
   Build: [
     { name: "Problem Commons", href: "/problems" },
-    { name: "BGET Labs", href: "/problems" },
+    { name: "The Labs", href: "/projects" },
     { name: "Impact", href: "/activities" },
     { name: "About", href: "/about" },
   ],
   Connect: [
     { name: "Apply to join", href: "/membership", badge: "Open" },
     { name: "Bring a problem", href: "/problems" },
-    { name: "Contact", href: "/about" },
-    { name: "Discord", href: "#" },
+    { name: "Contact & feedback", href: "/contact" },
+    { name: "GitHub", href: "https://github.com/5h4d0wn1k/bget" },
   ],
 };
 
@@ -115,10 +116,10 @@ export function FooterSection() {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-12 lg:gap-8">
             {/* Brand Column */}
             <div className="col-span-2">
-              <a href="/" className="inline-flex items-center gap-2 mb-6">
-                <span className="text-2xl font-display text-white">BGET</span>
+              <Link href="/" className="inline-flex items-center gap-2 mb-6">
+                <span className="text-2xl font-display text-white">Build For Good</span>
                 <span className="text-xs text-white/40 font-mono">TM</span>
-              </a>
+              </Link>
 
               <p className="text-white/50 leading-relaxed mb-8 max-w-xs text-sm">
                 A global community for turning meaningful problems into collective action. Build. Grow. Evolve. Together.
@@ -144,21 +145,38 @@ export function FooterSection() {
               <div key={title}>
                 <h3 className="text-sm font-medium text-white mb-6">{title}</h3>
                 <ul className="space-y-4">
-                  {links.map((link) => (
-                    <li key={link.name}>
-                      <a
-                        href={link.href}
-                        className="text-sm text-white/40 hover:text-white transition-colors inline-flex items-center gap-2"
-                      >
+                  {links.map((link) => {
+                    const content = (
+                      <>
                         {link.name}
                         {"badge" in link && link.badge && (
                           <span className="text-xs px-2 py-0.5 bg-white text-black rounded-full">
                             {link.badge}
                           </span>
                         )}
-                      </a>
-                    </li>
-                  ))}
+                      </>
+                    );
+                    const className =
+                      "text-sm text-white/40 hover:text-white transition-colors inline-flex items-center gap-2";
+                    return (
+                      <li key={link.name}>
+                        {link.href.startsWith("/") ? (
+                          <Link href={link.href} className={className}>
+                            {content}
+                          </Link>
+                        ) : (
+                          <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            className={className}
+                          >
+                            {content}
+                          </a>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
@@ -168,7 +186,7 @@ export function FooterSection() {
         {/* Bottom Bar */}
         <div className="py-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/30">
-            &copy; 2026 BGET. All rights reserved.
+            &copy; 2026 Build For Good. All rights reserved.
           </p>
 
           <div className="flex items-center gap-4 text-sm text-white/30">

@@ -3,9 +3,9 @@ import Link from "next/link";
 import { PageShell, Section } from "@/components/site/page-shell";
 
 export const metadata: Metadata = {
-  title: "Values — BGET",
+  title: "Values — Build For Good",
   description:
-    "A value nobody can act on is decoration. Each BGET value, written as the behaviour we reward and the behaviour we correct.",
+    "A value nobody can act on is decoration. Each Build For Good value, written as the behaviour we reward and the behaviour we correct.",
 };
 
 const values = [
@@ -55,7 +55,7 @@ const values = [
     n: "08",
     title: "Privacy and trust",
     reward: "Keeping confidences, asking before quoting someone externally, handling personal data carefully.",
-    correct: "Screenshotting drama, sharing member details, recruiting people out of BGET without consent.",
+    correct: "Screenshotting drama, sharing member details, recruiting people out of Build For Good without consent.",
   },
 ];
 
@@ -103,7 +103,7 @@ export default function ValuesPage() {
           </li>
           <li className="border border-foreground/10 p-8 text-lg leading-relaxed">
             <span className="font-mono text-sm text-muted-foreground block mb-4">02</span>
-            Does this make BGET more or less the place exceptional people want to stay?
+            Does this make Build For Good more or less the place exceptional people want to stay?
           </li>
         </ol>
         <p className="mt-10 text-xl font-display">If either answer is no — don't send it.</p>

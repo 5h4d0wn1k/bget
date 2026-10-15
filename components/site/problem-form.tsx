@@ -78,7 +78,7 @@ export function ProblemForm() {
         <TextArea name="tried" value={form.tried} onChange={set("tried")} />
       </Field>
 
-      <Field label="Why might BGET be useful here?" hint="The interdisciplinary angle, a neglected corner, a research gap.">
+      <Field label="Why might Build For Good be useful here?" hint="The interdisciplinary angle, a neglected corner, a research gap.">
         <TextArea name="why_bget" value={form.why_bget} onChange={set("why_bget")} />
       </Field>
 
@@ -101,8 +101,8 @@ export function ProblemForm() {
         </Field>
         <Field label="Visibility">
           <Select name="visibility" value={form.visibility} onChange={set("visibility")}>
-            <option value="public">Public — BGET may publish it</option>
-            <option value="bget">BGET review only</option>
+            <option value="public">Public — Build For Good may publish it</option>
+            <option value="bget">Build For Good review only</option>
             <option value="private">Private — my eyes only</option>
           </Select>
         </Field>

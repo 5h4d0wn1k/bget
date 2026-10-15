@@ -67,7 +67,7 @@ export function SecuritySection() {
             isVisible ? "opacity-100" : "opacity-0"
           }`}>
             <span className="w-12 h-px bg-foreground/20" />
-            The BGET standard
+            The Build For Good standard
           </span>
           
           {/* Title — full width */}

@@ -3,9 +3,9 @@ import Link from "next/link";
 import { PageShell, Section } from "@/components/site/page-shell";
 
 export const metadata: Metadata = {
-  title: "Activities — BGET",
+  title: "Activities — Build For Good",
   description:
-    "A manifesto doesn't make people stay. Something happening does. The five recurring BGET rituals.",
+    "A manifesto doesn't make people stay. Something happening does. The five recurring Build For Good rituals.",
 };
 
 const core = [
@@ -104,7 +104,7 @@ export default function ActivitiesPage() {
             href="/membership"
             className="inline-flex items-center justify-center rounded-full bg-foreground px-8 h-14 text-base font-medium text-background hover:bg-foreground/90 transition-all"
           >
-            Join BGET
+            Join Build For Good
           </Link>
           <Link
             href="/problems"

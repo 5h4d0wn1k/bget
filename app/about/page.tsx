@@ -3,9 +3,9 @@ import Link from "next/link";
 import { PageShell, Section } from "@/components/site/page-shell";
 
 export const metadata: Metadata = {
-  title: "About — BGET",
+  title: "About — Build For Good",
   description:
-    "BGET — a global network for turning meaningful problems into collective action. Founded by Nikhil Nagpure. Built with everyone who contributes.",
+    "Build For Good — a global network for turning meaningful problems into collective action. Founded by Nikhil Nagpure. Built with everyone who contributes.",
 };
 
 const pillars = [
@@ -26,7 +26,7 @@ export default function AboutPage() {
     <PageShell
       eyebrow="About"
       title={<>A global network for turning<br />problems into action.</>}
-      lead="BGET is a multidisciplinary community of genuine, ambitious, curious, and compassionate people who want to become more capable while remaining deeply human. Founded by Nikhil Nagpure. Built with everyone who contributes."
+      lead="Build For Good is a multidisciplinary community of genuine, ambitious, curious, and compassionate people who want to become more capable while remaining deeply human. Founded by Nikhil Nagpure. Built with everyone who contributes."
     >
       <Section eyebrow="What the name means" title="Build. Grow. Evolve. Together.">
         <div className="grid md:grid-cols-2 gap-px bg-foreground/10 border border-foreground/10">
@@ -73,7 +73,7 @@ export default function AboutPage() {
               alongside you, and listen.”
             </p>
             <p>
-              I started BGET out of a simple frustration: the most capable people I
+              I started Build For Good out of a simple frustration: the most capable people I
               met were scattered across fields and countries, and the places that
               gathered them rewarded status over substance. I wanted somewhere that
               judged you by your conduct, not your credentials — where someone could
@@ -81,7 +81,7 @@ export default function AboutPage() {
               engineer, and a philosopher would sit at the same table.
             </p>
             <p>
-              BGET is not a networking farm, not a self-promotion channel, and not my
+              Build For Good is not a networking farm, not a self-promotion channel, and not my
               startup. It belongs to its members. Nobody's contribution ranks higher
               because they founded it, and I can be outvoted. The point of starting
               this was never to become the centre of it.

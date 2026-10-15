@@ -1,5 +1,5 @@
--- BGET forms schema (D1)
--- Applied with:  npx wrangler d1 execute bget-forms --remote --file=migrations/0001_init.sql
+-- Build For Good forms schema (D1)
+-- Applied with:  npx wrangler d1 execute buildforgood-forms --remote --file=migrations/0001_init.sql
 
 CREATE TABLE IF NOT EXISTS applications (
   id            INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -13,6 +13,9 @@ CREATE TABLE IF NOT EXISTS applications (
   struggling    TEXT,
   why_bget      TEXT,
   referral      TEXT,
+  status        TEXT NOT NULL DEFAULT 'new',   -- new | reviewing | accepted | declined
+  notes         TEXT,
+  reviewed_at   TEXT,
   user_agent    TEXT
 );
 
@@ -29,9 +32,14 @@ CREATE TABLE IF NOT EXISTS problems (
   success_looks_like TEXT,
   why_bget           TEXT,
   contribution       TEXT,
-  visibility         TEXT NOT NULL DEFAULT 'bget',
+  visibility         TEXT NOT NULL DEFAULT 'bget',  -- public | bget | private
+  status             TEXT NOT NULL DEFAULT 'new',   -- new | framed | parked | declined | active
+  notes              TEXT,
+  reviewed_at        TEXT,
   user_agent         TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_applications_created_at ON applications (created_at);
+CREATE INDEX IF NOT EXISTS idx_applications_status ON applications (status);
 CREATE INDEX IF NOT EXISTS idx_problems_created_at ON problems (created_at);
+CREATE INDEX IF NOT EXISTS idx_problems_status ON problems (status);

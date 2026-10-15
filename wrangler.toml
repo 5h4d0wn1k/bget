@@ -1,12 +1,12 @@
-# BGET — Cloudflare Workers deployment
+# Build For Good — Cloudflare Workers deployment
 #
 # The Next.js site is exported to plain static files in `out/` (see
-# next.config.mjs `output: 'export'`) and served by the `bget` Worker through
-# Cloudflare's static-assets binding. `worker/index.js` adds a small JSON API
-# used by the public forms (membership application + problem submission) and
-# stores submissions in D1.
+# next.config.mjs `output: 'export'`) and served by the `buildforgood` Worker
+# through Cloudflare's static-assets binding. `worker/index.js` adds the JSON
+# API (public forms + admin review) and server-renders public project pages,
+# storing everything in D1.
 
-name = "bget"
+name = "buildforgood"
 main = "worker/index.js"
 compatibility_date = "2026-10-01"
 account_id = "87fd5601199078add1a9f9f88d3608d6"
@@ -15,11 +15,11 @@ account_id = "87fd5601199078add1a9f9f88d3608d6"
 directory = "./out"
 binding = "ASSETS"
 not_found_handling = "404-page"
-# Only the API is handled by the Worker first; every other path is served
-# straight from the static export.
-run_worker_first = ["/api/*"]
+# Worker runs first for the API and for project detail pages (which are
+# rendered from D1 for SEO); everything else is served from the static export.
+run_worker_first = ["/api/*", "/projects", "/projects/*"]
 
 [[d1_databases]]
 binding = "DB"
-database_name = "bget-forms"
-database_id = "952b04a8-3139-468a-b02e-4af38fed7751"
+database_name = "buildforgood-forms"
+database_id = "e06265a9-0b99-41d2-82fc-09c0d54d1328"

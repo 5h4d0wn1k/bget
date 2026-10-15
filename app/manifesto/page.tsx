@@ -3,9 +3,9 @@ import Link from "next/link";
 import { PageShell, Section } from "@/components/site/page-shell";
 
 export const metadata: Metadata = {
-  title: "Manifesto — BGET",
+  title: "Manifesto — Build For Good",
   description:
-    "Capability without character is not enough. Why BGET exists, what we build, and the standard we hold each other to.",
+    "Capability without character is not enough. Why Build For Good exists, what we build, and the standard we hold each other to.",
 };
 
 const whatWeDo = [
@@ -29,7 +29,7 @@ const nots = [
   "Not a networking farm.",
   "Not a self-promotion channel.",
   "Not a place where status is measured in certifications.",
-  "Not owned by any founder's startup — BGET belongs to its members.",
+  "Not owned by any founder's startup — Build For Good belongs to its members.",
   "Not for people who are only here to extract.",
 ];
 
@@ -143,7 +143,7 @@ export default function ManifestoPage() {
 
       <Section
         id="standard"
-        eyebrow="The BGET standard"
+        eyebrow="The Build For Good standard"
         title="Twelve dimensions. Character is the gate."
       >
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10">

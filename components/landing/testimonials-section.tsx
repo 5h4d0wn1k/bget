@@ -10,28 +10,28 @@ const asciiPattern = Array.from({ length: 60 }, () =>
 const testimonials = [
   {
     quote: "Capability without character is not enough.",
-    author: "BGET",
+    author: "Build For Good",
     role: "Values",
     company: "Character",
     metric: { value: "1st", label: "Character is the gate" },
   },
   {
     quote: "We would rather stay small and excellent than grow fast and become ordinary.",
-    author: "BGET",
+    author: "Build For Good",
     role: "Values",
     company: "Quality",
     metric: { value: "Quality", label: "over quantity" },
   },
   {
     quote: "Become more capable without becoming less human.",
-    author: "BGET",
+    author: "Build For Good",
     role: "Values",
     company: "Humanity",
     metric: { value: "Human", label: "before everything else" },
   },
   {
     quote: "Don't just point at the problem. Be part of the solution.",
-    author: "BGET",
+    author: "Build For Good",
     role: "Values",
     company: "Action",
     metric: { value: "Build", label: "not just talk" },

@@ -3,7 +3,7 @@ import { PageShell, Section } from "@/components/site/page-shell";
 import { ProblemForm } from "@/components/site/problem-form";
 
 export const metadata: Metadata = {
-  title: "Problem Commons — BGET",
+  title: "Problem Commons — Build For Good",
   description:
     "Bring us a problem. We'll bring together the people who can help — across disciplines, borders, and status.",
 };
@@ -69,10 +69,10 @@ export default function ProblemsPage() {
         <div className="grid lg:grid-cols-2 gap-16">
           <div className="space-y-6 text-lg">
             <p className="text-muted-foreground line-through decoration-red-400/60">
-              “Submit your problem and BGET will solve it.”
+              “Submit your problem and Build For Good will solve it.”
             </p>
             <p>
-              “Submit a problem. BGET will help determine whether, how, and with whom
+              “Submit a problem. Build For Good will help determine whether, how, and with whom
               it can be meaningfully worked on.”
             </p>
           </div>

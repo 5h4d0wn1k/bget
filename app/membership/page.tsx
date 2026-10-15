@@ -4,9 +4,9 @@ import { PageShell, Section } from "@/components/site/page-shell";
 import { ApplyForm } from "@/components/site/apply-form";
 
 export const metadata: Metadata = {
-  title: "Membership — BGET",
+  title: "Membership — Build For Good",
   description:
-    "Open to problems, selective with people. The BGET filter: the twelve dimensions, the conversation, and the 30-day trial.",
+    "Open to problems, selective with people. The Build For Good filter: the twelve dimensions, the conversation, and the 30-day trial.",
 };
 
 const dimensions = [
@@ -33,7 +33,7 @@ const doors = [
     cta: "Submit a problem",
   },
   {
-    title: "Join BGET",
+    title: "Join Build For Good",
     standard: "Application → conversation → 30-day trial",
     why: "The filter protects members from people who would make the community worse.",
     href: "#apply",

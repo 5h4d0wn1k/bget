@@ -73,7 +73,7 @@ export function InfrastructureSection() {
                 isVisible ? "opacity-100" : "opacity-0"
               }`}>
                 Different countries, cultures, and disciplines — one shared standard.
-                BGET is built across borders from day one.
+                Build For Good is built across borders from day one.
               </p>
             </div>
           </div>

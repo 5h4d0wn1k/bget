@@ -82,7 +82,7 @@ export function ApplyForm() {
         <TextArea name="struggling" value={form.struggling} onChange={set("struggling")} />
       </Field>
 
-      <Field label="Why BGET, and what you want to become">
+      <Field label="Why Build For Good, and what you want to become">
         <TextArea name="why_bget" value={form.why_bget} onChange={set("why_bget")} />
       </Field>
 

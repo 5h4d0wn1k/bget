@@ -1,6 +1,6 @@
-# Contributing to BGET
+# Contributing to Build For Good
 
-Thanks for helping improve the BGET website. This is a small, deliberately
+Thanks for helping improve the Build For Good website. This is a small, deliberately
 simple static site — contributions that keep it that way are the most welcome.
 
 **Quality over quantity** applies to contributions too: one focused pull
@@ -13,11 +13,13 @@ volume — applies here.
 ```bash
 git clone https://github.com/5h4d0wn1k/bget.git
 cd bget
-python3 -m http.server 8000
-# → http://127.0.0.1:8000
+npm ci
+npm run build
+npm run preview
+# → http://127.0.0.1:8787
 ```
 
-There is no build step. Edit, refresh the browser, done.
+The site is a Next.js static export served by Cloudflare Workers. Use `npm run preview` to exercise forms and the Worker API locally; `npm run dev` only serves the frontend.
 
 ## The flow: fork → branch → PR
 

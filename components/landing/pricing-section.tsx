@@ -20,7 +20,7 @@ const plans = [
     highlight: false,
   },
   {
-    name: "Join BGET",
+    name: "Join Build For Good",
     description: "For exceptional people who want to build together",
     price: { monthly: 0, annual: 0 },
     features: [
@@ -35,7 +35,7 @@ const plans = [
     highlight: true,
   },
   {
-    name: "BGET Labs",
+    name: "Build For Good Labs",
     description: "For the teams that form around a problem",
     price: { monthly: null, annual: null },
     features: [
